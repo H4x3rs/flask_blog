@@ -118,7 +118,7 @@ def login():
         user = Users.query.filter_by(email=login_form.email.data)
         login_user(user, login_form.remember.data)
         flash(u"登录成功!", category="success")
-        return redirect(request.args.get('next') or url_for('main.index'))
+        return redirect(request.args.get('next') or url_for('blog.index'))
 
     return render_template('login.html',
                            form=login_form)
@@ -128,6 +128,8 @@ def login():
 @login_required
 def logout():
     logout_user()
+    flash(u"注销成功！",category="success")
+    return redirect(request.args.get('next') or url_for('blog.index'))
 
 
 @blog_blueprint.route('/register')
