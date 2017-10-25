@@ -30,7 +30,7 @@ def create_app(object_name=DevConfig):
 	
     @app.route('/')
     def index():
-	return redirect(url_for('blog.index'))
+        return redirect(url_for('blog.index'))
     
     return app
 

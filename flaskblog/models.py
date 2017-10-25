@@ -31,8 +31,8 @@ class Users(db.Model):
         self.id = str(uuid4())
         self.password = self.set_password(password)
         self.phoneno = phone
-        self.nickname = nickname 
-	self.create_at = int(time.time()*1000) 
+        self.nickname = nickname
+        self.create_at = int(time.time()*1000)
 
     def __repr__(self):
         return "<Model User `{}`>".format(self.id)
@@ -44,7 +44,7 @@ class Users(db.Model):
     
     # 检查密码正确性
     def check_password(self, password):
-	pass_sha1 = sha1(password)
+        pass_sha1 = sha1(password)
         return self.password == pass_sha1.hexdigest()
 
 
@@ -74,7 +74,7 @@ class Posts(db.Model):
     def __init__(self, title, content):
         self.id = str(uuid4())
         self.title = title  
-	self.content = content
+        self.content = content
         self.create_at = int(time.time()*1000)         
 
     def __repr__(self):
@@ -89,10 +89,10 @@ class Tags(db.Model):
 
     def __init__(self, name):
         self.name = name
-	self.id =str(uuid4())
+        self.id =str(uuid4())
 
     def __repr__(self):
-	return "<Model Tags `{}`>".format(self.id)
+        return "<Model Tags `{}`>".format(self.id)
 
 
 class Comments(db.Model):
@@ -115,5 +115,5 @@ class Comments(db.Model):
 	self.comment = comment
 
     def __repr__(self):
-	return '<Model Comments `{}`>'.format(self.id)
+        return '<Model Comments `{}`>'.format(self.id)
  

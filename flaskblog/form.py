@@ -25,18 +25,18 @@ class LoginForm(Form):
     password = PasswordField('password', validators=[DataRequired(), Length(max=255)])
     
     def validate(self):
-	check = super(LoginForm, self).validate()
+        check = super(LoginForm, self).validate()
 	
-	if not check:
-	    return False
-
-	# check user exist        
-	user = Users.query.filter_by(email=self.email.data).first()
-        if not user:
-	    self.email.errors.append('无效的用户名或密码!')
+        if not check:
             return False
 
-	# check password
+        # check user exist
+        user = Users.query.filter_by(email=self.email.data).first()
+        if not user:
+            self.email.errors.append('无效的用户名或密码!')
+            return False
+
+        # check password
         if not user.check_password(self.password.data):
             self.username.errors.append('无效的用户名或密码!')
             return False

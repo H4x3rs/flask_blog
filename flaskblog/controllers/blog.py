@@ -6,6 +6,7 @@
 from os import path
 from flask import Blueprint
 from flask import render_template
+from flask import redirect
 from sqlalchemy import func
 
 from flaskblog.models import db
@@ -44,7 +45,7 @@ def index(page=1):
     return render_template('base.html',
                            title=u'无名万物',
                            posts=posts,
-			   pages=pages,
+                           pages=pages,
                            recent=recent,
                            top_tags=top_tags)
 
@@ -55,7 +56,7 @@ def post(post_id):
     form = CommentForm()
     
     if form.validate_on_submit():
-	comment = Comments(name=form.name.data, email=form.email.data, comment=form.comment.data)
+        comment = Comments(name=form.name.data, email=form.email.data, comment=form.comment.data)
         comment.post_id = post_id
         db.session.add(comment)
         db.session.commit()
@@ -70,7 +71,7 @@ def post(post_id):
                            tags=tags,
                            comments=comments,
                            recent=recent,
-			   form=form,
+                           form=form,
                            top_tags=top_tags)
 
 
@@ -103,8 +104,14 @@ def user(id):
                            top_tags=top_tags)
 
 @blog_blueprint.route('/login', methods=('GET','POST'))
-def login():
-    return render_template('login.html')
+def login(next=None):
+    login_form = LoginForm()
+
+    if login_form.validate_on_submit():
+        redirect(next)
+
+    return render_template('login.html',
+                           form=login_form)
 
 
 @blog_blueprint.route('/register')

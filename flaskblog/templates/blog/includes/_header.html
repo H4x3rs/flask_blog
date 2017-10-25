@@ -1,10 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<header>
+    <div class="navbar-fixed">
+        <nav class="hoverable">
+            <div class="nav-wrapper blue accent-3 navbar-fixed">
+                 <!--logo -->
+                <a class="brand-logo left" href="{{ url_for('blog.index') }}">
+                    <img src="{{ url_for('static', filename='favicon.ico') }}" class="nav-logo"> 无名万物
+                </a>
+                <!--  menu -->
+                <a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="material-icons">menu</i></a>
+                <!--item -->
+                <!--  用户模块 -->
+                <ul class="hide-on-med-and-down right nav-item nav-login" style="border-left: 1px solid #0f0f0f">
+                    <!--  用户templates -->
+                    <li><a href="#" class="dropdown-button" data-activates="person"><i class="material-icons">person</i></a></li>
+                    <ul id="person" class="dropdown-content">
+                        <li><a href="{{ url_for('blog.login') }}">登录</a></li>
+                        <li><a href="{{ url_for('blog.register') }}">注册</a></li>
+                    </ul>
+                </ul>
 
-</body>
-</html>
+                <!--  导航栏  -->
+                <ul class="hide-on-med-and-down right nav-item">
+                    <li class="active"><a href="{{url_for('blog.index')}}">首页</a></li>
+                    <li><a href="#" class="dropdown-button" data-activates="code_lang">语言</a></li>
+                    <li><a href="#" class="dropdown-button" data-activates="system">系统</a></li>
+                    <li><a href="{{ url_for('blog.gallery') }}">相册</a></li>
+                    <li><a href="{{url_for('blog.about') }}">关于</a></li>
+                    <li><a>
+                        <i class="material-icons">search</i>
+                    </a></li>
+                </ul>
+
+                <!--语言下拉菜单-->
+                <ul id="code_lang" class="dropdown-content">
+                    <li><a href="#">Python</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Java</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Nodejs</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">C/C++</a></li>
+                </ul>
+
+                <!-- 系统下拉菜单 -->
+                <ul id="system" class="dropdown-content">
+                    <li><a href="#">Windows</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Linux</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Mac OS</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">IOS</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Android</a></li>
+                </ul>
+
+                <ul id="mobile-demo" class="side-nav">
+                    <li class="active"><a href="base.html">首页</a></li>
+                    <li><a href="#" class="dropdown-button" data-activates="code_lang_mobile">语言</a></li>
+                    <li><a href="#" class="dropdown-button" data-activates="system_mobile">系统</a></li>
+                    <li><a href="base.html">相册</a></li>
+                    <li><a href="base.html">关于</a></li>
+                    <li class="divider"></li>
+                    <li><a href="login.html">登录</a></li>
+                    <li><a href="register.html">注册</a></li>
+                </ul>
+
+                                <!--语言下拉菜单-->
+                <ul id="code_lang_mobile" class="dropdown-content">
+                    <li><a href="#">Python</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Java</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Nodejs</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">C/C++</a></li>
+                </ul>
+
+                <!-- 系统下拉菜单 -->
+                <ul id="system_mobile" class="dropdown-content">
+                    <li><a href="#">Windows</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Linux</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Mac OS</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">IOS</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Android</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
