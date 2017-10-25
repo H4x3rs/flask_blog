@@ -7,14 +7,20 @@ from os import path
 from flask import Blueprint
 from flask import render_template
 from flask import redirect
+from flask import flash
+from flask import url_for
+from flask import request
 from sqlalchemy import func
+from flask_login import login_user
+from flask_login import logout_user
+from flask_login import login_required
 
 from flaskblog.models import db
-from flaskblog.models import Users
-from flaskblog.models import Posts
-from flaskblog.models import Tags
-from flaskblog.models import Comments
-from flaskblog.models import posts_tags
+from flaskblog.models.users import Users
+from flaskblog.models.posts import Posts
+from flaskblog.models.tags import Tags
+from flaskblog.models.comments import Comments
+from flaskblog.models.posts_tags import posts_tags
 
 from flaskblog.form import CommentForm
 from flaskblog.form import LoginForm
@@ -103,15 +109,25 @@ def user(id):
                            recent=recent,
                            top_tags=top_tags)
 
+# 登入
 @blog_blueprint.route('/login', methods=('GET','POST'))
-def login(next=None):
+def login():
     login_form = LoginForm()
 
     if login_form.validate_on_submit():
-        redirect(next)
+        user = Users.query.filter_by(email=login_form.email.data)
+        login_user(user, login_form.remember.data)
+        flash(u"登录成功!", category="success")
+        return redirect(request.args.get('next') or url_for('main.index'))
 
     return render_template('login.html',
                            form=login_form)
+
+# 登出
+@blog_blueprint.route('/logout')
+@login_required
+def logout():
+    logout_user()
 
 
 @blog_blueprint.route('/register')

@@ -7,11 +7,12 @@ from wtforms import StringField
 from wtforms import TextField
 from wtforms import RadioField 
 from wtforms import PasswordField
+from wtforms import BooleanField
 from wtforms.validators import DataRequired
 from wtforms.validators import Email
 from wtforms.validators import Length
 
-from flaskblog.models import Users
+from flaskblog.models.users import Users
 
 class CommentForm(Form):
     """Form validate for Comments"""
@@ -23,7 +24,8 @@ class LoginForm(Form):
     """Form validate for login"""
     email = StringField('email', validators=[DataRequired(), Length(max=255), Email()])
     password = PasswordField('password', validators=[DataRequired(), Length(max=255)])
-    
+    remember = BooleanField("Remember Me")
+
     def validate(self):
         check = super(LoginForm, self).validate()
 	
@@ -38,7 +40,7 @@ class LoginForm(Form):
 
         # check password
         if not user.check_password(self.password.data):
-            self.username.errors.append('无效的用户名或密码!')
+            self.email.errors.append('无效的用户名或密码!')
             return False
         
         return True

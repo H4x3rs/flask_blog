@@ -7,6 +7,7 @@ import time
 from uuid import uuid4
 from hashlib import sha1
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import  AnonymousUserMixin
 
 db = SQLAlchemy()
 
@@ -46,6 +47,34 @@ class Users(db.Model):
     def check_password(self, password):
         pass_sha1 = sha1(password)
         return self.password == pass_sha1.hexdigest()
+
+    # 检查用户是否登录
+    def is_authenticated(self):
+        if isinstance(self, AnonymousUserMixin):
+            return False
+        else:
+            return True
+
+    # 检查用户是否激活
+    def is_active(self):
+        if self.status == 1:
+            return True
+        else:
+            return False
+
+    # 检查是否是匿名用户
+    def is_anonymous(self):
+        if isinstance(self, AnonymousUserMixin):
+            return False
+        else:
+            return True
+
+    # 返回用户ID
+    def get_id(self):
+        return unicode(self.id)
+
+    def __repr__(self):
+        return '<Model Users `{}`>'.format(self.id)
 
 
 # posts与tags的关联表
@@ -110,9 +139,9 @@ class Comments(db.Model):
 
     def __init__(self, name, email, comment):
         self.id = str(uuid4())
-	self.name = name
-	self.email = email
-	self.comment = comment
+        self.name = name
+        self.email = email
+        self.comment = comment
 
     def __repr__(self):
         return '<Model Comments `{}`>'.format(self.id)

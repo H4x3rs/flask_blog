@@ -4,9 +4,11 @@
 
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
+from flask_moment import Moment
 
 bcrypt = Bcrypt()
 login_manager = LoginManager()
+moment = Moment()
 
 
 login_manager.login_view = "blog.login"
@@ -18,6 +20,6 @@ login_manager.login_message_category = "info"
 @login_manager.user_loader
 def load_user(user_id):
     """Load the user's info"""
-    from models import Users
+    from flaskblog.models.users import Users
     return Users.query.filter_by(id=user_id).first()
 
