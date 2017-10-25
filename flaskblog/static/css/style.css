@@ -1,0 +1,67 @@
+/* 初始化配置*/
+*{
+    margin: 0px;
+    padding: 0px;
+}
+/* 设置整体的一些css属性 */
+html{
+    height: 100%;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: #000;
+    background-color: #f3f3f3;
+    background-image: url("../cubes.png");
+    //font-family:  "Microsoft YaHei","微软雅黑","宋体",helvetica,"Hiragino Sans GB";
+    font-family: Helvetica, Consolas, Monaco, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+header{
+    flex: 0 0 auto;
+}
+.main-content{
+    flex:1 0 auto;
+}
+footer{
+    flex: 0 0 auto;
+}
+
+/* 私有的属性*/
+.selector-for-some-widget {
+  box-sizing: content-box;
+}
+
+.nav-logo{
+    border: 0px;
+    vertical-align: text-bottom;
+    width: 40px;
+    height: 40px;
+    margin-left: 40px;
+}
+
+.nav-item{
+    float: left;
+}
+.nav-item > li{
+    width: 80px;
+    text-align: center;
+    z-index: 100;
+}
+.nav-login>li{
+    width: 120px;
+}
+.container{
+    width: 90%;
+    /*background-image: url("https://www.transparenttextures.com/patterns/cubes.png");*/
+    margin-top: 30px;
+}
+
+#index-banner{
+    min-height: 180px;
+    height: auto;
+    background-image: url("../banner2.jpg");
+}
+#sidenav-overlay{
+    z-index: 100;
+}

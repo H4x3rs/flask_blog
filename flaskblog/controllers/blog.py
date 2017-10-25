@@ -1,0 +1,128 @@
+#! /env python
+# _*_ coding:utf8 _*_
+# @author:Haojie Ren
+# @time:2017/9/2 0:46
+
+from os import path
+from flask import Blueprint
+from flask import render_template
+from sqlalchemy import func
+
+from flaskblog.models import db
+from flaskblog.models import Users
+from flaskblog.models import Posts
+from flaskblog.models import Tags
+from flaskblog.models import Comments
+from flaskblog.models import posts_tags
+
+from flaskblog.form import CommentForm
+from flaskblog.form import LoginForm
+
+blog_blueprint = Blueprint('blog', 
+			 __name__, 
+			 template_folder=path.join(path.pardir, 'templates', 'blog'), 
+			 url_prefix='/blog')
+
+def sidebar_data():
+    recent = db.session.query(Posts).order_by(Posts.create_at.desc()).limit(5).all()
+    top_tags = db.session.query(Tags, func.count(posts_tags.c.post_id).label('total')).join(posts_tags).group_by(
+        Tags).order_by('total DESC').limit(10).all()
+
+    return recent, top_tags
+
+
+@blog_blueprint.route('/')
+@blog_blueprint.route('/index')
+@blog_blueprint.route('/<int:page>')
+def index(page=1):
+    """View function for index page"""
+
+    pages = Posts.query.order_by(Posts.create_at.desc()).paginate(page, 10)
+    posts = pages.items
+    recent, top_tags = sidebar_data()
+
+    return render_template('base.html',
+                           title=u'无名万物',
+                           posts=posts,
+			   pages=pages,
+                           recent=recent,
+                           top_tags=top_tags)
+
+
+@blog_blueprint.route('/post/<string:post_id>', methods=('GET','POST'))
+def post(post_id):
+    """View function for post page"""
+    form = CommentForm()
+    
+    if form.validate_on_submit():
+	comment = Comments(name=form.name.data, email=form.email.data, comment=form.comment.data)
+        comment.post_id = post_id
+        db.session.add(comment)
+        db.session.commit()
+
+    post = db.session.query(Posts).join(Users).filter(Posts.id==post_id).first_or_404()
+    tags = post.tags
+    comments = post.comments.order_by(Comments.create_at.desc()).all()
+    recent, top_tags = sidebar_data()
+
+    return render_template('post.html',
+                           post=post,
+                           tags=tags,
+                           comments=comments,
+                           recent=recent,
+			   form=form,
+                           top_tags=top_tags)
+
+
+@blog_blueprint.route('/tag/<string:tag_name>')
+def tag(tag_name):
+    """View function for tag page"""
+
+    tag = db.session.query(Tags).filter_by(name=tag_name).first_or_404()
+    posts = tag.posts.order_by(Posts.create_at.desc()).all()
+    recent, top_tags = sidebar_data()
+
+    return render_template('tags.html',
+                           tag=tag,
+                           posts=posts,
+                           recent=recent,
+                           top_tags=top_tags)
+
+
+@blog_blueprint.route('/user/<string:id>')
+def user(id):
+    """View function for user page"""
+    user = db.session.query(Users).filter_by(id=id).first_or_404()
+    posts = user.posts.order_by(Posts.create_at.desc()).all()
+    recent, top_tags = sidebar_data()
+
+    return render_template('user.html',
+                           user=user,
+                           posts=posts,
+                           recent=recent,
+                           top_tags=top_tags)
+
+@blog_blueprint.route('/login', methods=('GET','POST'))
+def login():
+    return render_template('login.html')
+
+
+@blog_blueprint.route('/register')
+def register():
+    return render_template('register.html')
+
+@blog_blueprint.route('/about')
+def about():
+    return render_template('about.html')
+
+@blog_blueprint.route('/gallery')
+def gallery():
+    return render_template('gallery.html')
+
+@blog_blueprint.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'),404
+
+@blog_blueprint.errorhandler(500)
+def internal_server_error(e):
+    return render_template('500.html'),500
