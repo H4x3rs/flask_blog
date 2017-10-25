@@ -44,3 +44,8 @@ class LoginForm(Form):
             return False
         
         return True
+
+
+class RegisterForm(Form):
+    """Form validate for register"""
+    email = StringField('email', validators=[DataRequired(), Length(max=255), Email()])
