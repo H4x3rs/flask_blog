@@ -25,8 +25,10 @@ from flaskblog.models.posts_tags import posts_tags
 from flaskblog.form import CommentForm
 from flaskblog.form import LoginForm
 
-blog_blueprint = Blueprint('blog', 
-			 __name__, 
+from flaskblog.extensions import facebook
+
+# 定义蓝图
+blog_blueprint = Blueprint('blog',  __name__,
 			 template_folder=path.join(path.pardir, 'templates', 'blog'), 
 			 url_prefix='/blog')
 
@@ -34,16 +36,13 @@ def sidebar_data():
     recent = db.session.query(Posts).order_by(Posts.create_at.desc()).limit(5).all()
     top_tags = db.session.query(Tags, func.count(posts_tags.c.post_id).label('total')).join(posts_tags).group_by(
         Tags).order_by('total DESC').limit(10).all()
-
     return recent, top_tags
-
 
 @blog_blueprint.route('/')
 @blog_blueprint.route('/index')
 @blog_blueprint.route('/<int:page>')
 def index(page=1):
     """View function for index page"""
-
     pages = Posts.query.order_by(Posts.create_at.desc()).paginate(page, 10)
     posts = pages.items
     recent, top_tags = sidebar_data()
@@ -60,7 +59,7 @@ def index(page=1):
 def post(post_id):
     """View function for post page"""
     form = CommentForm()
-    
+    # validate验证通过，增加一条评论
     if form.validate_on_submit():
         comment = Comments(name=form.name.data, email=form.email.data, comment=form.comment.data)
         comment.post_id = post_id
@@ -115,13 +114,43 @@ def login():
     login_form = LoginForm()
 
     if login_form.validate_on_submit():
-        user = Users.query.filter_by(email=login_form.email.data)
+        user = Users.query.filter_by(email=login_form.email.data).one()
         login_user(user, login_form.remember.data)
         flash(u"登录成功!", category="success")
         return redirect(request.args.get('next') or url_for('blog.index'))
 
     return render_template('login.html',
                            form=login_form)
+
+# facebook 授权登陆
+@blog_blueprint.route('/facebook')
+def facebook_login():
+    return facebook.authorize(callback=url_for('blog.facebook_authorized',
+                                               next=request.referre or None,
+                                               _external=True))
+
+@blog_blueprint.route('/facebook/authorized')
+@facebook.authorize_handler
+def facebook_authorized(resp):
+    if resp is None:
+        return 'Access denied:reason=%s error=%S'%(request.args['error_reason'],request.args['error_description'])
+    session['facebook_oauth_token'] = (resp['access_token'],'')
+    me = facebook.get('/me')
+    if me.data.get('first_name', False):
+        facebook_username = me.data['first_name']+" "+ me.data['last_name']
+    else:
+        facebook_username = me.data['name']
+    if me.data.get('email', False):
+        facebook_email = me.data['email']
+
+    user = User.query.filter_by(nickname=facebook_username).first()
+    if user is None:
+        user = User(id=str(uuid4()), nickname=facebook_username, password='')
+        db.session.add(user)
+        db.session.commit()
+
+    flash('You have been logged in by Facebook.', category='success')
+    return  redirect(url_for('blog.index'))
 
 # 登出
 @blog_blueprint.route('/logout')

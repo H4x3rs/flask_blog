@@ -8,21 +8,22 @@
 {% block header %}
     {% include 'includes/_header.html'%}
 {% endblock %}
+
 <!-- content 主体-->
 {% block content %}    
-    <!-- banner图片 -->
-    <div id="index-banner" class="parallax-container">
-        <div class="section no-pad-bot">
-            <div class="container">
-                <h3 class="header center white-text">无名万物</h3>
-                <div class="row center">
-                    <h5 class="header col s12 white-text">A modern responsive front-end framework based on Materia Design</h5>
-                </div>
-                <br>
+<!-- banner图片 -->
+<div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <h3 class="header center white-text">无名万物</h3>
+            <div class="row center">
+                <p class="header col s12 white-text">A modern responsive front-end framework based on Materia Design</p>
             </div>
+            <br>
         </div>
-        <div class="parallax"><img data-src="../../static/banner3.jpg" class='lazyload'></div>
     </div>
+    <div class="parallax"><img data-src="../../static/banner3.jpg" class='lazyload'></div>
+</div>
 
 <!-- content 正文 -->
 <div class="main-content">
@@ -30,20 +31,21 @@
         <div class="row">
             <!-- start 左边-->
             <div class="col s12 m12 l9">
-		    {%for post in posts if post.title%}
-                <div class="card hoverable" style="margin-bottom: 30px;">
-                    <div class="card-image">
-                        <img data-src="../../static/banner3.jpg" class='lazyload'>
-                        <span class="card-title"><h5>{{post.title}}</h5></span>
+                <!-- post -->
+                {%for post in posts if post.title%}
+                    <div class="card hoverable" style="margin-bottom: 30px;">
+                        <div class="card-image">
+                            <img data-src="../../static/banner3.jpg" class='lazyload'>
+                            <span class="card-title"><h5>{{post.title}}</h5></span>
+                        </div>
+                        <div class="card-content">
+                             <p>{{post.content}} </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="post/{{post.id}}">查看更多</a>
+                        </div>
                     </div>
-                    <div class="card-content">
-                         <p>{{post.content}} </p>
-                    </div>
-                    <div class="card-action">
-                        <a href="post/{{post.id}}">查看更多</a>
-                    </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
 
               <ul class="pagination">
                 <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>

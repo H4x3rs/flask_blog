@@ -16,43 +16,35 @@
                     <div class="divider"></div>
                     <br>
                     <div class="row card-content">
-                        <form class="login_form" action="#" method="post">
-                            <!--用户名-->
+                        <form class="login_form"  method="POST" action="{{url_for('blog.login')}}">
+                            {{ form.hidden_tag() }}
                             <div class="row col s12 m10 l10 offset-m1 offset-l1">
-                                <div class="input">
-                                    <label for="username">用户名：</label>
-                                    <input type="text" name="username" id="username" class="" placeholder="请输入邮箱或手机号">
-                                </div>
+                                {{ form.email.label }}
+                                {% if form.email.errors %}
+                                    {% for e in form.email.errors %}
+                                        <p class="help-block"> {{e}} </p>
+                                    {% endfor %}
+                                {% endif %}
+                                {{ form.email(class="form-control") }}
                             </div>
-                            <!--密码-->
                             <div class="row col s12 m10 l10 offset-m1 offset-l1">
-                                <div class="input">
-                                    <label for="password">密码：</label>
-                                    <input type="password" name="password" id="password" class="" placeholder="请输入密码">
-                                </div>
-                            </div>
-                            <!--验证码-->
-                            <div class="row col s12 m10 l5 offset-m1 offset-l1">
-                                <div class="input">
-                                    <label for="valite_code">验证码：</label>
-                                    <input type="text" name="valite_code" id="valite_code" class="validate" placeholder="请输入验证码">
-                                </div>
-                            </div>
-                            <div class="row col s12 m10 l4 offset-m1 offset-l1">
-                                <div class="input">
-                                   <label for="123">验证码：</label>
-                                    <input type="text" name="valite_code" id="123" class="validate" placeholder="请输入验证码">
-                                </div>
+                                {{ form.password.label }}
+                                {% if form.password.errors %}
+                                    {% for e in password.errors %}
+                                        <p class="help-block"> {{e}} </p>
+                                    {% endfor %}
+                                {% endif %}
+                                {{ form.password(class="form-control") }}
                             </div>
                             <!--remeber me-->
-                            <div class="row col s12 m10 l5 offset-m1 offset-l1">
+                            <div class="row col s12 m10 l10 offset-m1 offset-l1">
                                 <div class="input">
-                                    <input type="checkbox" class="filled-in" id="remeber_me" checked="checked" name="remeber_me"/>
-                                    <label for="remeber_me">Remeber Me</label>
+                                    {{ form.remember.label }}
+                                    {{ form.remember(class="form-control") }}
                                 </div>
                             </div>
                             <!--登陆按钮-->
-                            <div class="row col s12 m10 l5 offset-m1 offset-l1">
+                            <div class="row col s12 m10 l10 offset-m1 offset-l1">
                                 <button class="btn waves-effect blue accent-3" type="submit" name="action">Submit
                                     <i class="material-icons right">send</i>
                                 </button>
