@@ -15,5 +15,7 @@
       $('.button-collapse').sideNav();
       $('.parallax').parallax();
 
+      $('#comment').characterCounter();
+
   }); // end of document ready
 })(jQuery); // end of jQuery name space

@@ -10,6 +10,7 @@ from flask import redirect
 from flask import flash
 from flask import url_for
 from flask import request
+from flask import session
 from sqlalchemy import func
 from flask_login import login_user
 from flask_login import logout_user
@@ -129,6 +130,10 @@ def login():
 
     if login_form.validate_on_submit():
         user = Users.query.filter_by(email=login_form.email.data).one()
+        if not user:
+            print "not user"
+            flash(u"无效的用户名与密码！")
+
         login_user(user, login_form.remember.data)
         flash(u"登录成功!", category="success")
         return redirect(request.referrer or url_for('blog.index'))
@@ -156,10 +161,12 @@ def facebook_authorized(resp):
         facebook_username = me.data['name']
     if me.data.get('email', False):
         facebook_email = me.data['email']
+    if me.data.get('phone', False):
+        facebook_phone = me.data['phone']
 
-    user = User.query.filter_by(nickname=facebook_username).first()
+    user = Users.query.filter_by(nickname=facebook_username).first()
     if user is None:
-        user = User(id=str(uuid4()), nickname=facebook_username, password='')
+        user = Users(nickname=facebook_username, password='', email=facebook_email,phone=facebook_phone)
         db.session.add(user)
         db.session.commit()
 

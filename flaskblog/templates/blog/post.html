@@ -31,7 +31,7 @@
                 {% endif %}
 		
                 {% for comment in comments if comments %}
-                <div class="card hoverable" style="border:1px #ccc solid" >
+                <div class="card hoverable">
                     <div class="card-content">
                         {{ comment.name }}:{{comment.comment}}
                     </div>
@@ -40,9 +40,9 @@
 
                 <!-- 评论表单 -->
                 {% if form %}
-                <div class="card hoverable" style="border:1px #ccc solid" >
+                <div class="card hoverable">
                     <div class="card-content">
-                        <h6>留下您的宝贵意见吧！</h6>
+                        <div class="card-title">留下您的宝贵意见吧！</div>
                     </div>
                     <div class="divider"></div>
                     <div class="card-content">
@@ -66,15 +66,14 @@
                                 {% endif %}
                                 {{ form.email(class="form-control") }}
                             </div>
-                            <div class="form-group">
-                                {{ form.comment.label }}
-                                {% if form.comment.errors %}
-                                    {% for e in comment.text.errors %}
-                                        <p class="help-block"> {{e}} </p>
-                                    {% endfor %}
-                                {% endif %}
-                                {{ form.comment(class="form-control") }}
+                            <div class="row">
+                              <div class="input-field col s12">
+                                {{form.comment(class="materialize-textarea")}}
+                                {{form.comment.label}}
                             </div>
+                        </div>
+                              
+                            
 
                             <input class="btn btn-primary" type="submit" value="提交评论">
                         </form>
@@ -91,3 +90,4 @@
 {% block footer %}
 {% include 'includes/_footer.html'%}
 {% endblock %}
+
