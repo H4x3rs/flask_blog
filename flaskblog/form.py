@@ -35,12 +35,12 @@ class LoginForm(Form):
         # check user exist
         user = Users.query.filter_by(email=self.email.data).first()
         if not user:
-            self.email.errors.append('无效的用户名或密码!')
+            self.email.errors.append(u'无效的用户名或密码!')
             return False
 
         # check password
         if not user.check_password(self.password.data):
-            self.email.errors.append('无效的用户名或密码!')
+            self.password.errors.append(u'无效的用户名或密码!')
             return False
         
         return True

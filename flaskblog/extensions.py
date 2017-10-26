@@ -6,11 +6,13 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_moment import Moment
 from flask_oauth import OAuth
+from flask_bootstrap import Bootstrap
 
 bcrypt = Bcrypt()
 login_manager = LoginManager()
 moment = Moment()
 oauth = OAuth()
+bootstrap = Bootstrap()
 
 
 login_manager.login_view = "blog.login"
@@ -21,9 +23,10 @@ login_manager.login_message_category = "info"
 facebook = oauth.remote_app('facebook',
                             base_url='https://graph.facebook.com/',
                             request_token_url=None,
-                            access_token_url='https://www.facebook.com/dialog/oauth',
-                            consumer_key='<Your_app_number>',
-                            consumer_secret='<Your_app_secret>',
+			    access_token_url='/facebook/access_token',
+                            authorize_url='https://www.facebook.com/dialog/oauth',
+                            consumer_key='1445736152161924',
+                            consumer_secret='3813037e74636c105e19669930957972',
                             request_token_params={'scope':'email'})
 
 @login_manager.user_loader

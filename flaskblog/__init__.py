@@ -13,6 +13,8 @@ from models import db
 
 # 扩展
 from extensions import bcrypt
+from extensions import login_manager
+from extensions import bootstrap
 
 # blog视图函数
 from controllers import blog
@@ -23,6 +25,9 @@ def create_app(object_name=DevConfig):
     app.config.from_object(object_name)
     # Init db object 
     db.init_app(app)
+    # Init flask_login
+    login_manager.init_app(app)
+    bootstrap.init_app(app)
     # Init the bcrypt via app object      
     # bcrypt.init_app(app)
     # Register the Blueprint into app object

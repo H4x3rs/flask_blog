@@ -38,6 +38,20 @@ def sidebar_data():
         Tags).order_by('total DESC').limit(10).all()
     return recent, top_tags
 
+@blog_blueprint.route('/test')
+def test():
+    pages = Posts.query.order_by(Posts.create_at.desc()).paginate(1, 10)
+    posts = pages.items
+    recent, top_tags = sidebar_data()
+
+    return render_template('index.html',
+                           title=u'无名万物',
+                           posts=posts,
+                           pages=pages,
+                           recent=recent,
+                           top_tags=top_tags)
+
+
 @blog_blueprint.route('/')
 @blog_blueprint.route('/index')
 @blog_blueprint.route('/<int:page>')
@@ -126,11 +140,11 @@ def login():
 @blog_blueprint.route('/facebook')
 def facebook_login():
     return facebook.authorize(callback=url_for('blog.facebook_authorized',
-                                               next=request.referre or None,
+                                               next=request.referrer or None,
                                                _external=True))
 
 @blog_blueprint.route('/facebook/authorized')
-@facebook.authorize_handler
+@facebook.authorized_handler
 def facebook_authorized(resp):
     if resp is None:
         return 'Access denied:reason=%s error=%S'%(request.args['error_reason'],request.args['error_description'])

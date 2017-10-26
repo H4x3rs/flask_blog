@@ -9,10 +9,11 @@ from flask_script import Manager,Server
 from flask_migrate import Migrate, MigrateCommand
 
 from flaskblog.models import db
-from flaskblog.models import Users
-from flaskblog.models import Posts, posts_tags
-from flaskblog.models import Comments
-from flaskblog.models import Tags
+from flaskblog.models.users import Users
+from flaskblog.models.posts import Posts
+from flaskblog.models.posts_tags import posts_tags
+from flaskblog.models.comments import Comments
+from flaskblog.models.tags import Tags
 
 # Init manager object via app object
 manager = Manager(app)

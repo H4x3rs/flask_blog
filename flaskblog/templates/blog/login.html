@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "bootstrap/base.html" %}
 
 {% block header %}
 
@@ -17,6 +17,15 @@
                     <br>
                     <div class="row card-content">
                         <form class="login_form"  method="POST" action="{{url_for('blog.login')}}">
+			    {% for message in get_flashed_messages() %}
+				{%if message %}	
+				   <div class="row col s12 m10 l10 offset-m1 offset-l1">
+					<div class="alert alert-error">
+						{{message}}
+					</div>
+				   </div>			
+				{%endif%}
+			    {%endfor%}
                             {{ form.hidden_tag() }}
                             <div class="row col s12 m10 l10 offset-m1 offset-l1">
                                 {{ form.email.label }}
@@ -30,7 +39,7 @@
                             <div class="row col s12 m10 l10 offset-m1 offset-l1">
                                 {{ form.password.label }}
                                 {% if form.password.errors %}
-                                    {% for e in password.errors %}
+                                    {% for e in form.password.errors %}
                                         <p class="help-block"> {{e}} </p>
                                     {% endfor %}
                                 {% endif %}
@@ -49,6 +58,13 @@
                                     <i class="material-icons right">send</i>
                                 </button>
                             </div>
+				
+ 			    <div class="row col s12 m10 l10 offset-m1 offset-l1">
+				<button class="btn waves-offect blue accent-3">
+				  <a href="{{url_for('blog.facebook_login')}}"> Login in Facebook</a>
+				</button>
+			    </div>				
+
                         </form>
                     </div>
                     <div class="divider"></div>
