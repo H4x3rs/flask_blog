@@ -17,8 +17,8 @@ from flaskblog.models.users import Users
 class CommentForm(Form):
     """Form validate for Comments"""
     name = StringField('name', validators=[DataRequired(u"昵称是必须的！"), Length(max=255)])
-    email = StringField('email', validators=[DataRequired(), Length(max=255), Email()])
-    comment = TextAreaField('comment', validators=[DataRequired(), Length(max=10000)],render_kw={"data-lenght":"1200"})
+    email = StringField('email', validators=[DataRequired(u"邮箱是必须的！"), Length(max=255), Email(u"无效的邮箱！")])
+    comment = TextAreaField('comment', validators=[DataRequired(u"不能为空！"), Length(max=10000)],render_kw={"data-lenght":"1200","class":"materialize-textarea"})
 
 class LoginForm(Form):
     """Form validate for login"""
