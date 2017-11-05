@@ -1,11 +1,5 @@
 {% extends "base.html" %}
 
-<head>
-    {% include 'includes/_head.html'%}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/simditor.css') }}">
-</head>
-
-
 {%  block content %}
     <div class="container">
     <div class="row col s12 m10 l10 offset-m1 offset-l1">
@@ -51,34 +45,40 @@
             <!-- 评论表单 -->
             {% if form %}
                 <div class="card hoverable row col s12 m12 l12">
-                    <div class="card-content row col s12 m10 l10 offset-l1 offset-m1">
-                        <h5>留下你的评论！</h5>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="card-content row col s12 m10 l10 offset-m1 offset-l1 ">
-                        <!--昵称-->
-                        <div class="row input-field">
-                            <input type="text" name="nickname">
-                            <label for="nickname">昵称：</label>
-                        </div>
-                        <div class="row input-field">
-                            {%if form.email.errors%}
-                                {{ form.email(class="invalid",type="email") }}
-                                <label for="email" style="width: 100%" data-error="{{form.email.errors[0]}}"></label>
-                            {%else%}
-                                {{ form.email(class="validate",type="email") }}
-                                <label for="email">邮箱：</label>
-                            {%endif%}
-                        </div>
-                        <div class="row input-field">
-                            <textarea id="editor" class="materialize-textarea"></textarea>
-                            <label for="editor">留下你的评论吧！</label>
-                        </div>
-                        <div class="row">
-                            <button class="btn waves-effect waves-light left blue accent-3" type="submit" name="action">提交评论
-                                <i class="material-icons right">send</i>
-                            </button>
-                        </div>
+                    <div class="card-content row col s12 m12 l12">
+                        <form action="{{url_for('blog.post',post_id=post.id)}}" method="post">
+                            <p>留下你的评论！</p>
+                            <!-- Csrf -->
+                            {{ form.hidden_tag() }}
+
+                            <!--昵称-->
+                           <!--  <div class="row input-field">
+                                {%if form.name.errors%}
+                                    {{ form.name(class="invalid") }}
+                                    <label for="name" style="width: 100%" data-error="{{form.name.errors[0]}}"></label>
+                                {%else%}
+                                    {{ form.name(class="validate") }}
+                                    <label for="name">nicheng：</label>
+                                {%endif%}
+                            </div>
+                            <div class="row input-field">
+                                {%if form.email.errors%}
+                                    {{ form.email(class="invalid",type="email") }}
+                                    <label for="email" style="width: 100%" data-error="{{form.email.errors[0]}}"></label>
+                                {%else%}
+                                    {{ form.email(class="validate",type="email") }}
+                                    <label for="email">邮箱：</label>
+                                {%endif%}
+                            </div> -->
+                            <div class="row input-field">
+                                <textarea id="editor" class="material-textarea" name="comment"></textarea>
+                            </div>
+                            <div class="row">
+                                <button class="btn waves-effect waves-light left blue accent-3" type="submit" name="action">提交评论
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             {% endif %}
@@ -87,18 +87,21 @@
     </div><!--end container-->
 {% endblock %}
 
-<script type="text/javascript" src="{{ url_for('static',filename='js/module.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static',filename='js/hotkeys.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static',filename='js/uploader.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static',filename='js/simditor.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+
+{% block footer %}
+<script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../static/js/module.js"></script>
+<script type="text/javascript" src="../../static/js/hotkeys.js"></script>
+<script type="text/javascript" src="../../static/js/uploader.js"></script>
+<script type="text/javascript" src="../../static/js/simditor.js"></script>
 <script type="text/javascript">
     var editor = new Simditor({
-        textarea: $('#editor')
+        textarea: $('#editor'),
+        placeholder: 'comment',
+        upload: true,
+        pasteImage: true
     });
 </script>
 
-{% block footer %}
-{% include 'includes/_footer.html'%}
 {% endblock %}
 

@@ -1,5 +1,7 @@
 (function($){
   $(function(){
+
+    
       // 下拉菜单的设置
       $('.dropdown-button').dropdown({
           inDuration: 300,
