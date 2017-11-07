@@ -50,7 +50,9 @@
                             <p>留下你的评论！</p>
                             <!-- Csrf -->
                             {{ form.hidden_tag() }}
-
+			    {% if current_user.is_authenticated %}
+			    	<input type="hide" name="user_id" value="{{ current_user.id }}">
+			    {% endif %}
                             <!--昵称-->
                            <!--  <div class="row input-field">
                                 {%if form.name.errors%}

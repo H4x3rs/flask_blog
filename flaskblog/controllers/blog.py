@@ -76,7 +76,8 @@ def post(post_id):
     form = CommentForm()
     # validate验证通过，增加一条评论
     if form.validate_on_submit():
-        comment = Comments(name=form.name.data, email=form.email.data, comment=form.comment.data)
+        comment = Comments(comment=form.comment.data)
+	comment.user_id = form.user_id.data
         comment.post_id = post_id
         db.session.add(comment)
         db.session.commit()

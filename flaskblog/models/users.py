@@ -24,6 +24,8 @@ class Users(db.Model):
     create_at = db.Column(db.BIGINT)
     # Establish contact with post's foreignKey:users_id
     posts = db.relationship('Posts', backref='users', lazy='dynamic')
+    # Establish contact with comments's foreignKey:users_id
+    comments = db.relationship('Comments', backref='users', lazy='dynamic')
 
     # 初始化函数
     def __init__(self, email, password, phone, nickname):
