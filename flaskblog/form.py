@@ -17,13 +17,6 @@ from flaskblog.models.users import Users
 class CommentForm(Form):
     """Form validate for Comments"""
     comment = TextAreaField('comment', validators=[DataRequired(u"不能为空！"), Length(max=10000)],render_kw={"data-lenght":"1200","class":"materialize-textarea"})
-    def validate(self):
-	check = super(CommentForm):
-	if not check:
-	    return False
-	if not current_user.is_authenticated:
-	    flush(u"请先登录!")
-	    return False
 
 class LoginForm(Form):
     """Form validate for login"""

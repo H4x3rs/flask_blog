@@ -19,7 +19,7 @@ class Comments(db.Model):
     # set the foreighkey for user
     user_id = db.Column(db.String(50), db.ForeignKey('users.id'))
 
-    def __init__(self, name, email, comment):
+    def __init__(self, comment):
         self.id = str(uuid4())
         self.comment = comment
 

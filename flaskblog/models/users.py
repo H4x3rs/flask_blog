@@ -28,11 +28,10 @@ class Users(db.Model):
     comments = db.relationship('Comments', backref='users', lazy='dynamic')
 
     # 初始化函数
-    def __init__(self, email, password, phone, nickname):
+    def __init__(self, email, password,  nickname):
         self.email = email
         self.id = str(uuid4())
         self.password = self.set_password(password)
-        self.phoneno = phone
         self.nickname = nickname
         self.create_at = int(time.time() * 1000)
 

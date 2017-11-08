@@ -34,7 +34,7 @@
                 <div class="divider"></div>
                 {% for comment in comments if comments %}
                     <div class="card-content ">
-                        {{ comment.name }}:{{comment.comment}}
+                        {{ comment.user_id }}:{{comment.comment|safe}}
                     </div>
                     <div class="divider"></div>
                 {% endfor %}
@@ -51,27 +51,8 @@
                             <!-- Csrf -->
                             {{ form.hidden_tag() }}
 			    {% if current_user.is_authenticated %}
-			    	<input type="hide" name="user_id" value="{{ current_user.id }}">
+			    	<input type="hidden" name="user_id" value="{{ current_user.id }}">
 			    {% endif %}
-                            <!--昵称-->
-                           <!--  <div class="row input-field">
-                                {%if form.name.errors%}
-                                    {{ form.name(class="invalid") }}
-                                    <label for="name" style="width: 100%" data-error="{{form.name.errors[0]}}"></label>
-                                {%else%}
-                                    {{ form.name(class="validate") }}
-                                    <label for="name">nicheng：</label>
-                                {%endif%}
-                            </div>
-                            <div class="row input-field">
-                                {%if form.email.errors%}
-                                    {{ form.email(class="invalid",type="email") }}
-                                    <label for="email" style="width: 100%" data-error="{{form.email.errors[0]}}"></label>
-                                {%else%}
-                                    {{ form.email(class="validate",type="email") }}
-                                    <label for="email">邮箱：</label>
-                                {%endif%}
-                            </div> -->
                             <div class="row input-field">
                                 <textarea id="editor" class="material-textarea" name="comment"></textarea>
                             </div>

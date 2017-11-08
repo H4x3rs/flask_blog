@@ -11,9 +11,12 @@ from flask import flash
 from flask import url_for
 from flask import request
 from flask import session
+from flask import g,make_response
 from sqlalchemy import func
+from sqlalchemy import desc
 from flask_login import login_user
 from flask_login import logout_user
+from flask_login import current_user
 from flask_login import login_required
 
 from flaskblog.models import db
@@ -36,8 +39,17 @@ blog_blueprint = Blueprint('blog',  __name__,
 def sidebar_data():
     recent = db.session.query(Posts).order_by(Posts.create_at.desc()).limit(5).all()
     top_tags = db.session.query(Tags, func.count(posts_tags.c.post_id).label('total')).join(posts_tags).group_by(
-        Tags).order_by('total DESC').limit(10).all()
+        Tags).order_by(desc('total')).limit(10).all()
     return recent, top_tags
+
+@blog_blueprint.before_request
+def before_request():
+    g.user = current_user
+
+@blog_blueprint.after_request
+def after_request(response):
+    return response
+
 
 @blog_blueprint.route('/test')
 def test():
@@ -76,8 +88,14 @@ def post(post_id):
     form = CommentForm()
     # validate验证通过，增加一条评论
     if form.validate_on_submit():
-        comment = Comments(comment=form.comment.data)
-	comment.user_id = form.user_id.data
+	if not g.user.is_authenticated:
+	    data = '''alert('不知道你是谁啊！清先登录！');history.back(-1)'''
+	    response = make_response(data)
+            response.headers['Content-Type']= 'text/javascript;charset=utf-8'
+	    return response
+
+	comment = Comments(comment=form.comment.data)
+	comment.user_id = g.user.id
         comment.post_id = post_id
         db.session.add(comment)
         db.session.commit()
@@ -137,7 +155,7 @@ def login():
 
         login_user(user, login_form.remember.data)
         flash(u"登录成功!", category="success")
-        return redirect(request.referrer or url_for('blog.index'))
+        return redirect(request.values.get('next') or request.referrer or url_for('blog.index'))
 
     return render_template('login.html',
                            form=login_form)
@@ -180,7 +198,7 @@ def facebook_authorized(resp):
 def logout():
     logout_user()
     flash(u"注销成功！",category="success")
-    return redirect(request.referrer or url_for('blog.index'))
+    return redirect(url_for('blog.index'))
 
 
 @blog_blueprint.route('/register')
