@@ -27,5 +27,5 @@ class DevConfig(Config):
     """
     # open the debug
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:>kgMS=xsy7K&@localhost:3306/blog'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:123456@localhost:3306/blog'
     SQLALCHEMY_TRACK_MODIFICATIONS = True
