@@ -10,10 +10,12 @@ from flask_migrate import Migrate, MigrateCommand
 
 from flaskblog.models import db
 from flaskblog.models.users import Users
+from flaskblog.models.users_roles import users_roles
 from flaskblog.models.posts import Posts
 from flaskblog.models.posts_tags import posts_tags
 from flaskblog.models.comments import Comments
 from flaskblog.models.tags import Tags
+from flaskblog.models.roles import Roles
 
 # Init manager object via app object
 manager = Manager(app)
@@ -34,7 +36,9 @@ def make_shell_context():
 	Post=Posts,
 	Comment=Comments,
 	Tag=Tags,
-	posts_tags=posts_tags)
+	Role = Roles,
+	posts_tags=posts_tags,
+	users_roles=users_roles)
 
 
 if __name__ == '__main__':

@@ -18,6 +18,7 @@ from flask_login import login_user
 from flask_login import logout_user
 from flask_login import current_user
 from flask_login import login_required
+from flask_principal import Identity,AnonymousIdentity,identity_changed,current_app
 
 from flaskblog.models import db
 from flaskblog.models.users import Users
@@ -102,7 +103,7 @@ def post(post_id):
 
     post = db.session.query(Posts).join(Users).filter(Posts.id==post_id).first_or_404()
     tags = post.tags
-    comments = post.comments.order_by(Comments.create_at.desc()).all()
+    comments = db.session.query(Comments, Users).filter(Comments.post_id==post.id).order_by(desc(Comments.create_at)).all()
     recent, top_tags = sidebar_data()
 
     return render_template('post.html',
@@ -154,6 +155,9 @@ def login():
             flash(u"无效的用户名与密码！")
 
         login_user(user, login_form.remember.data)
+	
+	identity_changed.send(current_app._ger_current_object(),identity=Identity(user.id))	
+
         flash(u"登录成功!", category="success")
         return redirect(request.values.get('next') or request.referrer or url_for('blog.index'))
 
@@ -197,6 +201,9 @@ def facebook_authorized(resp):
 @login_required
 def logout():
     logout_user()
+	
+    identity_changed.send(current_app._get_current_objcet(),identity=AnonymousIdentity())
+
     flash(u"注销成功！",category="success")
     return redirect(url_for('blog.index'))
 

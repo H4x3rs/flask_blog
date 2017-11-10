@@ -29,17 +29,22 @@
                 {% endif %}
         </div>
 
-        <div class="row col s12 m10 l10 offset-l1 offset-m1">
-            <div class="card hoverable">
-                <div class="divider"></div>
-                {% for comment in comments if comments %}
-                    <div class="card-content ">
-                        {{ comment.user_id }}:{{comment.comment|safe}}
-                    </div>
-                    <div class="divider"></div>
-                {% endfor %}
+<div class="row col s12 m10 l10 offset-l1 offset-m1">
+    <div class="card hoverable">
+        {% for comment,user in comments if comments %}
+            <div class="card-content avatar">
+                <img class="circle" src="http://materializecss.com/images/yuna.jpg" alt=""></img>
+                <span class="title">{{user.nickname}}</span>
+                <a href="#!" class="secondary-content"><i class="material-icons">star_border</i></a>
+                <a href="#!" class="secondary-content"><i class="material-icons">favorite_border</i></a>
+                <p>
+                {{comment.comment |safe }}
+                </p>
             </div>
-        </div>
+            <div class="divider"></div>
+        {% endfor %}
+    </div>
+</div>
 
         <div class="row col s12 m10 l10 offset-l1 offset-m1">
             <!-- 评论表单 -->
@@ -72,7 +77,11 @@
 
 
 {% block footer %}
-<script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+
+{% endblock %}
+
+{% block javascript %}
+    {{super()}}
 <script type="text/javascript" src="../../static/js/module.js"></script>
 <script type="text/javascript" src="../../static/js/hotkeys.js"></script>
 <script type="text/javascript" src="../../static/js/uploader.js"></script>

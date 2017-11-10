@@ -7,6 +7,7 @@ import time
 from uuid import uuid4
 from hashlib import sha1
 from flaskblog.models import db
+from flaskblog.models.users_roles import users_roles
 from flask_login import AnonymousUserMixin
 
 # 用户表
@@ -15,10 +16,10 @@ class Users(db.Model):
     __tablename__ = 'users'
     # 列名
     id = db.Column(db.String(50), primary_key=True, index=True)
-    email = db.Column(db.String(100))
+    email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(300))
     phoneno = db.Column(db.Numeric(11))
-    nickname = db.Column(db.String(300))
+    nickname = db.Column(db.String(200))
     status = db.Column(db.INT)
     update_at = db.Column(db.TIMESTAMP(True), nullable=False)
     create_at = db.Column(db.BIGINT)
@@ -26,7 +27,9 @@ class Users(db.Model):
     posts = db.relationship('Posts', backref='users', lazy='dynamic')
     # Establish contact with comments's foreignKey:users_id
     comments = db.relationship('Comments', backref='users', lazy='dynamic')
-
+    # Establish contact with role's foreignKey:users_id
+    roles = db.relationship('Roles',secondary=users_roles,backref='users',lazy='dynamic')
+   
     # 初始化函数
     def __init__(self, email, password,  nickname):
         self.email = email
@@ -34,7 +37,11 @@ class Users(db.Model):
         self.password = self.set_password(password)
         self.nickname = nickname
         self.create_at = int(time.time() * 1000)
-
+	
+	# setup the default role for user
+	default = Role.query.filter_by(name=='default').one()
+	self.roles.append(default)
+	
     # 加密密码函数
     def set_password(self, password):
         pass_sha1 = sha1(password)

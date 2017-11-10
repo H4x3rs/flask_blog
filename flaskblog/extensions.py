@@ -7,13 +7,14 @@ from flask_login import LoginManager
 from flask_moment import Moment
 from flask_oauth import OAuth
 from flask_bootstrap import Bootstrap
+from flask_principal import Principal,Permission,RoleNeed
 
 bcrypt = Bcrypt()
 login_manager = LoginManager()
 moment = Moment()
 oauth = OAuth()
 bootstrap = Bootstrap()
-
+principal = Principal()
 
 login_manager.login_view = "blog.login"
 login_manager.session_protection = "strong"
@@ -39,4 +40,7 @@ def load_user(user_id):
 def get_facebook_token():
     return session.get('facebook_oauth_token')
 
-
+# Init the role permission via RoleNeed(Need)
+admin_permission = Permission(RoleNeed('admin'))
+poster_permission = Permission(RoleNeed('poster'))
+default_permission = Permission(RoleNeed('default'))
