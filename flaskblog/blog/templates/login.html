@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block head%}
+    {{suer()}}
+    <style type="text/css">
+ 	.login_toast{width:250px;height:50px;border-radius:3px;}
+    </style>
+{% endblock%}
+
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+<div class="main-content grey lighten-4">
+    <div class="container">
+{#        <section>#}
+{#            <!-- 错误消息 -->#}
+{#            {% for cate,message in get_flashed_messages(with_categories=True) %}#}
+{#            {% if message %}#}
+{#            <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1">#}
+{#                <div class="red-text">#}
+{#                    {{ message }}#}
+{#                </div>#}
+{#            </div>#}
+{#            {% endif %}#}
+{#            {% endfor %}#}
+{#        </section>#}
+
+        <div class="row">
+            <div class="col s12 m10 l6 offset-m1 offset-l3">
+                <div class="card-panel hoverable">
+                    <div class="card-content row center-align">
+                        <h5>无名万物 - 登录</h5>
+                    </div>
+                    <div class="divider"></div>
+                    <br>
+                    <div class="row card-content">
+                        <form class="login_form" method="POST" action="{{ url_for('blog.login') }}">
+                            <!-- Csrf -->
+                            {{ form.hidden_tag() }}
+
+                            <!-- 帐号 -->
+                            <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1">
+                                <div class="input-field">
+                                    {%if form.email.errors%}
+                                        {{ form.email(class="invalid",type="email") }}
+                                        <label for="email" style="width: 100%" data-error="{{form.email.errors[0]}}"></label>
+                                    {%else%}
+                                        {{ form.email(class="validate",type="email") }}
+                                        <label for="email">用户名：</label>
+                                    {%endif%}
+                                </div>
+                            </div>
+                            <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1">
+                                <div class="input-field">
+                                    {%if form.password.errors%}
+                                        {{ form.password(class="invalid",type="password") }}
+                                        <label for="password" style="width: 100%" data-error="{{form.password.errors[0]}}"></label>
+                                    {%else%}
+                                        {{ form.password(class="validate",type="password") }}
+                                        <label for="password">密 码：</label>
+                                    {%endif%}
+                                </div>
+                            </div>
+
+                            <!--remeber me-->
+                            <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1" style="margin-top: 30px;">
+                                <div class="checkbox left">
+                                    {{ form.remember(class="filled-in") }}
+                                    {{ form.remember.label }}
+                                </div>
+                                <label class="right">
+                                    <a href="{{ url_for('blog.register') }}">忘记密码？</a>
+                                </label>
+                            </div>
+                            <!--登陆按钮-->
+                            <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1">
+                                <button class="btn waves-effect waves-light left blue accent-3" type="submit" name="action" style="width: 100%">登 录
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                            <br>
+                            <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1">
+                                <label>快速登录：</label>
+
+                                <a href="{{ url_for('blog.facebook_login') }}" title="google帐号">
+                                    <i class="fa fa-google fa-fw"></i>
+                                </a>
+
+                                <a href="{{ url_for('blog.facebook_login') }}" title="github帐号">
+                                    <i class="fa fa-github fa-fw"></i>
+                                </a>
+                                <a href="{{ url_for('blog.facebook_login') }}" title="qq帐号">
+                                    <i class="fa fa-qq fa-fw"></i>
+                                </a>
+                                <a href="{{ url_for('blog.facebook_login') }}" title="微信帐号">
+                                    <i class="fa fa-weixin fa-fw"></i>
+                                </a>
+                                <a href="{{ url_for('blog.facebook_login') }}" title="twitter帐号">
+                                    <i class="fa fa-twitter fa-fw"></i>
+                                </a>
+                                <a href="{{ url_for('blog.facebook_login') }}" title="facebook帐号">
+                                    <i class="fa fa-facebook fa-fw"></i>
+                                </a>
+                                <label class="right">
+                                    还没有帐号？
+                                    <a href="{{ url_for('blog.register') }}">去注册</a>
+                                </label>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row card-footer">
+                        <label class="center-align"><p>Copyright © 2017 RHG110.CN, All Rights Reserved</p></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+{{super()}}
+<script src="{{url_for('blog.static',filename='js/materialize.js')}}"></script>
+<script type="text/javascript">
+     (function(){
+     	{% for cate,message in get_flashed_messages(with_categories=True) %}
+        {% if message %}
+        	Materialize.toast('{{message}}',3000,'login_toast','')            
+        {% endif %}
+        {% endfor %}
+
+	
+	})();
+</script>
+{% endblock%}
+
+{% block footer %}
+
+{% endblock %}
+
+

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    {% include 'includes/_head.html'%}
+</head>
+<body>
+<header>
+<!-- header 头部 -->
+{% block header %}
+    {% include 'includes/_header.html'%}
+{% endblock %}
+</header>
+
+<!-- content 主体-->
+{% block content %}    
+<!-- banner图片 -->
+<!--
+<div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <h3 class="header center white-text">无名万物</h3>
+            <div class="row center">
+                <p class="header col s12 white-text">A modern responsive front-end framework based on Materia Design</p>
+            </div>
+            <br>
+        </div>
+    </div>
+    <div class="parallax"><img data-src="{{url_for('blog.static',filename='banner3.jpg')}}" class='lazyload'></div>
+</div>
+-->
+<!-- content 正文 -->
+<div class="main-content">
+    <div class="container">
+        <div class="row">
+            <!-- start 左边-->
+            <div class="col s12 m12 l9">
+                <!-- post -->
+                {%for post in posts if post.title%}
+                    <div class="card hoverable" style="margin-bottom: 30px;">
+                        <div class="card-image">
+                            <img data-src="{{url_for('blog.static',filename='banner3.jpg')}}" class='lazyload'>
+                            <span class="card-title"><h5>{{post.title}}</h5></span>
+                        </div>
+                        <div class="card-content">
+                             <p>{{post.content}} </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="post/{{post.id}}">查看更多</a>
+                        </div>
+                    </div>
+                {% endfor %}
+
+              <ul class="pagination">
+                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                <li class="active"><a href="#!">1</a></li>
+                <li class="waves-effect"><a href="#!">2</a></li>
+                <li class="waves-effect"><a href="#!">3</a></li>
+                <li class="waves-effect"><a href="#!">4</a></li>
+                <li class="waves-effect"><a href="#!">5</a></li>
+                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+              </ul>
+            </div>
+            <!-- end 左边  -->
+
+            <!-- start  右边  -->
+            <div class="col s12 m12 l3">
+        	<ul class="collection with-header hoverable">
+        		<li class="collection-header  white-text" style="background: #3367d6;">
+       			<i class="fa fa-snowflake-o fa-spin fa-fw fa-lg"></i>&nbsp;&nbsp; 最新文章 
+			</li>
+       			 <li class="collection-item p1"><a href="#!">Flask开发博客</a></li>
+        		 <li class="collection-item p1"><a href="#!">Python处理海量数据</a></li>
+       			 <li class="collection-item p1"><a href="#!">JavaScript深度学习</a></li>
+        		<li class="collection-item p1"><a href="#!">Nodejs从入门到精通</a></li>
+        		<li class="collection-item p1"><a href="#!">Spring日志</a></li>
+    		        <li class="collection-item p1"><a href="#!">Alvin</a></li>
+   		 </ul>        
+	
+
+ <ul class="collection with-header hoverable">
+        <li class="collection-header white-text" style="background: #3367d6;">
+            <i class="material-icons" style="width: 2rem;font-size: 1.6rem;display: block;float: left;text-align: center;margin-right: 1rem">tag_faces</i> 每日一笑
+        </li>
+        <li class="collection-item">
+            <p class="p2">
+                创建一个名称为 FileUpload 的动态WEB项目。
+在 com.yiibai.springmvc 包下创建两个Java类FileModel, FileUploadController。
+在jsp子文件夹下创建两个视图文件：fileUpload.jsp 和 success.jsp。
+在WebContent文件夹下创建一个文件夹：temp。
+下载Apache Commons FileUpload库：commons-fileupload.jar和Apache Commons IO库：commons-io.jar。把它们放在CLASSPATH中。
+最后一步是创建所有源和配置文件的内容并运行应用程序，详细如下所述。
+            </p>
+        </li>
+    </ul>
+
+		<!-- tag 标签 -->
+    <ul class="collection with-header hoverable">
+        <li class="collection-header white-text" style="background: #3367d6;">
+            <i class="material-icons" style="width: 2rem;font-size: 1.6rem;display: block;float: left;text-align: center;margin-right: 1rem">local_offer</i>
+            标签云
+        </li>
+	{% for tag in top_tags %}
+	<li class="collection-item">{{tag.Tags.name}}(<a href="{{url_for('blog.tag',tag_name=tag.Tags.name)}}">{{tag.total}}</a>)</li>
+	{% endfor%}
+        <li class="collection-item p1"><a href="#!">Alvin</a></li>
+    </ul>
+            </div>   <!-- end 右边-->
+        </div>  <!--  end row  -->
+    </div>
+</div>
+
+<div class="fixed-action-btn" style="bottom: 45px; right: 17px;">
+          <a class="btn-floating red">
+            <i class="material-icons">add</i>
+          </a>
+          <ul>
+            <li><a class="btn-floating red" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">insert_chart</i></a></li>
+            <li><a class="btn-floating yellow darken-1" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">format_quote</i></a></li>
+            <li><a class="btn-floating green" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">publish</i></a></li>
+            <li><a class="btn-floating blue" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">attach_file</i></a></li>
+          </ul>
+        </div>
+
+
+{% endblock %}
+
+<!-- footer 底部 -->
+{% block footer %}
+    {% include 'includes/_footer.html'%}
+{% endblock %}
+
+{% block javascript %}
+<!--  加载js文件 -->
+<script src="{{url_for('blog.static',filename='js/lazysizes.min.js')}}"></script>
+
+<script src="{{url_for('blog.static',filename='js/jquery-3.1.1.min.js')}}"></script>
+<script src="{{url_for('blog.static',filename='js/materialize.min.js')}}"></script>
+<script src="{{url_for('blog.static',filename='js/init.js')}}"></script>
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.1/js/materialize.min.js"></script-->
+
+<script type="text/javascript">
+     (function(){
+        {% for cate,message in get_flashed_messages(with_categories=True) %}
+        {% if message %}
+                Materialize.toast('{{message}}',3000,'login_toast','')            
+        {% endif %}
+        {% endfor %}
+        
+        })();
+</script>
+
+{% endblock %}
+
+</body>
+</html>
