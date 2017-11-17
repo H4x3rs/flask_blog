@@ -6,7 +6,9 @@
 from flask import Flask
 from flask import redirect
 from flask import url_for
+
 from flask_principal import identity_loaded,RoleNeed,UserNeed
+from flask_login import current_user
 
 from config import DevConfig
 
@@ -19,7 +21,9 @@ from extensions import bootstrap
 from extensions import principal
 
 # blog视图函数
-from controllers import blog
+from blog import blog
+from admin import admin
+from api import api
 
 def create_app(object_name=DevConfig):
     app = Flask(__name__)
@@ -35,7 +39,8 @@ def create_app(object_name=DevConfig):
     # bcrypt.init_app(app)
     # Register the Blueprint into app object
     app.register_blueprint(blog.blog_blueprint)
-	
+    app.register_blueprint(admin.admin_blueprint)
+    app.register_blueprint(api.api_blueprint)
     @identity_loaded.connect_via(app)
     def on_identity_loaded(sender, identity):
 	"""Change the role via add the need object into Role

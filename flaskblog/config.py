@@ -13,6 +13,12 @@ class Config(object):
     CSRF_ENABLED = True
     SECRET_KEY = '0839a4faf06c5a0dfb442226e4887ce4'
 
+    QINIU_AK='ZQGHGo7Z_a3K3dwhOAu7O9sANFLNyHc1PxYUG8B9'
+    QINIU_SK='ZJkO6SyZw-yZ2iE6N0IC1REiOp9Mn2CYidC41nop'
+    QINIU_BUCKET='image'
+    
+	
+
 # 生产环境的配置类，继承自onfig基类
 class ProConfig(Config):
     """
