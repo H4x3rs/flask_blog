@@ -117,14 +117,14 @@ def post(post_id):
                            top_tags=top_tags)
 
 
+
 @blog_blueprint.route('/tag/<string:tag_name>')
 def tag(tag_name):
     """View function for tag page"""
-    print (tag_name)
     tag = db.session.query(Tags).filter_by(name=tag_name).first_or_404()
     posts = tag.posts.order_by(Posts.create_at.desc()).all()
-    recent, top_tags = sidebar_data()
-
+    recent, top_tags = sidebar_data() 
+    print tag.pid,tag.name,tag.code
     return render_template('tags.html',
                            tag=tag,
                            posts=posts,

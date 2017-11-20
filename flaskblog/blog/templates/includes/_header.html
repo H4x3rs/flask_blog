@@ -28,11 +28,11 @@
 
             <!--  导航栏  -->
             <ul class="hide-on-med-and-down right nav-item">
-                <li class="active"><a href="{{url_for('blog.index')}}">首页</a></li>
-                <li><a href="#" class="dropdown-button" data-activates="code_lang">语言</a></li>
-                <li><a href="{{url_for('blog.tag', tag_name='系统')}}" class="dropdown-button" data-activates="system">系统</a></li>
-                <li><a href="{{ url_for('blog.gallery') }}">相册</a></li>
-                <li><a href="{{url_for('blog.about') }}">关于</a></li>
+                <li {% if active=="index" %}class="active"{% endif %}><a href="{{url_for('blog.index')}}">首页</a></li>
+                <li {% if active=="language" %}class="active"{% endif %}><a href="{{url_for('blog.tag',tag_name='语言')}}" class="dropdown-button" data-activates="code_lang">语言</a></li>
+                <li {% if active=="system" %}class="active"{% endif %}><a href="{{url_for('blog.tag', tag_name='系统')}}" class="dropdown-button" data-activates="system">系统</a></li>
+                <li {% if active=="gallery" %}class="active"{% endif %}><a href="{{ url_for('blog.gallery') }}">相册</a></li>
+                <li {% if active=="about" %}class="active"{% endif %}><a href="{{url_for('blog.about') }}">关于</a></li>
                 <li><a>
                     <i class="material-icons">search</i>
                 </a></li>
@@ -57,9 +57,9 @@
                 <li class="divider"></li>
                 <li><a href="{{url_for('blog.tag',tag_name='Mac_OS')}}">Mac OS</a></li>
                 <li class="divider"></li>
-                <li><a href="#">IOS</a></li>
+                <li><a href="{{url_for('blog.tag',tag_name='IOS')}}">IOS</a></li>
                 <li class="divider"></li>
-                <li><a href="#">Android</a></li>
+                <li><a href="{{url_for('blog.tag',tag_name='Android')}}">Android</a></li>
             </ul>
 
             <ul id="mobile-demo" class="side-nav">
@@ -81,7 +81,8 @@
                 <li class="divider"></li>
                 <li><a href="{{url_for('blog.tag',tag_name='Nodejs')}}">Nodejs</a></li>
                 <li class="divider"></li>
-                <li><a href="{{url_for('blog.tag',tag_name='C/C++')}}">C/C++</a></li>
+                <li><a href="{{url_for('blog.tag',tag_name='C')}}">C</a></li>
+                <li><a href="{{ url_for('blog.tag',tag_name='C++')}}">C++</a></li>
             </ul>
 
             <!-- 系统下拉菜单 -->
