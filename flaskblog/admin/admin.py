@@ -28,8 +28,7 @@ from flaskblog.models.tags import Tags
 from flaskblog.models.comments import Comments
 from flaskblog.models.posts_tags import posts_tags
 
-from flaskblog.form import CommentForm
-from flaskblog.form import LoginForm
+from flaskblog.form import PostForm
 
 from flaskblog.extensions import facebook
 
@@ -44,5 +43,36 @@ admin_blueprint = Blueprint('admin',  __name__,
 def admin():
     return render_template('admin.html')
 
+@admin_blueprint.route('/list_blog',methods=['GET','DELETE'])
+@login_required
+def list_blog(id=None):
+    if request.method == 'DELETE':
+	post = db.session.query(Posts).filter_by(id=id,user_id=current_user.id).first_or_404()
+	db.session.delete(post)
+	db.session.commit()
+    user_blog = db.session.query(Posts).filter_by(user_id=current_user.id).all()
+    return render_template('list_blog.html',user_blog=user_blog)
+
+@admin_blueprint.route('/edit_blog/<string:id>')
+@login_required
+def edit_blog(id):
+    blog = db.session.query(Posts).filter_by(id=id).first_or_404()
+    
+    return render_template('edit_blog.html',blog=blog) 
+
+@admin_blueprint.route('/new_blog',methods=['GET','POST'])
+@login_required
+def new_blog():
+    form = PostForm()
+    if request.method == 'GET':
+	return render_template('new_blog.html')
+
+    if request.method == 'POST':
+	if form.validate_on_submit():
+	    post = Post(title=form.title.data, post=form.post.data)
+	    post.user_id = current_user.id
+	    db.session.add(post)
+	    db.session.commit()
+	    return render_template('list_blog.html')
 
 

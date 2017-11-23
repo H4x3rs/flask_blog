@@ -18,6 +18,12 @@ class CommentForm(Form):
     """Form validate for Comments"""
     comment = TextAreaField('comment', validators=[DataRequired(u"不能为空！"), Length(max=10000)],render_kw={"data-lenght":"1200","class":"materialize-textarea"})
 
+class PostForm(Form):
+    """Form validate for Post"""
+    title = StringField('title',validators=[DataRequired(u'用户名是必须的!')])
+    post = TextAreaField('post',validators=[DataRequired(u'用户名事必须的!')])
+
+
 class LoginForm(Form):
     """Form validate for login"""
     email = StringField('email', validators=[DataRequired(u"用户名是必须的！"), Length(max=255), Email(u"无效的邮箱！")])

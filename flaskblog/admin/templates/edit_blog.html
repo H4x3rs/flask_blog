@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>admin-blog list</title>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.1/css/materialize.min.css">  
+  <link href="{{url_for('admin.static',filename='css/admin.css')}}" rel="stylesheet">
+  <link href="{{url_for('admin.static',filename='css/font-awesome.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('admin.static',filename='css/simditor.css')}}" rel="stylesheet">
+   
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style type="text/css">
+
+  </style>
+</head>
+<body>
+  <ul id="slide-out" class="sidenav sidenav-fixed collapsible" data-collapsible="accordion" style="border-top: none;">
+  	<li class="white" style="height: 64px;border-bottom: 1px #ccc solid;">
+  	
+  		<p  style="height: inherit;line-height: 64px;margin: auto;font-size: 1.2em;text-align: center;">
+  			无名万物
+  		</p>
+  
+  	</li>
+    <li>
+	  <div class="collapsible-header"><i class="fa fa-list fa-fw"></i>博客管理</div>
+	  <div class="collapsible-body">
+		<ul class="collection">
+		  <a class="collection-item center-align" href="#"><i class="fa fa-leaf fa-fw"></i> 所有博客</a>
+		  <a class="collection-item center-align" href="#"><i class="fa fa-edit fa-fw"></i> 新建博客</a>
+		</ul>
+	  </div>
+	</li>
+    <li>
+      <div class="collapsible-header"><i class="fa fa-users fa-fw"></i>用户管理</div>
+      <div class="collapsible-body">
+      	<ul class="collection">
+			   <a class="collection-item center-align" href="#">用户审核</a>
+			   <a class="collection-item center-align" href="#">所有用户</a>
+			  </ul>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="fa fa-comments fa-fw"></i>评论管理</div>
+      <div class="collapsible-body">
+      	<ul class="collection">
+			<a class="collection-item center-align" href="#">评论管理</a>
+			<a class="collection-item center-align" href="#">文章管理</a>
+			<a class="collection-item center-align" href="#">用户管理</a>
+			</ul>
+      </div>
+    </li>
+  </ul>
+  <header>
+  	<nav class="white">
+  		<div class="nav-wrapper">
+  		<a href="#" data-target="slide-out" class="sidenav-trigger hide-on-large-only black-text"><i class="material-icons left" style="margin-left: 20px;">menu</i></a>
+  		<ul class="right black-text hide-on-med-and-down">
+  			<li>
+  				<input type="search" name="name" class="browser-default" autocomplete="false" placeholder="Search">
+  			</li>
+  			<li><a class="black-text" href="#">无名万物</a></li>
+  			<li><a class="black-text" href="#">无名万物</a></li>
+  			<li><a class="black-text" href="#">无名万物</a></li>
+  		</ul>
+  	</div>
+  	</nav>
+  </header>
+
+
+  <main>
+    <div class="row" style="padding-left: 10px;padding-right: 15px;">
+    <div class="card col s12 m12 l12">
+     <div class="card-action">新建博客</div>
+    </div>
+    <div class="card col s12 m12 l12">
+      <div class="card-action">
+        <div class="input-flied">
+          <input type="text" name="title" class="browser-default" placeholder="标题">
+        </div>
+      </div>
+    </div>
+
+    <div class="card col s12 m12 l12">
+      <div class="card-content" style="padding-left: 5px;padding-right: 5px;">
+        <textarea id="simditor">
+          
+        </textarea>
+      </div>
+    </div>
+  </div>
+  </main>
+  <footer>
+
+  </footer>
+
+ <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.1/js/materialize.min.js"></script>
+
+<script type="text/javascript" src="{{url_for('admin.static',filename='js/module.js')}}"></script>
+<script type="text/javascript" src="{{url_for('admin.static',filename='js/hotkeys.js')}}"></script>
+<script type="text/javascript" src="{{url_for('admin.static',filename='js/uploader.js')}}"></script>
+<script type="text/javascript" src="{{url_for('admin.static',filename='js/simditor.js')}}"></script>
+<script type="text/javascript">
+	 	$(document).ready(function(){
+       var editor = new Simditor({
+        textarea: $('#simditor'),
+        placeholder: 'blog',
+        upload: true,
+        pasteImage: true
+       })
+ 		   $('.carousel').carousel();
+ 		   $('.collapsible').collapsible();
+ 		   $('.sidenav').sidenav();
+ 	  })
+	
+</script>
+</body>
+</html>

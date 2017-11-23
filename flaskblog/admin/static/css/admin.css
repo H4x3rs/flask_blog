@@ -281,22 +281,44 @@ html{--google-red-100: #f4c7c3;
     --light-secondary-opacity: 0.7;
     --light-primary-opacity: 1.0;}
 body{
-	overflow-x: hidden;  
-    overflow-y: hidden; 
-    margin: 0;
-    padding: 0;
-    position: relative;
-    height: 100%;
-    width: 100%;
     background-color: #f3f3f3;
 }
 
-nav{border:1px #ccc solid;box-shadow: none;}
-nav .brand-logo{font-size: 1.2em;color: #000;width: 100%;height: 100%;border-right: 1px #ccc solid;box-sizing: border-box;padding: 0;margin: 0}
-nav .brand-logo a{width: 100%;height: 100%;}
-nav ul li a{color:#111;}
-.row .col{padding: 0;}
-main{position: absolute;height: 100%;width: 100%;}
-main .side-bar{border:1px solid #ccc;box-sizing: border-box;}
-main .row{height: inherit;}
-.collection{margin: 0;border-radius: 0;border: none;}
+header, footer {
+  padding-left: 200px;
+}
+
+main{
+  padding-left: 200px;
+}
+
+.sidenav{
+    width: 200px;
+    box-shadow: none;
+}
+
+nav{
+  box-shadow: none;
+    border-bottom: 1px #ccc solid;
+  height: 64px;
+}
+
+input[type='search']{
+    height: 20px;
+    background-color: rgba(255,255,255,0.3);
+    padding: 8px 8px 8px 72px;
+    -webkit-transition:all 200ms;
+    transition: all 200ms;
+    font-weight: 400;
+    outline: none;
+    border-radius: 3px;
+    line-height: normal;
+    box-sizing: content-box;
+    border: 1px #aaa solid;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}
