@@ -1,32 +1,16 @@
-{% extends "base.html" %}
+{% extends "blog.base.html" %}
 
 {% block head%}
-    {{suer()}}
+    {{super()}}
     <style type="text/css">
  	.login_toast{width:250px;height:50px;border-radius:3px;}
     </style>
 {% endblock%}
 
-{% block header %}
 
-{% endblock %}
-
-{% block content %}
+{% block main %}
 <div class="main-content grey lighten-4">
     <div class="container">
-{#        <section>#}
-{#            <!-- 错误消息 -->#}
-{#            {% for cate,message in get_flashed_messages(with_categories=True) %}#}
-{#            {% if message %}#}
-{#            <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1">#}
-{#                <div class="red-text">#}
-{#                    {{ message }}#}
-{#                </div>#}
-{#            </div>#}
-{#            {% endif %}#}
-{#            {% endfor %}#}
-{#        </section>#}
-
         <div class="row">
             <div class="col s12 m10 l6 offset-m1 offset-l3">
                 <div class="card-panel hoverable">
@@ -40,26 +24,27 @@
                             <!-- Csrf -->
                             {{ form.hidden_tag() }}
 
+                            <input type='hidden' name='next' value={{next}}>
                             <!-- 帐号 -->
                             <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1">
                                 <div class="input-field">
                                     {%if form.email.errors%}
-                                        {{ form.email(class="invalid",type="email") }}
-                                        <label for="email" style="width: 100%" data-error="{{form.email.errors[0]}}"></label>
+                                    {{ form.email(class="invalid",type="email") }}
+                                    <label for="email" style="width: 100%" data-error="{{form.email.errors[0]}}"></label>
                                     {%else%}
-                                        {{ form.email(class="validate",type="email") }}
-                                        <label for="email">用户名：</label>
+                                    {{ form.email(class="validate",type="email") }}
+                                    <label for="email">用户名：</label>
                                     {%endif%}
                                 </div>
                             </div>
                             <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1">
                                 <div class="input-field">
                                     {%if form.password.errors%}
-                                        {{ form.password(class="invalid",type="password") }}
-                                        <label for="password" style="width: 100%" data-error="{{form.password.errors[0]}}"></label>
+                                    {{ form.password(class="invalid",type="password") }}
+                                    <label for="password" style="width: 100%" data-error="{{form.password.errors[0]}}"></label>
                                     {%else%}
-                                        {{ form.password(class="validate",type="password") }}
-                                        <label for="password">密 码：</label>
+                                    {{ form.password(class="validate",type="password") }}
+                                    <label for="password">密 码：</label>
                                     {%endif%}
                                 </div>
                             </div>
@@ -124,22 +109,17 @@
 
 {% block javascript %}
 {{super()}}
-<script src="{{url_for('blog.static',filename='js/materialize.js')}}"></script>
+
 <script type="text/javascript">
      (function(){
      	{% for cate,message in get_flashed_messages(with_categories=True) %}
         {% if message %}
-        	Materialize.toast('{{message}}',3000,'login_toast','')            
+        	M.toast('{{message}}',3000,'login_toast','')          
         {% endif %}
         {% endfor %}
-
-	
 	})();
 </script>
 {% endblock%}
 
-{% block footer %}
-
-{% endblock %}
 
 

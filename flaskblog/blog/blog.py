@@ -4,23 +4,12 @@
 # @time:2017/9/2 0:46
 
 from os import path
-from flask import Blueprint
-from flask import render_template
-from flask import redirect
-from flask import flash
-from flask import url_for
-from flask import request
-from flask import session
-from flask import current_app
-from flask import g,make_response
-from sqlalchemy import func
-from sqlalchemy import desc
-from flask_login import login_user
-from flask_login import logout_user
-from flask_login import current_user
-from flask_login import login_required
-from flask_principal import Identity,AnonymousIdentity,identity_changed,current_app
 
+from flask import Blueprint,render_template,redirect,request
+from flask import flash,url_for,session,current_app,g
+from flask_login import login_user,logout_user,current_user,login_required
+from flask_principal import Identity,AnonymousIdentity,identity_changed,current_app
+from sqlalchemy import func,desc
 from flaskblog.models import db
 from flaskblog.models.users import Users
 from flaskblog.models.posts import Posts
@@ -28,21 +17,15 @@ from flaskblog.models.tags import Tags
 from flaskblog.models.comments import Comments
 from flaskblog.models.posts_tags import posts_tags
 
-from flaskblog.form import CommentForm
-from flaskblog.form import LoginForm
-
+from flaskblog.form import CommentForm,LoginForm
 from flaskblog.extensions import facebook
 
 # 定义蓝图
-blog_blueprint = Blueprint('blog',  __name__,
-			 template_folder='templates',
-			 static_folder='static',
-			 url_prefix='/blog')
+blog_blueprint = Blueprint('blog',  __name__,template_folder='templates',static_folder='static',url_prefix='/blog')
 
 def sidebar_data():
     recent = db.session.query(Posts).order_by(Posts.create_at.desc()).limit(5).all()
-    top_tags = db.session.query(Tags, func.count(posts_tags.c.post_id).label('total')).join(posts_tags).group_by(
-        Tags).order_by(desc('total')).limit(10).all()
+    top_tags = db.session.query(Tags, func.count(posts_tags.c.post_id).label('total')).join(posts_tags).group_by(Tags).order_by(desc('total')).limit(10).all()
     return recent, top_tags
 
 @blog_blueprint.before_request
@@ -53,37 +36,21 @@ def before_request():
 def after_request(response):
     return response
 
-
 @blog_blueprint.route('/test')
 def test():
     pages = Posts.query.order_by(Posts.create_at.desc()).paginate(1, 10)
     posts = pages.items
     recent, top_tags = sidebar_data()
-
-    return render_template('index.html',
-                           title=u'无名万物',
-                           posts=posts,
-                           pages=pages,
-                           recent=recent,
-                           top_tags=top_tags)
-
+    return render_template('blog.base1.html',title=u'无名万物',posts=posts,pages=pages, recent=recent,top_tags=top_tags)
 
 @blog_blueprint.route('/')
 @blog_blueprint.route('/index')
-@blog_blueprint.route('/<int:page>')
 def index(page=1):
     """View function for index page"""
     pages = Posts.query.order_by(Posts.create_at.desc()).paginate(page, 10)
     posts = pages.items
     recent, top_tags = sidebar_data()
-
-    return render_template('base.html',
-                           title=u'无名万物',
-                           posts=posts,
-                           pages=pages,
-                           recent=recent,
-                           top_tags=top_tags)
-
+    return render_template('blog.index.html',title=u'无名万物',posts=posts,pages=pages,recent=recent,top_tags=top_tags)
 
 @blog_blueprint.route('/post/<string:post_id>', methods=('GET','POST'))
 def post(post_id):
@@ -91,14 +58,10 @@ def post(post_id):
     form = CommentForm()
     # validate验证通过，增加一条评论
     if form.validate_on_submit():
-	if not g.user.is_authenticated:
-	    data = '''alert('不知道你是谁啊！清先登录！');history.back(-1)'''
-	    response = make_response(data)
-            response.headers['Content-Type']= 'text/javascript;charset=utf-8'
-	    return response
-
-	comment = Comments(comment=form.comment.data)
-	comment.user_id = g.user.id
+        if not g.user.is_authenticated:
+            flash(u'请先登录!')
+    	comment = Comments(comment=form.comment.data)
+    	comment.user_id = g.user.id
         comment.post_id = post_id
         db.session.add(comment)
         db.session.commit()
@@ -107,16 +70,7 @@ def post(post_id):
     tags = post.tags
     comments = db.session.query(Comments, Users).filter(Comments.post_id==post.id).order_by(desc(Comments.create_at)).all()
     recent, top_tags = sidebar_data()
-
-    return render_template('post.html',
-                           post=post,
-                           tags=tags,
-                           comments=comments,
-                           recent=recent,
-                           form=form,
-                           top_tags=top_tags)
-
-
+    return render_template('blog.post.html',title='post',post=post,tags=tags,comments=comments,recent=recent,form=form,top_tags=top_tags)
 
 @blog_blueprint.route('/tag/<string:tag_name>')
 def tag(tag_name):
@@ -124,13 +78,8 @@ def tag(tag_name):
     tag = db.session.query(Tags).filter_by(name=tag_name).first_or_404()
     posts = tag.posts.order_by(Posts.create_at.desc()).all()
     recent, top_tags = sidebar_data() 
-    print tag.pid,tag.name,tag.code
-    return render_template('tags.html',
-                           tag=tag,
-                           posts=posts,
-                           recent=recent,
-                           top_tags=top_tags)
 
+    return render_template('blog.tags.html',tag=tag,posts=posts,recent=recent,top_tags=top_tags)
 
 @blog_blueprint.route('/user/<string:id>')
 def user(id):
@@ -139,32 +88,31 @@ def user(id):
     posts = user.posts.order_by(Posts.create_at.desc()).all()
     recent, top_tags = sidebar_data()
 
-    return render_template('user.html',
-                           user=user,
-                           posts=posts,
-                           recent=recent,
-                           top_tags=top_tags)
+    return render_template('blog.user.html',user=user,posts=posts,recent=recent,top_tags=top_tags)
 
 # 登入
-@blog_blueprint.route('/login', methods=('GET','POST'))
+@blog_blueprint.route('/login', methods=['GET','POST'])
 def login():
-    login_form = LoginForm()
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        next = request.form.get('next')
+        remember = request.form.get('remember')
 
-    if login_form.validate_on_submit():
-        user = Users.query.filter_by(email=login_form.email.data).one()
+        user = Users.query.filter_by(email=email).one()
         if not user:
-            print "not user"
-            flash(u"无效的用户名与密码！")
+            flash(u'无效的用户名!')
+        if not user.check_password(password):
+            flash(u'无效的密码!')
 
-        login_user(user, login_form.remember.data)
-	
-	identity_changed.send(current_app._get_current_object(),identity=Identity(user.id))	
-
-        flash(u"登录成功!", category="success")
-        return redirect(request.values.get('next')  or url_for('blog.index'))
-
-    return render_template('login.html',
-                           form=login_form)
+        login_user(user,remember)
+        flash(u'登陆成功.',category='success')
+        identity_changed.send(current_app._get_current_object(),identity=Identity(user.id))
+        return redirect(url_for('blog.index'))
+    else:
+	    login_form = LoginForm()
+	    next = request.args.get('next')
+	    return render_template('blog.login.html',form=login_form,next=next)
 
 # facebook 授权登陆
 @blog_blueprint.route('/facebook')
@@ -212,20 +160,31 @@ def logout():
 
 @blog_blueprint.route('/register')
 def register():
-    return render_template('register.html')
+    return render_template('blog.register.html')
 
 @blog_blueprint.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('blog.about.html')
 
 @blog_blueprint.route('/gallery')
 def gallery():
-    return render_template('gallery.html')
+    return render_template('blog.gallery.html')
 
 @blog_blueprint.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html'),404
+    return render_template('blog.404.html'),404
 
 @blog_blueprint.errorhandler(500)
 def internal_server_error(e):
-    return render_template('500.html'),500
+    return render_template('blog.500.html'),500
+
+@blog_blueprint.route('/upload',methods=['GET','POST'])
+def upload():
+    if request.method == 'POST':
+        file = request.files['file']
+        if file:
+            file.save(path.join('/opt/workspace/',file.filename))
+            return "file have save!"
+    if request.method == 'GET':
+        return render_template('blog.upload.html')
+

@@ -1,86 +1,86 @@
-{% extends "base.html" %}
+{% extends "blog.base.html" %}
+{% set active="" %}
 
-{%  block content %}
-    <div class="container">
+{% block head %}
+    {{super()}}
+    <link rel="stylesheet" href="{{ url_for('blog.static', filename='css/simditor.css') }}" media="screen,projection">
+{%endblock%}
+
+{%  block main %}
+<div class="container">
     <div class="row col s12 m10 l10 offset-m1 offset-l1">
         <div class="row col s12 m10 l10 offset-l1 offset-m1">
             {% if post%}
-                <div class="card hoverable">
-                    <!-- title -->
-                    <div class="card-content">
-                        <h5>{{post.title}}</h5>
-                        <div class="grey-text">
-                            <ul class="list-group">
-                                <li class="list-group-item" style="float:left"><i class="fa fa-user fa-fw"></i> {{post.users.nickname}}</li>
-                                <li class="list-group-item" style="float:left;margin-left:40px"> <i class="fa fa-calendar fa-fw"></i>{{post.update_at}}</li>
-                            </ul>
-                        </div>
+            <div class="card hoverable">
+                <!-- title -->
+                <div class="card-content">
+                    <h5>{{post.title}}</h5>
+                    <div class="grey-text">
+                        <ul>
+                            <li><i class="fa fa-user fa-fw"></i> {{post.users.nickname}}</li>
+                            <li> <i class="fa fa-calendar fa-fw"></i>{{post.update_at}}</li>
+                        </ul>
                     </div>
-                    <div class="divider" style="clear:both"></div>
-                    <!-- content -->
-                    <div class="card-content">
-                        <p>{{post.content}}</p>
-                    </div>
+                </div>
+                <div class="divider" style="clear:both"></div>
+                <!-- content -->
+                <div class="card-content">
+                    <p>{{post.content|safe}}</p>
+                </div>
 
-		            <div class="card-action">
-                        <a href="{{url_for('blog.post',post_id=post.id)}}">查看更多</a>
-                    </div>
-                </div><!--end card-->
-                {% endif %}
+                <div class="card-action">
+                    <a href="{{url_for('blog.post',post_id=post.id)}}">查看更多</a>
+                </div>
+            </div><!--end card-->
+            {% endif %}
         </div>
 
-<div class="row col s12 m10 l10 offset-l1 offset-m1">
-    <div class="card hoverable">
-        {% for comment,user in comments if comments %}
-            <div class="card-content avatar">
-                <img class="circle" src="http://materializecss.com/images/yuna.jpg" alt="" style="width:42px;height:42px;algin:center;"></img>
-                <span class="title" style="line-height:30px;padding:5px 8px;">{{user.nickname}}</span>
-                <a href="#!" class="secondary-content"><i class="material-icons">star_border</i></a>
-                <a href="#!" class="secondary-content"><i class="material-icons">favorite_border</i></a>
-                <p>
-                {{comment.comment |safe }}
-                </p>
+        <div class="row col s12 m10 l10 offset-l1 offset-m1">
+            <div class="card hoverable">
+                {% for comment,user in comments if comments %}
+                <div class="card-content avatar">
+                    <img class="circle" src="http://materializecss.com/images/yuna.jpg" alt="" style="width:42px;height:42px;algin:center;"></img>
+                    <span class="title" style="line-height:42px;padding:5px 8px;text-align:center">{{user.nickname}}</span>
+                    <a href="#!" class="secondary-content"><i class="material-icons">star_border</i></a>
+                    <a href="#!" class="secondary-content"><i class="material-icons">favorite_border</i></a>
+                    <p>
+                        {{comment.comment |safe }}
+                    </p>
+                </div>
+                <div class="divider"></div>
+                {% endfor %}
             </div>
-            <div class="divider"></div>
-        {% endfor %}
-    </div>
-</div>
+        </div>
 
         <div class="row col s12 m10 l10 offset-l1 offset-m1">
             <!-- 评论表单 -->
             {% if form %}
-                <div class="card hoverable row col s12 m12 l12">
-                    <div class="card-content row col s12 m12 l12">
-                        <form action="{{url_for('blog.post',post_id=post.id)}}" method="post">
-                            <p>留下你的评论！</p>
-                            <!-- Csrf -->
-                            {{ form.hidden_tag() }}
-			    {% if current_user.is_authenticated %}
-			    	<input type="hidden" name="user_id" value="{{ current_user.id }}">
-			    {% endif %}
-                            <div class="row input-field">
-                                <textarea id="editor" class="material-textarea" name="comment"></textarea>
-                            </div>
-                            <div class="row">
-                                <button class="btn waves-effect waves-light left blue accent-3" type="submit" name="action">提交评论
-                                    <i class="material-icons right">send</i>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+            <div class="card hoverable row col s12 m12 l12">
+                <div class="card-content row col s12 m12 l12">
+                    <form action="{{url_for('blog.post',post_id=post.id)}}" method="post">
+                        <p>留下你的评论！</p>
+                        <!-- Csrf -->
+                        {{ form.hidden_tag() }}
+                        {% if current_user.is_authenticated %}
+                        <input type="hidden" name="user_id" value="{{ current_user.id }}">
+                        {% endif %}
+                        <div class="row input-field">
+                            <textarea id="editor" class="material-textarea" name="comment"></textarea>
+                        </div>
+                        <div class="row">
+                            <button class="btn waves-effect waves-light left blue accent-3" type="submit" name="action">提交评论<i class="material-icons right">send</i></button>
+                        </div>
+                    </form>
                 </div>
+            </div>
             {% endif %}
         </div>
     </div>
-    </div><!--end container-->
+</div><!--end container-->
 {% endblock %}
 
 
-{% block footer %}
-
-{% endblock %}
-
-{% block javascript %}
+{% block script %}
     {{super()}}
 <script type="text/javascript" src="{{url_for('blog.static',filename='js/module.js')}}"></script>
 <script type="text/javascript" src="{{url_for('blog.static',filename='js/hotkeys.js')}}"></script>

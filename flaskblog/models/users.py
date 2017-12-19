@@ -17,12 +17,13 @@ class Users(db.Model):
     # 列名
     id = db.Column(db.String(50), primary_key=True, index=True)
     email = db.Column(db.String(100), unique=True)
-    password = db.Column(db.String(300))
+    passwd = db.Column(db.String(300))
     phoneno = db.Column(db.Numeric(11))
     nickname = db.Column(db.String(200))
     status = db.Column(db.INT)
     update_at = db.Column(db.TIMESTAMP(True), nullable=False)
     create_at = db.Column(db.BIGINT)
+    head_pic = db.Column(db.String(255))
     # Establish contact with post's foreignKey:users_id
     posts = db.relationship('Posts', backref='users', lazy='dynamic')
     # Establish contact with comments's foreignKey:users_id
@@ -31,26 +32,46 @@ class Users(db.Model):
     roles = db.relationship('Roles',secondary=users_roles,backref='users',lazy='dynamic')
    
     # 初始化函数
-    def __init__(self, email, password,  nickname):
+    def __init__(self, email, nickname):
         self.email = email
         self.id = str(uuid4())
-        self.password = self.set_password(password)
         self.nickname = nickname
         self.create_at = int(time.time() * 1000)
+        self.status = 1
 	
 	# setup the default role for user
 	default = Role.query.filter_by(name=='default').one()
 	self.roles.append(default)
-	
-    # 加密密码函数
-    def set_password(self, password):
-        pass_sha1 = sha1(password)
-        return pass_sha1.hexdigest()
+
+    # get/set status
+    @property
+    def status(self):
+        if self.status == 0:
+            return "status: not active/为激活！"
+        if self.status == 1:
+            return "status: yet active/已激活！"
+    @status.setter
+    def status(self,status):
+        self._status = status
+
+    # set/get password
+    @property
+    def password(self):
+        raise AttributeError('Password is not a readable attribute')
+    @password.setter
+    def password(self,password):
+        pass_hash = sha1(password)
+        self.passwd = pass_hash.hexdigest()
+
+    # # 加密密码函数
+    # def set_password(self, password):
+    #     pass_sha1 = sha1(password)
+    #     return pass_sha1.hexdigest()
 
     # 检查密码正确性
     def check_password(self, password):
         pass_sha1 = sha1(password)
-        return self.password == pass_sha1.hexdigest()
+        return self.passwd == pass_sha1.hexdigest()
 
     # 检查用户是否登录
     def is_authenticated(self):

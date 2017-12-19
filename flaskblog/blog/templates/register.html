@@ -1,10 +1,7 @@
-{% extends "base.html" %}
+{% extends "blog.base.html" %}
+{% set active='register' %}
 
-{% block header %}
-
-{% endblock %}
-
-{% block content %}
+{% block main %}
 <div class="main-content grey lighten-4" style="margin-top: -50px;">
     <div class="container">
         <div class="row">
@@ -65,8 +62,4 @@
         </div><!--end row-->
     </div><!--end container-->
 </div>
-{% endblock %}
-
-{% block footer %}
-    {% include 'includes/_footer.html'%}
 {% endblock %}

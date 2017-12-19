@@ -1,20 +1,6 @@
-{% extends "base.html" %}
+{% extends "blog.base.html" %}
 {% set active="about" %}
-{%block head%}
-{{super()}}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.1/css/materialize.min.css">
-{%endblock%}
-{%block header%}
-{{super()}}
-{%endblock%}
 
-{%  block content %}
-    <div class="browser-default">
-       <label for='email' class="browser-default">Email</label>
-       <input class="browser-default" type="email" name="email">
-    </div>
+{% block main %}
+	about
 {% endblock %}
-
-{%block javascript%}
- {{super()}}
-{%endblock%}

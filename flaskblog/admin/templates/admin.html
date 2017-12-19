@@ -1,284 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>admin-blog list</title>
-    <meta charset="utf-8">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.1/css/materialize.min.css">
-    <link href="{{url_for('admin.static',filename='css/admin.css')}}" rel="stylesheet">
-    <link href="{{url_for('admin.static',filename='css/font-awesome.min.css')}}" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <style type="text/css">
-
-    </style>
+  {% block head %}
+    <title>{{title}}</title>
+    {% include 'admin._head.html'%}
+  {% endblock %}
 </head>
 <body>
-  <ul id="slide-out" class="sidenav sidenav-fixed collapsible" data-collapsible="accordion" style="border-top: none;">
-  	<li class="white" style="height: 64px;border-bottom: 1px #ccc solid;">
-  	
-  		<p  style="height: inherit;line-height: 64px;margin: auto;font-size: 1.2em;text-align: center;">
-  			无名万物
-  		</p>
-  
-  	</li>
-    <li>
-	  <div class="collapsible-header"><i class="fa fa-list fa-fw"></i>博客管理</div>
-	  <div class="collapsible-body">
-		<ul class="collection">
-		  <a class="collection-item center-align" href="#"><i class="fa fa-leaf fa-fw"></i> 所有博客</a>
-		  <a class="collection-item center-align" href="#"><i class="fa fa-edit fa-fw"></i> 新建博客</a>
-		</ul>
-	  </div>
-	</li>
-    <li>
-      <div class="collapsible-header"><i class="fa fa-users fa-fw"></i>用户管理</div>
-      <div class="collapsible-body">
-      	<ul class="collection">
-			   <a class="collection-item center-align" href="#">用户审核</a>
-			   <a class="collection-item center-align" href="#">所有用户</a>
-			  </ul>
-      </div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="fa fa-comments fa-fw"></i>评论管理</div>
-      <div class="collapsible-body">
-      	<ul class="collection">
-			<a class="collection-item center-align" href="#">评论管理</a>
-			<a class="collection-item center-align" href="#">文章管理</a>
-			<a class="collection-item center-align" href="#">用户管理</a>
-			</ul>
-      </div>
-    </li>
-  </ul>
-  <header>
-  	<nav class="white">
-  		<div class="nav-wrapper">
-  		<a href="#" data-target="slide-out" class="sidenav-trigger hide-on-large-only black-text"><i class="material-icons left" style="margin-left: 20px;">menu</i></a>
-  		<ul class="right black-text hide-on-med-and-down">
-  			<li>
-  				<input type="search" name="name" class="browser-default" autocomplete="false" placeholder="Search">
-  			</li>
-  			<li><a class="black-text" href="#">无名万物</a></li>
-  			<li><a class="black-text" href="#">无名万物</a></li>
-  			<li><a class="black-text" href="#">无名万物</a></li>
-  		</ul>
-  	</div>
-  	</nav>
-  </header>
+<!--start body block-->
+{% block body %}
+
+  <!--star side_nav -->
+  {% block side_nav %}
+    {% include 'admin._side_nav.html' %}
+  {% endblock%}
+  <!--end side_nav block-->
+
+
+  <!--start header block-->
+  {% block header %}
+    {% include 'admin._header.html' %}
+  {% endblock %}
+  <!--end header block -->
+
+
+  <!--start main block -->
   <main>
+  {% block main %}
     <div class="card">
-     <div class="card-action">博客管理</div>
-    </div>
-    <div class="card">
-      <div class="card-content">
-        <table class="highlight bordered">
-          <thead>
-          <tr>
-            <th> 
-              <label>
-                <input type="checkbox" class="filled-in" checked="checked" />
-                <span> 全选</span>
-              </label>
-            </th>
-            <th> 标题</th>
-            <th><i class="fa fa-user fa-fw"></i> 作者</th>
-            <th><i class="fa fa-calendar fa-fw"></i> 时间</th>
-            <th><i class="fa fa-edit fa-fw"></i> 操作</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td> 
-              <label>
-                <input type="checkbox" class="filled-in"/>
-                <span>选择</span>
-              </label>
-            </td>
-            <td>第一个博客</td>
-            <td>Haojie Ren</td>
-            <td></i>2017-11-20 21:32</td>
-            <td><i class="fa fa-edit fa-fw"></i> | <i class="fa fa-trash-o fa-fw"></i></td>
-          </tr>
-          <tr>
-            <td> 
-              <label>
-                <input type="checkbox" class="filled-in"/>
-                <span>选择</span>
-              </label>
-            </td>
-            <td>第一个博客</td>
-            <td>Haojie Ren</td>
-            <td></i>2017-11-20 21:32</td>
-            <td><i class="fa fa-edit fa-fw"></i> | <i class="fa fa-trash-o fa-fw"></i></td>
-          </tr>
-          <tr>
-            <td> 
-              <label>
-                <input type="checkbox" class="filled-in"/>
-                <span>选择</span>
-              </label>
-            </td>
-            <td>第一个博客</td>
-            <td>Haojie Ren</td>
-            <td></i>2017-11-20 21:32</td>
-            <td><i class="fa fa-edit fa-fw"></i> | <i class="fa fa-trash-o fa-fw"></i></td>
-          </tr>
-          <tr>
-            <td> 
-              <label>
-                <input type="checkbox" class="filled-in"/>
-                <span>选择</span>
-              </label>
-            </td>
-            <td>第一个博客</td>
-            <td>Haojie Ren</td>
-            <td></i>2017-11-20 21:32</td>
-            <td><i class="fa fa-edit fa-fw"></i> | <i class="fa fa-trash-o fa-fw"></i></td>
-          </tr>
-          <tr>
-            <td> 
-              <label>
-                <input type="checkbox" class="filled-in"/>
-                <span>选择</span>
-              </label>
-            </td>
-            <td>第一个博客</td>
-            <td>Haojie Ren</td>
-            <td></i>2017-11-20 21:32</td>
-            <td><i class="fa fa-edit fa-fw"></i> | <i class="fa fa-trash-o fa-fw"></i></td>
-          </tr>
-          <tr>
-            <td> 
-              <label>
-                <input type="checkbox" class="filled-in"/>
-                <span>选择</span>
-              </label>
-            </td>
-            <td>第一个博客</td>
-            <td>Haojie Ren</td>
-            <td></i>2017-11-20 21:32</td>
-            <td><i class="fa fa-edit fa-fw"></i> | <i class="fa fa-trash-o fa-fw"></i></td>
-          </tr>
-          <tr>
-            <td> 
-              <label>
-                <input type="checkbox" class="filled-in"/>
-                <span>选择</span>
-              </label>
-            </td>
-            <td>第一个博客</td>
-            <td>Haojie Ren</td>
-            <td></i>2017-11-20 21:32</td>
-            <td><i class="fa fa-edit fa-fw"></i> | <i class="fa fa-trash-o fa-fw"></i></td>
-          </tr>
-          <tr>
-            <td> 
-              <label>
-                <input type="checkbox" class="filled-in"/>
-                <span>选择</span>
-              </label>
-            </td>
-            <td>第一个博客</td>
-            <td>Haojie Ren</td>
-            <td></i>2017-11-20 21:32</td>
-            <td><i class="fa fa-edit fa-fw"></i> | <i class="fa fa-trash-o fa-fw"></i></td>
-          </tr>
-          <tr>
-            <td> 
-              <label>
-                <input type="checkbox" class="filled-in"/>
-                <span>选择</span>
-              </label>
-            </td>
-            <td>第一个博客</td>
-            <td>Haojie Ren</td>
-            <td></i>2017-11-20 21:32</td>
-            <td><i class="fa fa-edit fa-fw"></i> | <i class="fa fa-trash-o fa-fw"></i></td>
-          </tr>
-          <tr>
-            <td> 
-              <label>
-                <input type="checkbox" class="filled-in"/>
-                <span>选择</span>
-              </label>
-            </td>
-            <td>第一个博客</td>
-            <td>Haojie Ren</td>
-            <td></i>2017-11-20 21:32</td>
-            <td><i class="fa fa-edit fa-fw"></i> | <i class="fa fa-trash-o fa-fw"></i></td>
-          </tr>
-          <tr>
-            <td> 
-              <label>
-                <input type="checkbox" class="filled-in"/>
-                <span>选择</span>
-              </label>
-            </td>
-            <td>第一个博客</td>
-            <td>Haojie Ren</td>
-            <td></i>2017-11-20 21:32</td>
-            <td><i class="fa fa-edit fa-fw"></i> | <i class="fa fa-trash-o fa-fw"></i></td>
-          </tr>
-          <tr>
-            <td> 
-              <label>
-                <input type="checkbox" class="filled-in"/>
-                <span>选择</span>
-              </label>
-            </td>
-            <td>第一个博客</td>
-            <td>Haojie Ren</td>
-            <td></i>2017-11-20 21:32</td>
-            <td><i class="fa fa-edit fa-fw"></i> | <i class="fa fa-trash-o fa-fw"></i></td>
-          </tr>
-          <tr>
-            <td> 
-              <label>
-                <input type="checkbox" class="filled-in"/>
-                <span>选择</span>
-              </label>
-            </td>
-            <td>第一个博客</td>
-            <td>Haojie Ren</td>
-            <td></i>2017-11-20 21:32</td>
-            <td><i class="fa fa-edit fa-fw"></i> | <i class="fa fa-trash-o fa-fw"></i></td>
-          </tr>
-          </tbody>
-        </table>
+      <div class="card-action">
+        welcome {{current_user.nickname}}!
       </div>
       <div class="card-content">
-          <ul class="pagination">
-            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-            <li class="active"><a href="#!">1</a></li>
-            <li class="waves-effect"><a href="#!">2</a></li>
-            <li class="waves-effect"><a href="#!">3</a></li>
-            <li class="waves-effect"><a href="#!">4</a></li>
-            <li class="waves-effect"><a href="#!">5</a></li>
-            <li class="waves-effect"><a href="#!">6</a></li>
-            <li class="waves-effect"><a href="#!">7</a></li>
-            <li class="waves-effect"><a href="#!">8</a></li>
-            <li class="waves-effect"><a href="#!">9</a></li>
-            <li class="waves-effect"><a href="#!">10</a></li>
-            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-          </ul>
+        <div class="">
+          asdfasdf
+        </div>
       </div>
-    </div>
-  </div>
+    </div>  
+  {% endblock %}
   </main>
-  <footer>
-  	
+  <!-- end main block-->
 
-  </footer>
 
- <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.1/js/materialize.min.js"></script>
-<script type="text/javascript">
-	 	$(document).ready(function(){
- 		$('.carousel').carousel();
- 		$('.collapsible').collapsible();
- 		$('.sidenav').sidenav();
- 	})
-	
-</script>
+  <!--start footer block -->
+  {% block footer %}
+    {% include 'admin._footer.html'%}
+  {% endblock %}
+  <!--end footer -->
+{% endblock %}
+<!--end body block-->
+
+
+<!--start javascript block-->
+{% block script %}
+  {% include 'admin._script.html' %}
+{% endblock%}
+<!-- end javascript block-->
+
 </body>
 </html>

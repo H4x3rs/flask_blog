@@ -3,6 +3,8 @@
     margin: 0px;
     padding: 0px;
 }
+nav ul li a{outline:none;}
+dropdown-content{outline:none;border:1px #000 solid;}
 /* 设置整体的一些css属性 */
 html{
     height: 100%;
@@ -45,13 +47,7 @@ footer{
   box-sizing: content-box;
 }
 
-.login_toast{
-    min-width:200px;
-    min-height:36px;
-    line-height:36px;
-    border-radius:3px;
-}
-nav ul a{
+nav ul li a{
     color:#000;
 }
 nav .brand-logo{
@@ -72,7 +68,6 @@ nav .brand-logo{
 .nav-item > li{
     width: 80px;
     text-align: center;
-    z-index: 100;
 }
 .nav-login>li{
     width: 120px;
@@ -82,12 +77,17 @@ nav .brand-logo{
     /*background-image: url("https://www.transparenttextures.com/patterns/cubes.png");*/
     margin-top: 30px;
 }
-
-#index-banner{
-    min-height: 180px;
-    height: auto;
-    background-image: url("../banner2.jpg");
+.toast{
+    min-width: 150px;
+    height:56px;
 }
-#sidenav-overlay{
-    z-index: 100;
+.ellipsis{
+    overflow: hidden;
+    text-overflow:clip;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+.card-content p{
+    line-height:30px;
 }

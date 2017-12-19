@@ -1,0 +1,36 @@
+
+<ul id="mobile-demo" class="sidenav">
+	<li class="active"><a href="base.html">首页</a></li>
+	<li><a class="dropdown-trigger" data-target="code_lang_mobile">语言</a></li>
+	<li><a class="dropdown-trigger" data-target="system_mobile">系统</a></li>
+	<li><a href="base.html">相册</a></li>
+	<li><a href="base.html">关于</a></li>
+	<li class="divider"></li>
+	<li><a href="login.html">登录</a></li>
+	<li><a href="register.html">注册</a></li>
+</ul>
+
+<!--语言下拉菜单-->
+<ul id="code_lang_mobile" class="dropdown-content">
+	<li><a href="{{url_for('blog.tag',tag_name='Python')}}">Python</a></li>
+	<li class="divider"></li>
+	<li><a href="{{url_for('blog.tag',tag_name='Java')}}">Java</a></li>
+	<li class="divider"></li>
+	<li><a href="{{url_for('blog.tag',tag_name='Nodejs')}}">Nodejs</a></li>
+	<li class="divider"></li>
+	<li><a href="{{url_for('blog.tag',tag_name='C')}}">C</a></li>
+	<li><a href="{{ url_for('blog.tag',tag_name='C++')}}">C++</a></li>
+</ul>
+
+<!-- 系统下拉菜单 -->
+<ul id="system_mobile" class="dropdown-content">
+	<li><a href="#">Windows</a></li>
+	<li class="divider"></li>
+	<li><a href="#">Linux</a></li>
+	<li class="divider"></li>
+	<li><a href="#">Mac OS</a></li>
+	<li class="divider"></li>
+	<li><a href="#">IOS</a></li>
+	<li class="divider"></li>
+	<li><a href="#">Android</a></li>
+</ul>

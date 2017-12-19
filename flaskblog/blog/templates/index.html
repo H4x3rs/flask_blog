@@ -1,17 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- 字符集-->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>无名万物</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../../static/css/materialize.min.css" media="screen,projection">
-    <link rel="stylesheet" type="text/css" href="../../static/css/font-awesome.min.css" media="screen,projection">
-    <link rel="stylesheet" type="text/css" href="../../static/css/style.css" media="screen,projection">
-</head>
-<body>
+{% extends "blog.base.html" %}
+{% set active="index" %}
 
-</body>
-</html>
+{% block main %}
+<!-- content 正文 -->
+<div class="main-content">
+    <div class="container">
+        <div class="row">
+        <!-- start 左边-->
+        <div class="col s12 m12 l9">
+            <!-- post -->
+            {%for post in posts if post.title%}
+            <div class="card hoverable" style="margin-bottom: 30px;">
+                <div class='card-content'>
+                    <h5>{{post.title}}</h5>
+                    <div class='grey-text'>
+                        <ul>
+                            <li class='left'><i class="fa fa-user fa-fw"></i> Haojie Ren </li>
+                            <li class='left'><i class="fa fa-calendar fa-fw"></i>  August 29 2017 </li>
+                            <li class='left'><i class="fa fa-tag fa-fw"></i>  Python Flask </li>
+                        </ul>
+                    </div>
+                    <br>
+                </div>
+                <div class="divider"></div>
+                <!--
+                <div class="card-image">
+                   <img data-src="{{url_for('blog.static',filename='banner3.jpg')}}" class='lazyload'>
+                   <span class="card-title"><h5>{{post.title}}</h5></span>
+                </div>
+                -->
+                <div class="card-content" style="min-height:100px;max-height:250px;overflow:hidden;">
+                   <p>{{post.content|safe}} </p>
+                </div>
+                <div class="card-action">
+                    <a  href="{{url_for('blog.post',post_id=post.id)}}">查看更多</a>
+                </div>
+            </div>
+            {% endfor %}
+
+            <ul class="pagination">
+                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                <li class="active"><a href="#!">1</a></li>
+                <li class="waves-effect"><a href="#!">2</a></li>
+                <li class="waves-effect"><a href="#!">3</a></li>
+                <li class="waves-effect"><a href="#!">4</a></li>
+                <li class="waves-effect"><a href="#!">5</a></li>
+                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+            </ul>
+            <br>
+        </div>
+        <!-- end 左边  -->
+
+        <!-- start  右边  -->
+        <div class="col s12 m12 l3">
+            <div class="card hoverable">
+                <div class="collection with-header black-text">
+                    <p class="collection-item"> 
+                        <i class="fa fa-snowflake-o  fa-fw fa-lg"></i>&nbsp;&nbsp; 最新文章
+                    </p>
+                    <a href="#" class="collection-item black-text">FLask开发博客</a>
+                    <a href="#" class="collection-item black-text">Numpy处理</a>
+                    <a href="#" class="collection-item black-text">Javascript学习</a>
+                    <a href="#" class="collection-item  black-text">Spring日志</a>
+                    <a href="#" class="collection-item  black-text">Nodejs入门学习</a>
+                    
+                </div>
+            </div>
+
+            <div class="card hoverable">
+                <div class='collection'>
+                    <p class='collection-item'>
+                        <i class="fa fa-smile-o fa-fw fa-lg"></i>&nbsp;&nbsp; 每日一笑
+                    </p>
+                    <p style="padding:24px;">
+                    1、昨晚吃鸡，因为没点solo，排到了个不认识的人。 开始跟他交谈他没说话，直到我捡到98k，问他要倍镜时，耳机里传来了一声熟悉的东北口音“给俺，俺打的准！” 我的脑海突然闪过一个身影，我二话不说立马把枪扔给他，因为他的名字叫shunliu！
+                </p>
+              </div>
+            </div>
+            <!-- tag 标签 -->
+            <ul class="collection with-header hoverable">
+                <li class="collection-header">
+                    <i class="material-icons" style="width: 2rem;font-size: 1.6rem;display: block;float: left;text-align: center;margin-right: 1rem">local_offer</i>
+                    标签云
+                </li>
+                {% for tag in top_tags %}
+                <li class="collection-item">{{tag.Tags.name}}(<a href="{{url_for('blog.tag',tag_name=tag.Tags.name)}}">{{tag.total}}</a>)</li>
+                {% endfor%}
+                <li class="collection-item p1"><a href="#!">Alvin</a></li>
+            </ul>
+        </div>   <!-- end 右边-->
+        </div>  <!--  end row  -->
+    </div>
+</div>
+
+<div class="fixed-action-btn" style="bottom: 45px; right: 17px;">
+    <a class="btn-floating red"><i class="material-icons">add</i></a>
+    <ul>
+        <li><a class="btn-floating red" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">insert_chart</i></a></li>
+        <li><a class="btn-floating yellow darken-1" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">format_quote</i></a></li>
+        <li><a class="btn-floating green" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">publish</i></a></li>
+        <li><a class="btn-floating blue" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">attach_file</i></a></li>
+    </ul>
+</div>
+{% endblock %}
+

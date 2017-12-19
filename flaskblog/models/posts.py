@@ -15,6 +15,7 @@ class Posts(db.Model):
     id = db.Column(db.String(50), primary_key=True, index=True)
     title = db.Column(db.String(100),index=True)
     content = db.Column(db.Text())
+    post_pic = db.Column(db.String(255))
     update_at = db.Column(db.TIMESTAMP(True), nullable=False)
     create_at = db.Column(db.BIGINT)
     # set the foreignkey for users
@@ -29,6 +30,7 @@ class Posts(db.Model):
         self.title = title
         self.content = content
         self.create_at = int(time.time()*1000)
+
 
     def __repr__(self):
         return '<Model Posts `{}`>'.format(self.id)
