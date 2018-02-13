@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% block head %}
+    <title>{{title}}</title>
+    {% include 'admin._head.html'%}
+  {% endblock %}
+</head>
+<body>
+<!--start body block-->
+{% block body %}
+  <!--start main block -->
+  <main>
+  {% block main %}
+    <div class="card">
+      <div class="card-action">
+        welcome {{current_user.nickname}}!
+      </div>
+      <div class="card-content">
+        <div class="">
+          asdfasdf
+        </div>
+      </div>
+    </div>
+  {% endblock %}
+  </main>
+  <!-- end main block-->
+
+
+  <!--start footer block -->
+  {% block footer %}
+    {% include 'admin._footer.html'%}
+  {% endblock %}
+  <!--end footer -->
+{% endblock %}
+<!--end body block-->
+
+
+<!--start javascript block-->
+{% block script %}
+  {% include 'admin._script.html' %}
+{% endblock%}
+<!-- end javascript block-->
+
+</body>
+</html>

@@ -36,6 +36,11 @@ from flaskblog.extensions import facebook
 # 定义蓝图
 admin_blueprint = Blueprint('admin',__name__,template_folder='templates',static_folder='static',url_prefix='/admin')
 
+@admin_blueprint.route('/login')
+def login():
+    """login admin module"""
+    return render_template('admin.login.html', title='admin')
+
 @admin_blueprint.route('/')
 def admin():
     """weblcom the admin; list the blog"""
