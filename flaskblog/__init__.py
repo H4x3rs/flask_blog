@@ -56,7 +56,6 @@ def create_app(object_name=DevConfig):
     db.init_app(app)
     # Init flask_login
     login_manager.init_app(app)
-    bootstrap.init_app(app)
     principal.init_app(app)
     # Init the bcrypt via app object      
     # bcrypt.init_app(app)
