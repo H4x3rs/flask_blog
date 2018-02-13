@@ -19,7 +19,6 @@ from models import db
 # 扩展
 from extensions import bcrypt
 from extensions import login_manager
-from extensions import bootstrap
 from extensions import principal
 
 # blog视图函数
