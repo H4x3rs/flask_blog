@@ -4,7 +4,7 @@
     padding: 0px;
 }
 nav ul li a{outline:none;}
-dropdown-content{outline:none;border:1px #000 solid;}
+.dropdown-content{outline:none;border:none;}
 /* 设置整体的一些css属性 */
 html{
     height: 100%;
@@ -72,11 +72,40 @@ nav .brand-logo{
 .nav-login>li{
     width: 120px;
 }
-.container{
-    width: 90%;
-    /*background-image: url("https://www.transparenttextures.com/patterns/cubes.png");*/
-    margin-top: 30px;
+
+/*浏览器宽度不小于1201px时*/
+@media screen and (min-width: 1201px){
+    .container{
+        width: 90%;
+        margin-top:30px;
+    }
 }
+/*浏览器不大于1200px时*/
+@media screen and (max-width: 1200px){
+    .container{
+        width: 90%;
+        margin-top:30px;
+    }
+}
+/*浏览器宽度不大于978px时*/
+@media screen and (max-width: 978px){
+    .container{
+        width: 90%;
+        margin-top:30px;
+    }
+}
+/*浏览器宽度不大于500px时*/
+@media screen and (max-width: 500px) {
+    .container{
+        width: 100%;
+        margin-top:30px;
+    }
+}
+
+/*.container{
+    width: 90%;
+    margin-top: 30px;
+}*/
 .toast{
     min-width: 150px;
     height:56px;

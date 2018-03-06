@@ -51,7 +51,7 @@
      (function(){
         {% for cate,message in get_flashed_messages(with_categories=True) %}
         {% if message %}
-                M.toast('{{message|safe}}',3000,'toast','')            
+                M.toast({html:'{{message|safe}}'})            
         {% endif %}
         {% endfor %}
         

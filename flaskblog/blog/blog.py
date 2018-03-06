@@ -103,6 +103,7 @@ def login():
         if not user:
             flash(u'无效的用户名!')
         if not user.check_password(password):
+            print user.check_password(password)
             flash(u'无效的密码!')
 
         login_user(user,remember)
