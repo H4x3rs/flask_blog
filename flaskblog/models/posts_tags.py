@@ -3,7 +3,7 @@
 # @author:ren
 # @date:2017/10/25.18:11
 
-from . import db
+from .db import db
 
 # posts与tags的关联表
 posts_tags = db.Table(

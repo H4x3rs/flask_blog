@@ -4,7 +4,7 @@
 # @date:2017/10/25.17:32
 
 import time
-from . import db
+from .db import db
 from uuid import uuid4
 from .posts_tags import posts_tags
 

@@ -17,7 +17,7 @@ class Config(object):
     QINIU_SK='ZJkO6SyZw-yZ2iE6N0IC1REiOp9Mn2CYidC41nop'
     QINIU_BUCKET='image'
     # SQLALCHEY数据库配置
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://ghost:vhadnRG3$a<aasdfjDF@localhost:3306/blog'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://ghost:vhadnRG3$a<aasdfjDF@47.91.230.186:3306/blog'
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 # 生产环境的配置类，继承自onfig基类

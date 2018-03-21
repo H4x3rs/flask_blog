@@ -10,15 +10,15 @@ from flask import flash,url_for,session,current_app,g
 from flask_login import login_user,logout_user,current_user,login_required
 from flask_principal import Identity,AnonymousIdentity,identity_changed,current_app
 from sqlalchemy import func,desc
-from ..models import db
-from ..models.users import Users
-from ..models.posts import Posts
-from ..models.tags import Tags
-from ..models.comments import Comments
-from ..models.posts_tags import posts_tags
+from flaskblog.models.db import db
+from flaskblog.models.users import Users
+from flaskblog.models.posts import Posts
+from flaskblog.models.tags import Tags
+from flaskblog.models.comments import Comments
+from flaskblog.models.posts_tags import posts_tags
 
-from ..form import CommentForm,LoginForm
-from ..extensions import facebook
+from flaskblog.form import CommentForm,LoginForm
+from flaskblog.extensions import facebook
 
 # 定义蓝图
 blog_blueprint = Blueprint('blog',  __name__,template_folder='templates',static_folder='static',url_prefix='/blog')

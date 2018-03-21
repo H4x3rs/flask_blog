@@ -166,4 +166,4 @@ def shutdown_session(exception=None):
     try:
         db.session.remove()
     except Exception as e:
-        print e
+        print (e)

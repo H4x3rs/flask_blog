@@ -4,7 +4,7 @@
 # @date:2017/10/25.17:32
 
 import timeit
-from . import db
+from .db import db
 from uuid import uuid4
 
 class Roles(db.Model):

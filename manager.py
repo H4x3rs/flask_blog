@@ -8,7 +8,7 @@ from flaskblog import app
 from flask_script import Manager,Server
 from flask_migrate import Migrate, MigrateCommand
 
-from flaskblog.models import db
+from flaskblog.models.db import db
 from flaskblog.models.users import Users
 from flaskblog.models.users_roles import users_roles
 from flaskblog.models.posts import Posts

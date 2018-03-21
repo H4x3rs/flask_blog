@@ -53,6 +53,6 @@ def upload(uptoken):
 def callback():
     filename = request.get('fname')
     filesize = request.get('fsize')
-    print filename,filesize
+    print (filename,filesize)
 
 

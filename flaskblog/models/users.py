@@ -6,11 +6,10 @@
 import time
 from uuid import uuid4
 from hashlib import sha1
-from . import db
+from .db import db
 from .users_roles import users_roles
 from .roles import Roles
 
-print (dir(Roles))
 from flask_login import AnonymousUserMixin
 
 # 用户表
@@ -42,9 +41,9 @@ class Users(db.Model):
         self.create_at = int(time.time() * 1000)
         self.status = 1
 	
-	# setup the default role for user
-    default = Roles.query.filter_by(name=='default').one()
-    self.roles.append(default)
+        # setup the default role for user
+        default = Roles.query.filter_by(role == 'default').one()
+        self.roles.append(default)
 
     # get/set status
     @property

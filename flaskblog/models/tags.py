@@ -3,7 +3,7 @@
 # @author:ren
 # @date:2017/10/25.17:32
 
-from . import db
+from .db import db
 from uuid import uuid4
 
 # 标签表
@@ -21,9 +21,9 @@ class Tags(db.Model):
         self.pid = pid
         self.id =str(uuid4())
         if code == None:
-	       self.code = self.name
+	        self.code = self.name
         else:
-	       self.code = code
+	        self.code = code
 
     def __repr__(self):
         return "<Model Tags `{}`>".format(self.id)
