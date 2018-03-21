@@ -25,7 +25,6 @@ class ProConfig(Config):
     """
     Production config class.
     """
-    SERVER_NAME = 'flask.rhg110.cn'
 
 # 开发环境的配置类，继承自config基类
 class DevConfig(Config):

@@ -10,21 +10,23 @@ from flask import url_for
 from flask_principal import identity_loaded,RoleNeed,UserNeed
 from flask_login import current_user
 
-from config import DevConfig
-from config import Config
-from config import ProConfig
+from .config import DevConfig
+from .config import Config
+from .config import ProConfig
 
-from models import db
+from .models import db
 
 # 扩展
-from extensions import bcrypt
-from extensions import login_manager
-from extensions import principal
+from .extensions import bcrypt
+from .extensions import login_manager
+from .extensions import principal
 
 # blog视图函数
-from blog import blog
-from admin import admin
-from api import api
+from .blog import blog
+from .admin import admin
+from .api import api
+
+print (db)
 
 # 默认情况下 Flask的jinja_loader将会从全局加载template，这将会导致多个蓝图
 # 模板命名的冲突，导致加载模板出现混乱，该类继承Flask，通过将Flask自身的
@@ -52,7 +54,8 @@ def create_app(object_name=DevConfig):
     # Get the config from object od Devconfig
     app.config.from_object(object_name)
     # Init db object 
-    db.init_app(app)
+    with app.app_context():
+        db.init_app(app)
     # Init flask_login
     login_manager.init_app(app)
     principal.init_app(app)
@@ -84,8 +87,6 @@ def create_app(object_name=DevConfig):
     @app.route('/')
     def index():
         return redirect(url_for('blog.index'))
-    
-    return app
 
 app = create_app()
 

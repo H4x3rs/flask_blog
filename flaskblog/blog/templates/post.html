@@ -3,7 +3,7 @@
 
 {% block head %}
     {{super()}}
-    <link rel="stylesheet" href="{{ url_for('blog.static', filename='css/simditor.css') }}" media="screen,projection">
+    <link rel="stylesheet" href="{{ url_for('blog.static', filename='css/simditor.css',_external=True) }}" media="screen,projection">
 {%endblock%}
 
 {%  block main %}

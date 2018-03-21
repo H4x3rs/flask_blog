@@ -16,10 +16,10 @@ class Roles(db.Model):
     description = db.Column(db.String(255))
 
     def __init__(self,role):
-	self.id = str(uuid4())
-	self.role = role
+        self.id = str(uuid4())
+        self.role = role
 
     def __repr__(self):
-	return "<Model Role `{}`>".format(self.id)
+        return "<Model Role `{}`>".format(self.id)
 
    

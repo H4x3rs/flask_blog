@@ -1,4 +1,4 @@
-#!/opt/workspace/flask_blog/env/bin/python2
+#!/opt/workspace/test/flask_blog/env/bin/python3
 
 # -*- coding: utf-8 -*-
 import re

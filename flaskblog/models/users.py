@@ -6,8 +6,11 @@
 import time
 from uuid import uuid4
 from hashlib import sha1
-from flaskblog.models import db
-from flaskblog.models.users_roles import users_roles
+from . import db
+from .users_roles import users_roles
+from .roles import Roles
+
+print (dir(Roles))
 from flask_login import AnonymousUserMixin
 
 # 用户表
@@ -40,8 +43,8 @@ class Users(db.Model):
         self.status = 1
 	
 	# setup the default role for user
-	default = Role.query.filter_by(name=='default').one()
-	self.roles.append(default)
+    default = Roles.query.filter_by(name=='default').one()
+    self.roles.append(default)
 
     # get/set status
     @property

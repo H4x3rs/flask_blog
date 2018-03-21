@@ -1,4 +1,4 @@
-#!/opt/workspace/flask_blog/env/bin/python
+#!/opt/workspace/test/flask_blog/env/bin/python
 
 import sys
 import getopt

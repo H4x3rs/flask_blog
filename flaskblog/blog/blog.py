@@ -10,21 +10,21 @@ from flask import flash,url_for,session,current_app,g
 from flask_login import login_user,logout_user,current_user,login_required
 from flask_principal import Identity,AnonymousIdentity,identity_changed,current_app
 from sqlalchemy import func,desc
-from flaskblog.models import db
-from flaskblog.models.users import Users
-from flaskblog.models.posts import Posts
-from flaskblog.models.tags import Tags
-from flaskblog.models.comments import Comments
-from flaskblog.models.posts_tags import posts_tags
+from ..models import db
+from ..models.users import Users
+from ..models.posts import Posts
+from ..models.tags import Tags
+from ..models.comments import Comments
+from ..models.posts_tags import posts_tags
 
-from flaskblog.form import CommentForm,LoginForm
-from flaskblog.extensions import facebook
+from ..form import CommentForm,LoginForm
+from ..extensions import facebook
 
 # 定义蓝图
 blog_blueprint = Blueprint('blog',  __name__,template_folder='templates',static_folder='static',url_prefix='/blog')
 
 def sidebar_data():
-    recent = db.session.query(Posts).order_by(Posts.create_at.desc()).limit(5).all()
+    recent = db.session.query(Posts).order_by(Posts.create_at.desc()).limit(10).all()
     top_tags = db.session.query(Tags, func.count(posts_tags.c.post_id).label('total')).join(posts_tags).group_by(Tags).order_by(desc('total')).limit(10).all()
     return recent, top_tags
 
@@ -36,21 +36,13 @@ def before_request():
 def after_request(response):
     return response
 
-@blog_blueprint.route('/test')
-def test():
-    pages = Posts.query.order_by(Posts.create_at.desc()).paginate(1, 10)
-    posts = pages.items
-    recent, top_tags = sidebar_data()
-    return render_template('blog.base1.html',title=u'无名万物',posts=posts,pages=pages, recent=recent,top_tags=top_tags)
-
 @blog_blueprint.route('/')
-@blog_blueprint.route('/index')
+@blog_blueprint.route('/<int:page>')
 def index(page=1):
     """View function for index page"""
-    pages = Posts.query.order_by(Posts.create_at.desc()).paginate(page, 10)
-    posts = pages.items
+    posts = Posts.query.order_by(Posts.create_at.desc()).paginate(page, 10)
     recent, top_tags = sidebar_data()
-    return render_template('blog.index.html',title=u'无名万物',posts=posts,pages=pages,recent=recent,top_tags=top_tags)
+    return render_template('blog.index.html',title=u'无名万物',posts=posts,recent=recent,top_tags=top_tags)
 
 @blog_blueprint.route('/post/<string:post_id>', methods=('GET','POST'))
 def post(post_id):
@@ -60,8 +52,8 @@ def post(post_id):
     if form.validate_on_submit():
         if not g.user.is_authenticated:
             flash(u'请先登录!')
-    	comment = Comments(comment=form.comment.data)
-    	comment.user_id = g.user.id
+        comment = Comments(comment=form.comment.data)
+        comment.user_id = g.user.id
         comment.post_id = post_id
         db.session.add(comment)
         db.session.commit()
@@ -81,10 +73,10 @@ def tag(tag_name):
 
     return render_template('blog.tags.html',tag=tag,posts=posts,recent=recent,top_tags=top_tags)
 
-@blog_blueprint.route('/user/<string:id>')
-def user(id):
+@blog_blueprint.route('/user/<string:user_id>')
+def user(user_id):
     """View function for user page"""
-    user = db.session.query(Users).filter_by(id=id).first_or_404()
+    user = db.session.query(Users).filter_by(id=user_id).first_or_404()
     posts = user.posts.order_by(Posts.create_at.desc()).all()
     recent, top_tags = sidebar_data()
 
@@ -103,7 +95,7 @@ def login():
         if not user:
             flash(u'无效的用户名!')
         if not user.check_password(password):
-            print user.check_password(password)
+            print (user.check_password(password))
             flash(u'无效的密码!')
 
         login_user(user,remember)
@@ -126,7 +118,7 @@ def facebook_login():
 @facebook.authorized_handler
 def facebook_authorized(resp):
     if resp is None:
-        return 'Access denied:reason=%s error=%S'%(request.args['error_reason'],request.args['error_description'])
+        return 'Access denied:reason=%s error=%s'%(request.args['error_reason'],request.args['error_description'])
     session['facebook_oauth_token'] = (resp['access_token'],'')
     me = facebook.get('/me')
     if me.data.get('first_name', False):
@@ -140,7 +132,7 @@ def facebook_authorized(resp):
 
     user = Users.query.filter_by(nickname=facebook_username).first()
     if user is None:
-        user = Users(nickname=facebook_username, password='', email=facebook_email,phone=facebook_phone)
+        user = Users(nickname=facebook_username, password='', email=facebook_email)
         db.session.add(user)
         db.session.commit()
 
@@ -179,13 +171,4 @@ def page_not_found(e):
 def internal_server_error(e):
     return render_template('blog.500.html'),500
 
-@blog_blueprint.route('/upload',methods=['GET','POST'])
-def upload():
-    if request.method == 'POST':
-        file = request.files['file']
-        if file:
-            file.save(path.join('/opt/workspace/',file.filename))
-            return "file have save!"
-    if request.method == 'GET':
-        return render_template('blog.upload.html')
 
