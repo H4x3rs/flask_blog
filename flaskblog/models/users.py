@@ -62,7 +62,7 @@ class Users(db.Model):
         raise AttributeError('Password is not a readable attribute')
     @password.setter
     def password(self,password):
-        pass_hash = sha1(password)
+        pass_hash = sha1(password.encode('utf8'))
         self.passwd = pass_hash.hexdigest()
 
     # # 加密密码函数
@@ -72,7 +72,7 @@ class Users(db.Model):
 
     # 检查密码正确性
     def check_password(self, password):
-        pass_sha1 = sha1(password)
+        pass_sha1 = sha1(password.encode('utf8'))
         return self.passwd == pass_sha1.hexdigest()
 
     # 检查用户是否登录
@@ -95,7 +95,7 @@ class Users(db.Model):
             return True
     # 返回用户ID
     def get_id(self):
-        return unicode(self.id)
+        return self.id
 
     def __repr__(self):
         return "<Model User `{}`>".format(self.id)
