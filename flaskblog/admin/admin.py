@@ -22,7 +22,7 @@ from flask_login import current_user
 from flask_login import login_required
 from flask_principal import Identity,AnonymousIdentity,identity_changed,current_app
 
-from flaskblog.models import db
+from flaskblog.models.db import db
 from flaskblog.models.users import Users
 from flaskblog.models.posts import Posts
 from flaskblog.models.tags import Tags
