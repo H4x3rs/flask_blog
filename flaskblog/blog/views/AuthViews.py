@@ -3,4 +3,6 @@
 # @author:ren
 # @date:2018/3/22.16:41
 
+from flask.views import MethodView
+
 # login、logout、facebook、QQ、weixin、github、google
