@@ -44,8 +44,8 @@ def post(post_id):
         comment = Comments(comment=form.comment.data)
         comment.user_id = g.user.id
         comment.post_id = post_id
-        db.session.add(comment)
-        db.session.commit()
+        g.db.session.add(comment)
+        g.db.session.commit()
 
     post = db.session.query(Posts).join(Users).filter(Posts.id==post_id).first_or_404()
     tags = post.tags
