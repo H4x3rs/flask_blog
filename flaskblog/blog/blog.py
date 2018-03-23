@@ -3,38 +3,27 @@
 # @author:Haojie Ren
 # @time:2017/9/2 0:46
 
-from os import path
-
 from flask import Blueprint,render_template,redirect,request
 from flask import flash,url_for,session,current_app,g
 from flask_login import login_user,logout_user,current_user,login_required
 from flask_principal import Identity,AnonymousIdentity,identity_changed,current_app
 from sqlalchemy import func,desc
-from flaskblog.models.db import db
-from flaskblog.models.users import Users
-from flaskblog.models.posts import Posts
-from flaskblog.models.tags import Tags
-from flaskblog.models.comments import Comments
-from flaskblog.models.posts_tags import posts_tags
+from flaskblog.models import db
+from flaskblog.models import Users
+from flaskblog.models import Posts
+from flaskblog.models import Tags
+from flaskblog.models import Comments
+from flaskblog.models import posts_tags
 
-from flaskblog.form import CommentForm,LoginForm
-from flaskblog.extensions import facebook
+from ..form import CommentForm,LoginForm
+from ..extensions import facebook
 
-# 定义蓝图
-blog_blueprint = Blueprint('blog',  __name__,template_folder='templates',static_folder='static',url_prefix='/blog')
+from . import blog_blueprint
 
 def sidebar_data():
     recent = db.session.query(Posts).order_by(Posts.create_at.desc()).limit(10).all()
     top_tags = db.session.query(Tags, func.count(posts_tags.c.post_id).label('total')).join(posts_tags).group_by(Tags).order_by(desc('total')).limit(10).all()
     return recent, top_tags
-
-@blog_blueprint.before_request
-def before_request():
-    g.user = current_user
-
-@blog_blueprint.after_request
-def after_request(response):
-    return response
 
 @blog_blueprint.route('/')
 @blog_blueprint.route('/<int:page>')
@@ -102,9 +91,9 @@ def login():
         identity_changed.send(current_app._get_current_object(),identity=Identity(user.id))
         return redirect(url_for('blog.index'))
     else:
-	    login_form = LoginForm()
-	    next = request.args.get('next')
-	    return render_template('blog.login.html',form=login_form,next=next)
+        login_form = LoginForm()
+        next = request.args.get('next')
+        return render_template('blog.login.html',form=login_form,next=next)
 
 # facebook 授权登陆
 @blog_blueprint.route('/facebook')
@@ -162,12 +151,5 @@ def about():
 def gallery():
     return render_template('blog.gallery.html')
 
-@blog_blueprint.errorhandler(404)
-def page_not_found(e):
-    return render_template('blog.404.html'),404
-
-@blog_blueprint.errorhandler(500)
-def internal_server_error(e):
-    return render_template('blog.500.html'),500
 
 

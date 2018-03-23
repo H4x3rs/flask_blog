@@ -4,27 +4,25 @@
 # @time:2017/8/30 21:44
 
 import jinja2
-from flask import Flask
-from flask import redirect
-from flask import url_for
+from flask import Flask, redirect, url_for
 from flask_principal import identity_loaded,RoleNeed,UserNeed
 from flask_login import current_user
 
-from flaskblog.config import DevConfig
-from flaskblog.config import Config
-from flaskblog.config import ProConfig
+from .config import DevConfig
+from .config import Config
+from .config import ProConfig
 
-from flaskblog.models.db import db
+from .models import db
 
 # 扩展
-from flaskblog.extensions import bcrypt
-from flaskblog.extensions import login_manager
-from flaskblog.extensions import principal
+from .extensions import bcrypt
+from .extensions import login_manager
+from .extensions import principal
 
 # blog视图函数
-from flaskblog.blog import blog
-from flaskblog.admin import admin
-from flaskblog.api import api
+from .blog import blog
+from .admin import admin
+from .api import api
 
 # 默认情况下 Flask的jinja_loader将会从全局加载template，这将会导致多个蓝图
 # 模板命名的冲突，导致加载模板出现混乱，该类继承Flask，通过将Flask自身的
