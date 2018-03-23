@@ -121,8 +121,8 @@ def facebook_authorized(resp):
     user = Users.query.filter_by(nickname=facebook_username).first()
     if user is None:
         user = Users(nickname=facebook_username, password='', email=facebook_email)
-        db.session.add(user)
-        db.session.commit()
+        g.db.session.add(user)
+        g.db.session.commit()
 
     flash('You have been logged in by Facebook.', category='success')
     return  redirect(url_for('blog.index'))
