@@ -4,20 +4,16 @@
 # @time:2017/8/30 21:44
 
 import jinja2
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect,url_for
 from flask_principal import identity_loaded,RoleNeed,UserNeed
 from flask_login import current_user
 
-from .config import DevConfig
-from .config import Config
-from .config import ProConfig
+from .config import DevConfig,Config,ProConfig
 
-from .models import db
+from .models.db import db
 
 # 扩展
-from .extensions import bcrypt
-from .extensions import login_manager
-from .extensions import principal
+from .extensions import bcrypt,login_manager,principal
 
 # blog视图函数
 from .blog import blog
@@ -29,6 +25,8 @@ from .api import api
 # jinja_loader重写成一个ChoicLoader来选择jinja_loader，如果注册了蓝图，该
 # 类实例将首先从蓝图目录加载template而不是全局，所以不会出现命名混乱的情况
 # 但这将会导致调用模板必须添加蓝图前缀，但谁说这不是我的本意呢？
+
+
 class App(Flask):
     """
     In general jinja_loader will load the template from global path
