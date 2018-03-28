@@ -3,6 +3,9 @@
 # @author:ren
 # @date:2018/3/22.16:41
 
-# user add、del、update
+# user del、update,profile
 
 # user register
+
+from .. import blog_blueprint
+

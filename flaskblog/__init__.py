@@ -29,9 +29,9 @@ from .api import api
 
 class App(Flask):
     """
-    In general jinja_loader will load the template from global path
+    In general jinja_loader will load the template form global path
     If registered the blueprint
-    jinja_loader will load the templates from the blueprint's path
+    jinja_loader will load the templates form the blueprint's path
     """
     def __init__(self):
         Flask.__init__(self,__name__)
@@ -45,7 +45,7 @@ class App(Flask):
 # 创建App实例
 def create_app(object_name=DevConfig):
     app = App()
-    # Get the config from object od Devconfig
+    # Get the config form object od Devconfig
     app.config.from_object(object_name)
     # Init db object
     db.init_app(app)
@@ -54,13 +54,6 @@ def create_app(object_name=DevConfig):
     principal.init_app(app)
     # Init the bcrypt via app object      
     # bcrypt.init_app(app)
-
-    # Register the blog Blueprint into app object
-    app.register_blueprint(blog.blog_blueprint)
-    # Register the admin Blueprint into app object
-    app.register_blueprint(admin.admin_blueprint)
-    # Register the api Blueprint into app object
-    app.register_blueprint(api.api_blueprint)
 
     @identity_loaded.connect_via(app)
     def on_identity_loaded(sender, identity):
@@ -83,7 +76,14 @@ def create_app(object_name=DevConfig):
 
     return app
 
+
 app = create_app()
+# Register the blog Blueprint into app object
+app.register_blueprint(blog.blog_blueprint)
+# Register the admin Blueprint into app object
+app.register_blueprint(admin.admin_blueprint)
+# Register the api Blueprint into app object
+app.register_blueprint(api.api_blueprint)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=5000)

@@ -34,7 +34,7 @@
                    <p>{{post.content|safe}} </p>
                 </div>
                 <div class="card-action">
-                    <a  href="{{url_for('blog.post',post_id=post.id)}}">查看更多</a>
+                    <a  href="{{url_for('blog.post',post_id=post.id)}}">阅读全文</a>
                 </div>
             </div>
             {% endfor %}
@@ -57,6 +57,17 @@
                 </div>
             </div>
 
+            <!-- tag 标签 -->
+            <ul class="collection with-header hoverable">
+                <li class="collection-header">
+                    <i class="material-icons" style="width: 2rem;font-size: 1.6rem;display: block;float: left;text-align: center;margin-right: 1rem">local_offer</i>
+                    标签云
+                </li>
+                {% for tag in top_tags %}
+                <li class="collection-item">{{tag.Tags.name}}(<a href="{{url_for('blog.tag',tag_name=tag.Tags.name)}}">{{tag.total}}</a>)</li>
+                {% endfor%}
+            </ul>
+
             <div class="card hoverable">
                 <div class='collection'>
                     <p class='collection-item'>
@@ -67,17 +78,7 @@
                 </p>
               </div>
             </div>
-            <!-- tag 标签 -->
-            <ul class="collection with-header hoverable">
-                <li class="collection-header">
-                    <i class="material-icons" style="width: 2rem;font-size: 1.6rem;display: block;float: left;text-align: center;margin-right: 1rem">local_offer</i>
-                    标签云
-                </li>
-                {% for tag in top_tags %}
-                <li class="collection-item">{{tag.Tags.name}}(<a href="{{url_for('blog.tag',tag_name=tag.Tags.name)}}">{{tag.total}}</a>)</li>
-                {% endfor%}
-                <li class="collection-item p1"><a href="#!">Alvin</a></li>
-            </ul>
+
         </div>   <!-- end 右边-->
         </div>  <!--  end row  -->
     </div>

@@ -3,8 +3,7 @@
 # @author:ren
 # @date:2018/3/22.10:57
 
-from flask import (Blueprint,render_template,redirect,
-                   request,flash,url_for,session,current_app,g)
+from flask import (Blueprint,render_template,redirect,request,flash,url_for,session,current_app,g)
 from flask_login import login_user,logout_user,current_user,login_required
 from ..models.db import db
 
@@ -22,7 +21,7 @@ def after_request(response):
 
 @blog_blueprint.teardown_request
 def teardown_request(excetption):
-    g.db.session.romove()
+    pass
 
 @blog_blueprint.errorhandler(404)
 def page_not_found(e):
