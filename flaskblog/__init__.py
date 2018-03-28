@@ -9,11 +9,10 @@ from flask_principal import identity_loaded,RoleNeed,UserNeed
 from flask_login import current_user
 
 from .config import DevConfig,Config,ProConfig
-
 from .models.db import db
 
 # 扩展
-from .extensions import bcrypt,login_manager,principal
+from .extensions import bcrypt,login_manager,principal,cache
 
 # blog视图函数
 from .blog import blog
@@ -54,6 +53,8 @@ def create_app(object_name=DevConfig):
     principal.init_app(app)
     # Init the bcrypt via app object      
     # bcrypt.init_app(app)
+    # Init the cache via app object
+    cache.init_app(app, config={'CACHE_TYPE':'simple'})
 
     @identity_loaded.connect_via(app)
     def on_identity_loaded(sender, identity):

@@ -16,3 +16,4 @@ def login(email, password, back=url_for("blog.index")):
         flash(u'登录成功！', category="success")
         return redirect(url_for('blog.index'))
     return render_template('blog.login.html', form=form)
+

@@ -6,7 +6,7 @@
 from . import blog_blueprint
 from ..models import db, Users, Posts, Tags, Comments, posts_tags
 from ..form import CommentForm, LoginForm
-from ..extensions import facebook
+from ..extensions import facebook, cache
 from flask import Blueprint, render_template, redirect, request, flash, url_for, session, current_app, g
 from flask_login import login_user, logout_user, current_user, login_required
 from flask_principal import Identity, AnonymousIdentity, identity_changed, current_app
@@ -22,6 +22,7 @@ def sidebar_data():
 
 @blog_blueprint.route('/')
 @blog_blueprint.route('/<int:page>')
+@cache.cached(timeout=60)
 def index(page=1):
     """View function for index page"""
     posts = Posts.query.order_by(Posts.create_at.desc()).paginate(page, 10)

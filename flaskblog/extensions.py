@@ -7,12 +7,14 @@ from flask_login import LoginManager
 from flask_moment import Moment
 from flask_oauthlib.client import OAuth
 from flask_principal import Principal,Permission,RoleNeed
+from flask_cache import Cache
 
 bcrypt = Bcrypt()
 login_manager = LoginManager()
 moment = Moment()
 oauth = OAuth()
 principal = Principal()
+cache = Cache()
 
 login_manager.login_view = "blog.login"
 login_manager.session_protection = "strong"
