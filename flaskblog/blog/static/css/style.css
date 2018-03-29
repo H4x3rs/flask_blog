@@ -120,3 +120,7 @@ nav .brand-logo{
 .card-content p{
     line-height:30px;
 }
+
+code, kbd, samp{
+    font-family:Consolas,monospace;
+}
