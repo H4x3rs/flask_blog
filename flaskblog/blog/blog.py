@@ -3,14 +3,15 @@
 # @author:Haojie Ren
 # @time:2017/9/2 0:46
 
-from . import blog_blueprint
 from ..models import db, Users, Posts, Tags, Comments, posts_tags
-from ..form import CommentForm, LoginForm
+from ..form import *
 from ..extensions import facebook, cache
 from flask import Blueprint, render_template, redirect, request, flash, url_for, session, current_app, g
 from flask_login import login_user, logout_user, current_user, login_required
 from flask_principal import Identity, AnonymousIdentity, identity_changed, current_app
 from sqlalchemy import func, desc
+
+blog_blueprint = Blueprint('blog', __name__, template_folder='templates', static_folder='static', url_prefix='/blog')
 
 
 def sidebar_data():
@@ -28,7 +29,7 @@ def index(page=1):
     posts = Posts.query.order_by(Posts.create_at.desc()).paginate(page, 10)
     recent, top_tags = sidebar_data()
     for tag in top_tags:
-        print (tag.name)
+        print(tag.name)
     return render_template('blog.index.html', title=u'无名万物', posts=posts, recent=recent, top_tags=top_tags)
 
 
@@ -75,31 +76,6 @@ def user(user_id):
     return render_template('blog.user.html', user=user, posts=posts, recent=recent, top_tags=top_tags)
 
 
-# 登入
-@blog_blueprint.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-        next = request.form.get('next')
-        remember = request.form.get('remember')
-
-        user = Users.query.filter_by(email=email).one()
-        if not user:
-            flash(u'无效的用户名!')
-        if not user.check_password(password):
-            flash(u'无效的密码!')
-
-        login_user(user, remember)
-        flash(u'登陆成功.', category='success')
-        identity_changed.send(current_app._get_current_object(), identity=Identity(user.id))
-        return redirect(url_for('blog.index'))
-    else:
-        login_form = LoginForm()
-        next = request.args.get('next')
-        return render_template('blog.login.html', form=login_form, next=next)
-
-
 # facebook 授权登陆
 @blog_blueprint.route('/facebook')
 def facebook_login():
@@ -134,21 +110,21 @@ def facebook_authorized(resp):
     return redirect(url_for('blog.index'))
 
 
-# 登出
-@blog_blueprint.route('/logout')
-@login_required
-def logout():
-    logout_user()
+# # 登出
+# @blog_blueprint.route('/logout')
+# @login_required
+# def logout():
+#     logout_user()
+#
+#     identity_changed.send(current_app._get_current_object(), identity=AnonymousIdentity())
+#
+#     flash(u"注销成功！", category="success")
+#     return render_template('blog.login.html')
 
-    identity_changed.send(current_app._get_current_object(), identity=AnonymousIdentity())
 
-    flash(u"注销成功！", category="success")
-    return redirect(url_for('blog.index'))
-
-
-@blog_blueprint.route('/register')
-def register():
-    return render_template('blog.register.html')
+# @blog_blueprint.route('/register')
+# def register():
+#     return render_template('blog.register.html')
 
 
 @blog_blueprint.route('/about')

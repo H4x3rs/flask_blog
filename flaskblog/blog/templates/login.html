@@ -20,11 +20,11 @@
                     <div class="divider"></div>
                     <br>
                     <div class="row card-content">
-                        <form class="login_form" method="POST" action="{{ url_for('blog.login') }}">
+                        <form class="login_form" method="POST" action="{{ url_for('account.login') }}">
                             <!-- Csrf -->
                             {{ form.hidden_tag() }}
 
-                            <input type='hidden' name='next' value={{next}}>
+{#                            <input type='hidden' name='next' value={{next}}>#}
                             <!-- 帐号 -->
                             <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1">
                                 <div class="input-field">
@@ -56,7 +56,7 @@
                                     {{ form.remember.label }}
                                 </div>
                                 <label class="right">
-                                    <a href="{{ url_for('blog.register') }}">忘记密码？</a>
+                                    <a href="{{ url_for('account.register') }}">忘记密码？</a>
                                 </label>
                             </div>
                             <!--登陆按钮-->
@@ -97,7 +97,7 @@
                                 </a>
                                 <label class="right">
                                     还没有帐号？
-                                    <a href="{{ url_for('blog.register') }}">去注册</a>
+                                    <a href="{{ url_for('account.register') }}">去注册</a>
                                 </label>
                             </div>
 

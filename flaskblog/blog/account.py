@@ -2,16 +2,19 @@
 # _*_ coding:utf8 _*_
 # @author:Ren
 
-from ...form import *
-from ...models import *
-from . import blog_blueprint
+
+from ..form import *
+from ..models import *
 
 from flask import current_app, redirect, flash, url_for, request, render_template, Blueprint, g
 from flask_login import login_required, logout_user, login_user, current_user
 from flask_principal import identity_changed, AnonymousIdentity, Identity
 
+account_blueprint = Blueprint('account', __name__, template_folder='templates', static_folder='static',
+                              url_prefix='/account')
 
-@blog_blueprint.route("/login", methods=['GET', 'POST'])
+
+@account_blueprint.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     next_url = request.args.get('next')
@@ -30,7 +33,7 @@ def login():
 
 
 # 登出
-@blog_blueprint.route('/logout')
+@account_blueprint.route('/logout')
 @login_required
 def logout():
     next_url = request.args.get('next')
@@ -41,13 +44,13 @@ def logout():
 
 
 # 注册
-@blog_blueprint.route('/register', methods=['GET', 'POST'])
+@account_blueprint.route('/register', methods=['GET', 'POST'])
 def register():
     return render_template('blog.register.html')
 
 
 # 设置
-@blog_blueprint.route('/setting', methods=['GET', 'POST'])
+@account_blueprint.route('/setting', methods=['GET', 'POST'])
 @login_required
 def setting():
     return render_template('blog.profile.html')

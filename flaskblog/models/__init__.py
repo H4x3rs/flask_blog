@@ -10,3 +10,5 @@ from .posts_tags import posts_tags
 from .posts import Posts
 from .users_roles import users_roles
 from .tags import Tags
+
+__all__ = ['db','Users','Comments','Posts','posts_tags','Tags','users_roles']
