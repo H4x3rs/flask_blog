@@ -53,6 +53,10 @@
                             {% for r in recent %}
                                 <a href="{{ url_for('blog.post',post_id=r.id) }}"
                                    class="collection-item black-text">{{ r.title }}</a>
+                                <a href="{{ url_for('blog.post',post_id=r.id) }}"
+                                   class="collection-item black-text">{{ r.title }}</a>
+                                <a href="{{ url_for('blog.post',post_id=r.id) }}"
+                                   class="collection-item black-text">{{ r.title }}</a>
                             {% endfor %}
 
                         </div>
@@ -64,22 +68,25 @@
                             <p class="collection-item">
                                 <i class="fa fa-tags  fa-fw fa-lg"></i>&nbsp;&nbsp; 标签云
                             </p>
-                            {% for tag in top_tags %}
-                                <li class="collection-item">{{ tag.Tags.name }}(<a
-                                        href="{{ url_for('blog.tag',tag_name=tag.Tags.name) }}">{{ tag.total }}</a>)
-                                </li>
-                            {% endfor %}
+                                {% for tag in top_tags %}
+                                        <a href="{{ url_for('blog.tag',tag_name=tag.name) }}"
+                                           class="collection-item black-text"><span
+                                                class="left-align">{{ tag.name }}</span>
+                                            <span class="right">10篇</span></a>
 
+                                    <li class="divider"></li>
+                                {% endfor %}
+                            </ul>
                         </div>
                     </div>
 
                     <!-- 每日一笑 -->
                     <div class="card hoverable">
-                        <div class="collection with-header black-text">
-                            <p class="collection-item">
+                        <div class="collection with-header">
+                            <p class="collection-item teal-text">
                                 <i class="fa fa-smile-o  fa-fw fa-lg"></i>&nbsp;&nbsp; 每日一笑
                             </p>
-                            <ol>
+                            <ul>
                                 <li class="collection-item">
                                     昨晚吃鸡，因为没点solo，排到了个不认识的人。 开始跟他交谈他没说话，直到我捡到98k，问他要倍镜时，耳机里传来了一声熟悉的东北口音“给俺，俺打的准！”
                                     我的脑海突然闪过一个身影，我二话不说立马把枪扔给他，因为他的名字叫shunliu！
@@ -88,8 +95,7 @@
                                     昨晚吃鸡，因为没点solo，排到了个不认识的人。 开始跟他交谈他没说话，直到我捡到98k，问他要倍镜时，耳机里传来了一声熟悉的东北口音“给俺，俺打的准！”
                                     我的脑海突然闪过一个身影，我二话不说立马把枪扔给他，因为他的名字叫shunliu！
                                 </li>
-                            </ol>
-
+                            </ul>
                         </div>
                     </div>
 

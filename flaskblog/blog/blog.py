@@ -18,7 +18,8 @@ def sidebar_data():
     recent = db.session.query(Posts).order_by(Posts.create_at.desc()).limit(10).all()
     top_tags = db.session.query(Tags, func.count(posts_tags.c.post_id).label('total')).join(posts_tags).group_by(
         Tags).order_by(desc('total')).limit(10).all()
-    return recent, top_tags
+    top = db.session.query(Tags).group_by(Tags).limit(10).all()
+    return recent, top
 
 
 @blog_blueprint.route('/')
@@ -28,6 +29,8 @@ def index(page=1):
     """View function for index page"""
     posts = Posts.query.order_by(Posts.create_at.desc()).paginate(page, 10)
     recent, top_tags = sidebar_data()
+    for tags in top_tags:
+        print (tags.code)
     for tag in top_tags:
         print(tag.name)
     return render_template('blog.index.html', title=u'无名万物', posts=posts, recent=recent, top_tags=top_tags)
