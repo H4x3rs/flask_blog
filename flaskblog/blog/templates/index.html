@@ -68,11 +68,11 @@
                             <p class="collection-item">
                                 <i class="fa fa-tags  fa-fw fa-lg"></i>&nbsp;&nbsp; 标签云
                             </p>
-                                {% for tag in top_tags %}
+                                {% for tag, total in top_tags %}
                                         <a href="{{ url_for('blog.tag',tag_name=tag.name) }}"
                                            class="collection-item black-text"><span
                                                 class="left-align">{{ tag.name }}</span>
-                                            <span class="right">10篇</span></a>
+                                            <span class="right">{{ total }} 篇 </span></a>
 
                                     <li class="divider"></li>
                                 {% endfor %}
