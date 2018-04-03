@@ -16,10 +16,8 @@ blog_blueprint = Blueprint('blog', __name__, template_folder='templates', static
 
 def sidebar_data():
     recent = db.session.query(Posts).order_by(Posts.create_at.desc()).limit(10).all()
-    top_tags = db.session.query(Tags, func.count(posts_tags.c.post_id).label('total')).join(posts_tags).group_by(
-        Tags).order_by(desc('total')).limit(10).all()
-    top = db.session.query(Tags).group_by(Tags).limit(10).all()
-    return recent, top
+    top_tags = db.session.query(Tags,func.count(Posts.id).label('total')).outerjoin(posts_tags).outerjoin(Posts).group_by(Tags.id).order_by(desc('total')).all()
+    return recent, top_tags
 
 
 @blog_blueprint.route('/')
