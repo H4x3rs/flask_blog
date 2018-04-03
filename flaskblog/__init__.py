@@ -11,7 +11,7 @@ from flask_login import current_user
 from .config import *
 from .models import db
 # 扩展
-from .extensions import bcrypt, login_manager, principal, cache
+from .extensions import bcrypt, login_manager, principal, cache,moment
 # blog视图函数
 from .blog import *
 from .admin import admin
@@ -53,7 +53,10 @@ def create_app(object_name=DevConfig):
     db.init_app(app)
     # Init flask_login
     login_manager.init_app(app)
+    # Init flask_principal
     principal.init_app(app)
+    # Init moment
+    moment.init_app(app)
     # Init the bcrypt via app object      
     # bcrypt.init_app(app)
     # Init the cache via app object

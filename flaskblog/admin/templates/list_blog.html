@@ -32,7 +32,7 @@
                 </td>
                 <td>{{ blog.title }}</td>
                 <td>{{ blog.users.nickname }}</td>
-                <td>{{ blog.create_at }}</td>
+                <td>{{ moment(blog.create_at).format("YYYY-MM-DD HH:mm") }}</td>
                 <td>
                    <a href="{{url_for('admin.edit_blog',id=blog.id)}}"><i class="fa fa-edit fa-fw"></i></a> | 
                    <a href="{{url_for('admin.delete_blog',id=blog.id)}}"><i class="fa fa-trash-o fa-fw"></i></a>

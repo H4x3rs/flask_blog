@@ -1,0 +1,6 @@
+# 查询文章、用户名、标签 显示tags页面
+SELECT posts.*,users.nickname, tags.* FROM users,posts LEFT JOIN posts_tags ON posts.id = posts_tags.post_id LEFT JOIN tags ON posts_tags.tag_id = tags.id
+WHERE tags.name="系统" and posts.user_id=users.id
+GROUP BY posts.id
+ORDER BY posts.create_at
+LIMIT 10;

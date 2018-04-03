@@ -3,7 +3,7 @@
 # @author:ren
 # @date:2017/10/25.17:32
 
-import time
+from datetime import datetime
 from .db import db
 from uuid import uuid4
 from .posts_tags import posts_tags
@@ -17,7 +17,7 @@ class Posts(db.Model):
     content = db.Column(db.Text())
     post_pic = db.Column(db.String(255))
     update_at = db.Column(db.TIMESTAMP(True), nullable=False)
-    create_at = db.Column(db.BIGINT)
+    create_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     # set the foreignkey for users
     user_id = db.Column(db.String(50), db.ForeignKey('users.id'))
     # Establish contact with Comment's ForeignKey:post_id
@@ -29,8 +29,6 @@ class Posts(db.Model):
         self.id = str(uuid4())
         self.title = title
         self.content = content
-        self.create_at = int(time.time()*1000)
-
 
     def __repr__(self):
         return '<Model Posts `{}`>'.format(self.id)

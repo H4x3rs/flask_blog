@@ -15,8 +15,9 @@ blog_blueprint = Blueprint('blog', __name__, template_folder='templates', static
 
 
 def sidebar_data():
-    recent = db.session.query(Posts).order_by(Posts.create_at.desc()).limit(10).all()
-    top_tags = db.session.query(Tags,func.count(Posts.id).label('total')).outerjoin(posts_tags).outerjoin(Posts).group_by(Tags.id).order_by(desc('total')).all()
+    recent = db.session.query(Posts.title, Posts.id).order_by(Posts.create_at.desc()).limit(10).all()
+    top_tags = db.session.query(Tags.name, func.count(Posts.id).label('total')).outerjoin(posts_tags).outerjoin(
+        Posts).group_by(Tags.id).order_by(desc('total')).all()
     return recent, top_tags
 
 
@@ -25,9 +26,15 @@ def sidebar_data():
 # @cache.cached(timeout=60)
 def index(page=1):
     """View function for index page"""
-    posts = Posts.query.order_by(Posts.create_at.desc()).paginate(page, 10)
-    recent, top_tags = sidebar_data()
-    return render_template('blog.index.html', title=u'无名万物', posts=posts, recent=recent, top_tags=top_tags)
+    try:
+        posts = db.session.query(Posts, Users).filter(Posts.user_id == Users.id).order_by(
+            desc(Posts.create_at)).paginate(page, 10)
+        recent, top_tags = sidebar_data()
+        return render_template('blog.index.html', title=u'无名万物', posts=posts, recent=recent, top_tags=top_tags)
+    except Exception as e:
+        print(e)
+    finally:
+        db.session.remove()
 
 
 @blog_blueprint.route('/post/<string:post_id>', methods=('GET', 'POST'))
@@ -36,13 +43,13 @@ def post(post_id):
     form = CommentForm()
     # validate验证通过，增加一条评论
     if form.validate_on_submit():
-        if not g.user.is_authenticated:
-            flash(u'请先登录!')
-        comment = Comments(comment=form.comment.data)
-        comment.user_id = g.user.id
-        comment.post_id = post_id
-        g.db.session.add(comment)
-        g.db.session.commit()
+        if g.user.is_authenticated:
+            comment = Comments(comment=form.comment.data)
+            comment.user_id = g.user.id
+            comment.post_id = post_id
+            g.db.session.add(comment)
+            g.db.session.commit()
+        flash(u'请先登录!')
 
     post = db.session.query(Posts).join(Users).filter(Posts.id == post_id).first_or_404()
     tags = post.tags
@@ -56,11 +63,14 @@ def post(post_id):
 @blog_blueprint.route('/tag/<string:tag_name>')
 def tag(tag_name):
     """View function for tag page"""
-    tag = db.session.query(Tags).filter_by(name=tag_name).first_or_404()
-    posts = tag.posts.order_by(Posts.create_at.desc()).all()
+    page = request.args.get("page") or 1
+    tags = db.session.query(Tags).filter_by(name=tag_name).first_or_404()
+    tag_posts = db.session.query(Posts,Users.nickname, Tags).outerjoin(posts_tags).outerjoin(Tags).group_by(
+        Posts.id).filter(Users.id == Posts.user_id).order_by(desc(Posts.create_at)).paginate(page,10)
+    # posts = tags.posts.order_by(Posts.create_at.desc()).all()
     recent, top_tags = sidebar_data()
 
-    return render_template('blog.tags.html', tag=tag, posts=posts, recent=recent, top_tags=top_tags)
+    return render_template('blog.tags.html', tag=tags, posts=tag_posts, recent=recent, top_tags=top_tags)
 
 
 @blog_blueprint.route('/user/<string:user_id>')

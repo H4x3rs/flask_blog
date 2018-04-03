@@ -10,15 +10,15 @@
                 <!-- start 左边-->
                 <div class="col s12 m12 l9">
                     <!-- post -->
-                    {% for post in posts.items if post.title %}
+                    {% for post,user in posts.items if post.title %}
                         <div class="card hoverable" style="margin-bottom: 30px;">
                             <div class='card-content'>
                                 <h5>{{ post.title }}</h5>
                                 <div class='grey-text'>
                                     <ul>
-                                        <li class='left'><i class="fa fa-user fa-fw"></i> Haojie Ren</li>
-                                        <li class='left'><i class="fa fa-calendar fa-fw"></i> August 29 2017</li>
-                                        <li class='left'><i class="fa fa-tag fa-fw"></i> Python Flask</li>
+                                        <li class='left'><i class="fa fa-user fa-fw"></i> {{ user.nickname }} &nbsp;&nbsp;</li>
+                                        <li class='left'><i class="fa fa-calendar fa-fw"></i> {{  moment(post.create_at).fromNow(True) }} &nbsp;&nbsp;</li>
+                                        <li class='left'><i class="fa fa-tag fa-fw"></i> Python Flask &nbsp;&nbsp;</li>
                                     </ul>
                                 </div>
                                 <br>
@@ -65,9 +65,9 @@
                                 <i class="fa fa-tags  fa-fw fa-lg"></i>&nbsp;&nbsp; 标签云
                             </p>
                                 {% for tag, total in top_tags %}
-                                        <a href="{{ url_for('blog.tag',tag_name=tag.name) }}"
+                                        <a href="{{ url_for('blog.tag',tag_name=tag ) }}"
                                            class="collection-item black-text"><span
-                                                class="left-align">{{ tag.name }}</span>
+                                                class="left-align">{{ tag }}</span>
                                             <span class="right">{{ total }} 篇 </span></a>
 
                                     <li class="divider"></li>

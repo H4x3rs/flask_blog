@@ -39,7 +39,8 @@ def admin():
 def list_blog():
     """list the blog, if method is DELETE,delete the blog"""
     # 返回用户的所有文章
-    blogs = db.session.query(Posts).filter_by(user_id=current_user.id).all()
+    # blogs = db.session.query(Posts).filter_by(user_id=current_user.id).all()
+    blogs = db.session.query(Posts).all()
     return render_template('admin.list_blog.html', title='list blog', blogs=blogs)
 
 
