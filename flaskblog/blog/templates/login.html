@@ -26,42 +26,50 @@
 
 {#                            <input type='hidden' name='next' value={{next}}>#}
                             <!-- 帐号 -->
-                            <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1">
+                            <div class="row col s10 m10 l10 offset-s1 offset-m1 offset-l1">
                                 <div class="input-field">
-                                    {%if form.email.errors%}
-                                    {{ form.email(class="invalid",type="email") }}
-                                    <label for="email" style="width: 100%" data-error="{{form.email.errors[0]}}"></label>
-                                    {%else%}
-                                    {{ form.email(class="validate",type="email") }}
-                                    <label for="email">用户名：</label>
-                                    {%endif%}
+                                    {% if form.email.errors %}
+                                        <i class="fa fa-envelope prefix"  style="margin-top:10px; font-size: 20px;"></i>
+                                        {{ form.email(class="validate invalid",type="email",placeholder="请输入邮箱") }}
+                                        <span class="helper-text red-text">
+                                        {% for error in form.email.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                        </span>
+                                    {% else %}
+                                        <i class="fa fa-envelope  prefix"  style="margin-top:10px; font-size: 20px;"></i>
+                                        {{ form.email(class="validate",type="email",placeholder="请输入邮箱") }}
+                                        <span class="helper-text" data-error="邮箱格式不正确!"></span>
+                                    {% endif %}
                                 </div>
                             </div>
-                            <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1">
+                            <div class="row col s10 m10 l10 offset-s1 offset-m1 offset-l1">
                                 <div class="input-field">
-                                    {%if form.password.errors%}
-                                    {{ form.password(class="invalid",type="password") }}
-                                    <label for="password" style="width: 100%" data-error="{{form.password.errors[0]}}"></label>
-                                    {%else%}
-                                    {{ form.password(class="validate",type="password") }}
-                                    <label for="password">密 码：</label>
-                                    {%endif%}
+                                 <i class="fa fa-lock prefix"  style="margin-top:10px; font-size: 25px;"></i>
+                                {{ form.password(class="validate",type="password",placeholder="请输入密码") }}
+                                <span class="helper-text"></span>
                                 </div>
                             </div>
 
                             <!--remeber me-->
                             <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1" style="margin-top: 30px;">
-                                <div class="checkbox left">
-                                    {{ form.remember(class="filled-in") }}
-                                    {{ form.remember.label }}
+                                <div class="row">
+                                    <div class="col s6 m6 l6">
+                                        <label>
+                                            {{ form.remember() }}
+                                            <span>{{ form.remember.label }}</span>
+    {#                                    {{ form.remember() }}#}
+{#                                        {{ form.remember.label }}#}
+                                        </label>
+                                    </div>
+                                    <label class="col s6 m6 l6">
+                                        <a class="right" href="{{ url_for('account.register') }}">忘记密码？</a>
+                                    </label>
                                 </div>
-                                <label class="right">
-                                    <a href="{{ url_for('account.register') }}">忘记密码？</a>
-                                </label>
                             </div>
                             <!--登陆按钮-->
                             <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1">
-                                <button class="btn waves-effect waves-light left blue accent-3" type="submit" name="action" style="width: 100%">登 录
+                                <button class="btn waves-effect waves-light left teal lighten-1" type="submit" name="action" style="width: 100%">登 录
                                     <i class="material-icons right">send</i>
                                 </button>
                             </div>

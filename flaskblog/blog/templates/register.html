@@ -2,64 +2,83 @@
 {% set active='register' %}
 
 {% block main %}
-<div class="main-content grey lighten-4" style="margin-top: -50px;">
+<div class="main-content grey lighten-4">
     <div class="container">
         <div class="row">
-            <div class="col s12 m8 l8 offset-m2 offset-l2">
-                <div class="card-panel container hoverable">
-                    <div class="card-title row center-align">
-                        <h5>无名万物 - 注册</h5>
+            <div class="col s12 m10 l6 offset-m1 offset-l3">
+                <div class="card-panel hoverable">
+                    <div class="card-content row center-align">
+                        <h5>注册</h5>
                     </div>
                     <div class="divider"></div>
                     <br>
                     <div class="row card-content">
-                        <form class="login_form" action="#" method="post">
-                            <!--用户名-->
-                            <div class="row col s12 m10 l10 offset-m1 offset-l1">
-                                <div class="input">
-                                    <label for="username">用户名：</label>
-                                    <input type="text" name="username" id="username" class="validate" placeholder="请输入邮箱或手机号">
+                        <form class="login_form" method="POST" action="{{ url_for('account.register') }}">
+                            <!-- Csrf -->
+                            {{ form.hidden_tag() }}
+
+{#                            <input type='hidden' name='next' value={{next}}>#}
+                            <!-- 帐号 -->
+                            <div class="row col s10 m10 l10 offset-s1 offset-m1 offset-l1">
+                                <div class="input-field">
+                                    {% if form.email.errors %}
+                                        <i class="fa fa-envelope prefix"  style="margin-top:10px; font-size: 20px;"></i>
+                                        {{ form.email(class="validate invalid",type="email",placeholder="请输入邮箱") }}
+                                        <span class="helper-text red-text">
+                                        {% for error in form.email.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                        </span>
+                                    {% else %}
+                                        <i class="fa fa-envelope prefix"  style="margin-top:10px; font-size: 20px;"></i>
+                                        {{ form.email(class="validate",type="email",placeholder="请输入邮箱") }}
+                                        <span class="helper-text" data-error="邮箱格式不正确!"></span>
+                                    {% endif %}
                                 </div>
                             </div>
-                            <!--密码-->
-                            <div class="row col s12 m10 l10 offset-m1 offset-l1">
-                                <div class="input">
-                                    <label for="password">密码：</label>
-                                    <input type="password" name="password" id="password" class="validate" placeholder="请输入密码">
+                            <!-- 密码 -->
+                            <div class="row col s10 m10 l10 offset-s1 offset-m1 offset-l1">
+                                <div class="input-field">
+                                 <i class="fa fa-lock prefix"  style="margin-top:10px; font-size: 25px;"></i>
+                                {{ form.password(class="validate",type="password",placeholder="请输入密码") }}
+                                <span class="helper-text"></span>
                                 </div>
                             </div>
-                            <!--验证码-->
-                            <div class="row col s12 m5 l5 offset-m1 offset-l1">
-                                <div class="input">
-                                    <label for="valite_code">验证码：</label>
-                                    <input type="text" name="valite_code" id="valite_code" class="validate" placeholder="请输入验证码">
+                            <!-- 重复密码 -->
+                            <div class="row col s10 m10 l10 offset-s1 offset-m1 offset-l1">
+                                <div class="input-field">
+                                 <i class="fa fa-check prefix"  style="margin-top:10px; font-size: 25px;"></i>
+                                {{ form.comfirm(class="validate",type="password",placeholder="请确认密码") }}
+                                <span class="helper-text"></span>
                                 </div>
                             </div>
-                            <div class="row col s12 m5 l5 offset-m1 offset-l1">
-                                    <a href="#">
-                                        <img src="../static/banner3.jpg" width="45*6" height="60">
-                                    </a>
-                            </div>
-                            <!--remeber me-->
-                            <div class="row col s12 m5 l5 offset-m1 offset-l1">
-                                <input type="checkbox" class="filled-in" id="remeber_me" checked="checked" name="remeber_me"/>
-                                <label for="remeber_me">Remeber Me</label>
-                            </div>
-                            <!--登陆按钮-->
-                            <div class="row col s12 m5 l5 offset-m1 offset-l1">
-                                <button class="btn waves-effect blue accent-3" type="submit" name="action">Submit
-                                    <i class="material-icons right">send</i>
+
+
+                            <!--注册按钮-->
+                            <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1">
+                                <button class="btn waves-effect waves-light left teal lighten-1" type="submit" name="action" style="width: 100%">注 册
+                                    &nbsp;<i class="fa fa-send fa-fw"></i>
                                 </button>
                             </div>
+
+                            <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1" id='status'>
+
+                            </div>
+
+                            <br>
+                            <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1">
+                                <label>已有账号，<a href="{{ url_for('account.login') }}">去登录</a></label>
+                            </div>
+
                         </form>
                     </div>
                     <div class="divider"></div>
                     <div class="row card-footer">
 
                     </div>
-                </div><!--end card-panel-->
-            </div><!--end col-->
-        </div><!--end row-->
-    </div><!--end container-->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

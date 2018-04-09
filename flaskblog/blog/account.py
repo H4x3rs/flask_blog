@@ -21,7 +21,6 @@ def login():
 
     if form.validate_on_submit():
         email = form.email.data
-        password = form.password.data
         remember = form.remember.data
         user = Users.query.filter_by(email=email).one()
         login_user(user, remember)
@@ -46,7 +45,12 @@ def logout():
 # 注册
 @account_blueprint.route('/register', methods=['GET', 'POST'])
 def register():
-    return render_template('blog.register.html')
+    form = RegisterForm()
+    next_url = request.args.get('next')
+
+    if form.validate_on_submit():
+        pass
+    return render_template('blog.register.html',form=form)
 
 
 # 设置

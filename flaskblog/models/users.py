@@ -49,7 +49,7 @@ class Users(db.Model):
     @property
     def status(self):
         if self.status == 0:
-            return "status: not active/为激活！"
+            return "status: not active/未激活！"
         if self.status == 1:
             return "status: yet active/已激活！"
     @status.setter
