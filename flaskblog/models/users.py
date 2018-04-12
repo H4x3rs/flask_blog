@@ -3,7 +3,7 @@
 # @author:ren
 # @date:2017/10/25.17:32
 
-import time
+from datetime import datetime
 from uuid import uuid4
 from hashlib import sha1
 from .db import db
@@ -11,6 +11,7 @@ from .users_roles import users_roles
 from .roles import Roles
 
 from flask_login import AnonymousUserMixin
+
 
 # 用户表
 class Users(db.Model):
@@ -24,23 +25,22 @@ class Users(db.Model):
     nickname = db.Column(db.String(200))
     status = db.Column(db.INT)
     update_at = db.Column(db.TIMESTAMP(True), nullable=False)
-    create_at = db.Column(db.BIGINT)
+    create_at = db.Column(db.DateTime, default=datetime.utcnow,)
     head_pic = db.Column(db.String(255))
     # Establish contact with post's foreignKey:users_id
     posts = db.relationship('Posts', backref='users', lazy='dynamic')
     # Establish contact with comments's foreignKey:users_id
     comments = db.relationship('Comments', backref='users', lazy='dynamic')
     # Establish contact with role's foreignKey:users_id
-    roles = db.relationship('Roles',secondary=users_roles,backref='users',lazy='dynamic')
-   
+    roles = db.relationship('Roles', secondary=users_roles, backref='users', lazy='dynamic')
+
     # 初始化函数
     def __init__(self, email, nickname):
         self.email = email
         self.id = str(uuid4())
         self.nickname = nickname
-        self.create_at = int(time.time() * 1000)
-        self.status = 1
-	
+        self.status = 0
+
         # setup the default role for user
         default = Roles.query.filter_by(role == 'default').one()
         self.roles.append(default)
@@ -52,16 +52,18 @@ class Users(db.Model):
             return "status: not active/未激活！"
         if self.status == 1:
             return "status: yet active/已激活！"
+
     @status.setter
-    def status(self,status):
+    def status(self, status):
         self._status = status
 
     # set/get password
     @property
     def password(self):
         raise AttributeError('Password is not a readable attribute')
+
     @password.setter
-    def password(self,password):
+    def password(self, password):
         pass_hash = sha1(password.encode('utf8'))
         self.passwd = pass_hash.hexdigest()
 
@@ -81,18 +83,21 @@ class Users(db.Model):
             return False
         else:
             return True
+
     # 检查用户是否激活
     def is_active(self):
         if self.status == 1:
             return True
         else:
             return False
+
     # 检查是否是匿名用户
     def is_anonymous(self):
         if isinstance(self, AnonymousUserMixin):
             return False
         else:
             return True
+
     # 返回用户ID
     def get_id(self):
         return self.id

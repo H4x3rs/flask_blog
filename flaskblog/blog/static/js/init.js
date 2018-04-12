@@ -12,6 +12,7 @@
       $('.parallax').parallax();
       $('.sidenav').sidenav()
       $('#comment').characterCounter();
+      $('.tooltipped').tooltip();
 
 
   }); // end of document ready

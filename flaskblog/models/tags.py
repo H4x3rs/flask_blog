@@ -6,6 +6,7 @@
 from .db import db
 from uuid import uuid4
 
+
 # 标签表
 class Tags(db.Model):
     __tablename__ = 'tags'
@@ -13,15 +14,15 @@ class Tags(db.Model):
     code = db.Column(db.String(255))
     name = db.Column(db.String(255))
     tag_pic = db.Column(db.String(255))
-    create_at = db.Column(db.TIMESTAMP(True),nullable=False, server_default=db.text('NOW()'))
+    create_at = db.Column(db.TIMESTAMP(True), nullable=False, server_default=db.text('NOW()'))
 
     def __init__(self, name, code=None, tag_pic=None):
         self.name = name
-        self.id =str(uuid4())
+        self.id = str(uuid4())
         if code == None:
-	        self.code = self.name
+            self.code = self.name
         else:
-	        self.code = code
+            self.code = code
 
     def __repr__(self):
         return "<Model Tags `{}`>".format(self.id)

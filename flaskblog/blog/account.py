@@ -49,12 +49,29 @@ def register():
     next_url = request.args.get('next')
 
     if form.validate_on_submit():
-        pass
-    return render_template('blog.register.html',form=form)
+        email = form.email.data
+        password = form.password.data
+        nickname = form.nickname.data
+        user = Users(email, nickname)
+        user.password = password
+        try:
+            db.session.add(user)
+            db.session.commit()
+        except Exception as e:
+            print(e)
+        finally:
+            db.session.close()
+
+        login(user)
+        identity_changed.send(current_app._get_current_object(), identity=Identity(user.id))
+        flash(u"注册成功！", category='success')
+        return redirect(next_url or url_for('.setting') or url_for('blog.index'))
+    return render_template('blog.register.html', form=form)
 
 
 # 设置
 @account_blueprint.route('/setting', methods=['GET', 'POST'])
 @login_required
 def setting():
-    return render_template('blog.profile.html')
+    nickname = current_user.nickname
+    return render_template('blog.profile.html', nickname=nickname)
