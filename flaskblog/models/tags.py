@@ -5,7 +5,7 @@
 
 from .db import db
 from uuid import uuid4
-
+from datetime import datetime
 
 # 标签表
 class Tags(db.Model):
@@ -14,7 +14,7 @@ class Tags(db.Model):
     code = db.Column(db.String(255))
     name = db.Column(db.String(255))
     tag_pic = db.Column(db.String(255))
-    create_at = db.Column(db.TIMESTAMP(True), nullable=False, server_default=db.text('NOW()'))
+    create_at = db.Column(db.DateTime, default=datetime.now,)
 
     def __init__(self, name, code=None, tag_pic=None):
         self.name = name

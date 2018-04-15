@@ -25,7 +25,7 @@ class Users(db.Model):
     nickname = db.Column(db.String(200))
     status = db.Column(db.INT)
     update_at = db.Column(db.TIMESTAMP(True), nullable=False)
-    create_at = db.Column(db.DateTime, default=datetime.utcnow,)
+    create_at = db.Column(db.DateTime, default=datetime.now,)
     head_pic = db.Column(db.String(255))
     # Establish contact with post's foreignKey:users_id
     posts = db.relationship('Posts', backref='users', lazy='dynamic')
@@ -35,14 +35,14 @@ class Users(db.Model):
     roles = db.relationship('Roles', secondary=users_roles, backref='users', lazy='dynamic')
 
     # 初始化函数
-    def __init__(self, email, nickname):
+    def __init__(self, email, nickname, role="default"):
         self.email = email
         self.id = str(uuid4())
         self.nickname = nickname
         self.status = 0
 
         # setup the default role for user
-        default = Roles.query.filter_by(role == 'default').one()
+        default = Roles.query.filter_by(role=role).one()
         self.roles.append(default)
 
     # get/set status

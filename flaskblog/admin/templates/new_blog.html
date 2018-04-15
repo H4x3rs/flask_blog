@@ -51,9 +51,9 @@
             var editor = new Simditor({
                 textarea: $('#simditor'),
                 placeholder: 'blog',
-                defaultImage:'{{ url_for("upload.upload",filename="default.jpg") }}',
+                defaultImage:'{{ url_for("upload.static",filename="default.jpg") }}',
                 upload: {
-                    url:"{{ url_for('upload.upload') }}",
+                    url:"{{ url_for('upload') }}",
                     fileKey:"image",
                     leaveConfim:'正在上传...'
                 },

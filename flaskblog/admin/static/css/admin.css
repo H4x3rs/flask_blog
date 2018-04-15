@@ -1,5 +1,6 @@
-html{--google-red-100: #f4c7c3;
-	--google-red-300: #e67c73;
+html {
+    --google-red-100: #f4c7c3;
+    --google-red-300: #e67c73;
     --google-red-500: #db4437;
     --google-red-700: #c53929;
     --google-blue-100: #c6dafc;
@@ -279,35 +280,38 @@ html{--google-red-100: #f4c7c3;
     --light-divider-opacity: 0.12;
     --light-disabled-opacity: 0.3;
     --light-secondary-opacity: 0.7;
-    --light-primary-opacity: 1.0;}
-body{
+    --light-primary-opacity: 1.0;
+}
+
+body {
     background-color: #f3f3f3;
 }
 
 header, footer {
-  padding-left: 200px;
+    padding-left: 200px;
 }
 
-main{
-  padding-left: 200px;
+main {
+    padding-left: 200px;
+    padding-top: 0;
 }
 
-.sidenav{
+.sidenav {
     width: 200px;
     box-shadow: none;
 }
 
-nav{
-  box-shadow: none;
+nav {
+    box-shadow: none;
     border-bottom: 1px #ccc solid;
-  height: 64px;
+    height: 64px;
 }
 
-input[type='search']{
+input[type='search'] {
     height: 20px;
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgba(255, 255, 255, 0.3);
     padding: 8px 8px 8px 72px;
-    -webkit-transition:all 200ms;
+    -webkit-transition: all 200ms;
     transition: all 200ms;
     font-weight: 400;
     outline: none;
@@ -317,8 +321,8 @@ input[type='search']{
     border: 1px #aaa solid;
 }
 
-@media only screen and (max-width : 992px) {
-  header, main, footer {
-    padding-left: 0;
-  }
+@media only screen and (max-width: 992px) {
+    header, main, footer {
+        padding-left: 0;
+    }
 }

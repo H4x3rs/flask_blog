@@ -33,7 +33,7 @@ class LoginForm(Form):
             return False
         # check user password whether right
         if not user.check_password(self.password.data):
-            self.email.errors.append(u'无效的用户名和密码！')
+            self.password.errors.append(u'密码不正确！')
             return False
 
         return True
@@ -52,21 +52,22 @@ class RegisterForm(Form):
         if not check_validate:
             return False
 
-        user = Users.query.filter_by(email=self.email.data).first()
-
-        if user:
-            self.email.errors.append(u"该用户名已存在！")
+        # 用邮箱判断该用户是否存在
+        email_user = Users.query.filter_by(email=self.email.data).first()
+        if email_user:
+            self.email.errors.append(u"该用户已存在！")
             return False
-
+        # 用昵称判断该用户是否存在
+        nickname_user = Users.query.filter_by(nickname=self.nickname.data).first()
+        if nickname_user:
+            self.nickname.errors.append(u"该昵称已存在！")
+            return False
+        # 判断两次密码是否一致
         if self.password.data != self.confirm.data:
             print("两次输入密码不一致")
             self.confirm.errors.append(u"两次输入密码不一致！")
             return False
-
-        # if len(self.password.data)< 6 or len(self.password.data)>16:
-        #     self.password.errors.append(u"密码必须为6-16位字符、数字")
-        #     return False
-
+        # 判断密码是否符合强度
         if not re.search("^(?![A-Z]+$)(?![a-z]+$)(?!\d+$)(?![\W_]+$)\S{6,16}$", self.password.data):
             self.password.errors.append(u"密码必须为6-16位数字、字母组合")
             return False

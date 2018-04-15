@@ -13,7 +13,7 @@ class Roles(db.Model):
     __tablename__ = 'roles'
 
     id = db.Column(db.String(50), primary_key=True)
-    role = db.Column(db.String(150), unique=True)
+    role = db.Column(db.String(150))
     description = db.Column(db.String(255))
 
     def __init__(self, role):

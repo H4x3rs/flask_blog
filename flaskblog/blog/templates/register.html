@@ -26,7 +26,7 @@
                                                style="margin-top:10px; font-size: 23px;"></i>
                                             {{ form.nickname(class="validate invalid",type="text",placeholder="请输入昵称") }}
                                             <span class="helper-text red-text" style="margin-left: 45px;">
-                                        {% for error in form.email.errors %}
+                                        {% for error in form.nickname.errors %}
                                             {{ error }}
                                         {% endfor %}
                                         </span>

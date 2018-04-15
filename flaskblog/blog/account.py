@@ -52,17 +52,18 @@ def register():
         email = form.email.data
         password = form.password.data
         nickname = form.nickname.data
-        user = Users(email, nickname)
-        user.password = password
+        new_user = Users(email, nickname)
+        new_user.password = password
         try:
-            db.session.add(user)
+            db.session.add(new_user)
             db.session.commit()
         except Exception as e:
             print(e)
         finally:
             db.session.close()
 
-        login(user)
+        user = Users.query.filter_by(email=email).first_or_404()
+        login_user(user)
         identity_changed.send(current_app._get_current_object(), identity=Identity(user.id))
         flash(u"注册成功！", category='success')
         return redirect(next_url or url_for('.setting') or url_for('blog.index'))

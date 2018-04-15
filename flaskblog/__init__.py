@@ -14,8 +14,6 @@ from .models import db
 from .extensions import bcrypt, login_manager, principal, cache,moment
 # blog视图函数
 from .blog import *
-from .admin import admin
-from .api import api
 
 
 # 默认情况下 Flask的jinja_loader将会从全局加载template，这将会导致多个蓝图
@@ -87,10 +85,6 @@ app = create_app()
 # Register the blog Blueprint into app object
 app.register_blueprint(blog_blueprint)
 app.register_blueprint(account_blueprint)
-# Register the admin Blueprint into app object
-app.register_blueprint(admin.admin_blueprint)
-# Register the api Blueprint into app object
-app.register_blueprint(api.api_blueprint)
 
 
 @app.before_request

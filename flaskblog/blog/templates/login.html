@@ -36,7 +36,7 @@
                                             <i class="fa fa-envelope prefix"
                                                style="margin-top:10px; font-size: 20px;"></i>
                                             {{ form.email(class="validate invalid",type="email",placeholder="请输入邮箱") }}
-                                            <span class="helper-text red-text">
+                                            <span class="helper-text red-text" style="margin-left: 45px;">
                                         {% for error in form.email.errors %}
                                             {{ error }}
                                         {% endfor %}
@@ -81,7 +81,7 @@
                                 <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1">
                                     <button class="btn waves-effect waves-light left teal lighten-1" type="submit"
                                             name="action" style="width: 100%">登 录
-                                        <i class="material-icons right">send</i>
+                                        <i class="fa fa-sign-in fa-fw"></i>
                                     </button>
                                 </div>
 

@@ -66,6 +66,7 @@ def edit_blog(id):
         blog.title = request.form.get('title', None)
         blog.content = request.form.get('content', None)
         blog.tags = request.form.getlist('tags[]', None)
+        blog.user_id = current_user.id
         db.session.add(blog)
         db.session.commit()
         flash(u'修改成功')
