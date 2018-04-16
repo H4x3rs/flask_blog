@@ -49,11 +49,12 @@ def post(post_id):
             comment.post_id = post_id
             g.db.session.add(comment)
             g.db.session.commit()
-        flash(u'请先登录!')
+        else:
+            flash(u'请先登录!')
 
-    post = db.session.query(Posts).join(Users).filter(Posts.id == post_id).first_or_404()
-    tags = post.tags
-    comments = db.session.query(Comments, Users).filter(Comments.post_id == post.id).order_by(
+    post = db.session.query(Posts, Users).filter(Posts.id == post_id).first_or_404()
+    tags = post.Posts.tags
+    comments = db.session.query(Comments, Users).filter(Comments.post_id == post.Posts.id).order_by(
         desc(Comments.create_at)).all()
     recent, top_tags = sidebar_data()
     return render_template('blog.post.html', title='post', post=post, tags=tags, comments=comments, recent=recent,
@@ -142,3 +143,10 @@ def about():
 @blog_blueprint.route('/gallery')
 def gallery():
     return render_template('blog.gallery.html')
+
+@blog_blueprint.teardown_request
+def shutdown_session(exception=None):
+    try:
+        db.session.remove()
+    except Exception as e:
+        print(e)
