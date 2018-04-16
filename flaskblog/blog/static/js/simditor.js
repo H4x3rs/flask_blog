@@ -4437,9 +4437,11 @@ ImageButton = (function(superClass) {
         if (result.success === false) {
           msg = result.msg || _this._t('uploadFailed');
           alert(msg);
-          img_path = _this.defaultImage;
+          // img_path = _this.defaultImage;
+            $img.attr('src',_this.defaultImage)
         } else {
-          img_path = result.file_path;
+          // img_path = result.file_path;
+            $img.attr('src',result.file_path)
         }
         _this.loadImage($img, img_path, function() {
           var $mask;

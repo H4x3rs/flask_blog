@@ -85,6 +85,8 @@ app = create_app()
 # Register the blog Blueprint into app object
 app.register_blueprint(blog_blueprint)
 app.register_blueprint(account_blueprint)
+app.register_blueprint(admin_blueprint)
+app.register_blueprint(upload_blueprint)
 
 
 @app.before_request

@@ -11,7 +11,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from flask_principal import Identity, AnonymousIdentity, identity_changed, current_app
 from sqlalchemy import func, desc
 
-blog_blueprint = Blueprint('blog', __name__, template_folder='templates', static_folder='static', url_prefix='/blog')
+blog_blueprint = Blueprint('blog', __name__, template_folder='templates/blog', static_folder='static', url_prefix='/blog')
 
 
 def sidebar_data():
