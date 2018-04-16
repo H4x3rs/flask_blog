@@ -20,8 +20,6 @@ class Posts(db.Model):
     create_at = db.Column(db.DateTime, default=datetime.now,)
     # set the foreignkey for users
     user_id = db.Column(db.String(50), db.ForeignKey('users.id'))
-    # Establish contact with Comment's ForeignKey:post_id
-    comments = db.relationship('Comments', backref='posts', lazy='dynamic')
     # many to many:posts <=> tags
     tags = db.relationship('Tags', secondary=posts_tags, backref=db.backref('posts', lazy='dynamic'))
 
@@ -31,4 +29,4 @@ class Posts(db.Model):
         self.content = content
 
     def __repr__(self):
-        return '<Model Posts `{}`>'.format(self.id)
+        return '<Model Posts `{}  {}`>'.format(self.id, self.title)
