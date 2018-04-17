@@ -1,0 +1,202 @@
+{% extends "blog.base.html" %}
+
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+        .login_toast {
+            width: 250px;
+            height: 50px;
+            border-radius: 3px;
+        }
+    </style>
+{% endblock %}
+
+
+{% block main %}
+    <div class="main-content grey lighten-4">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m10 l6 offset-m1 offset-l3">
+                    <div class="card-panel hoverable">
+                        <div class="card-content row center-align">
+                            <h5>无名万物 - 登录</h5>
+                        </div>
+                        <div class="divider"></div>
+                        <br>
+                        <div class="row card-content">
+                            <form class="login_form" method="POST" action="{{ url_for('account.login') }}">
+                                <!-- Csrf -->
+                                {{ form.hidden_tag() }}
+
+                                {#                            <input type='hidden' name='next' value={{next}}>#}
+                                <!-- 帐号 -->
+                                <div class="row col s10 m10 l10 offset-s1 offset-m1 offset-l1">
+                                    <div class="input-field">
+                                        {% if form.email.errors %}
+                                            <i class="fa fa-envelope prefix"
+                                               style="margin-top:10px; font-size: 20px;"></i>
+                                            {{ form.email(class="validate invalid",type="email",placeholder="请输入邮箱") }}
+                                            <span class="helper-text red-text" style="margin-left: 45px;">
+                                        {% for error in form.email.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                        </span>
+                                        {% else %}
+                                            <i class="fa fa-envelope  prefix"
+                                               style="margin-top:10px; font-size: 20px;"></i>
+                                            {{ form.email(class="validate",type="email",placeholder="请输入邮箱") }}
+                                            <span class="helper-text" style="margin-left: 45px;"
+                                                  data-error="邮箱格式不正确!"></span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="row col s10 m10 l10 offset-s1 offset-m1 offset-l1">
+                                    <div class="input-field">
+                                        <i class="fa fa-lock prefix" style="margin-top:10px; font-size: 25px;"></i>
+                                        {{ form.password(class="validate",type="password",placeholder="请输入密码") }}
+                                        <span class="helper-text" style="margin-left: 45px;"></span>
+                                    </div>
+                                </div>
+
+                                <!--remeber me-->
+                                <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1"
+                                     style="margin-top: 30px;">
+                                    <div class="row">
+                                        <div class="col s6 m6 l6">
+                                            <label>
+                                                {{ form.remember() }}
+                                                <span>&nbsp;&nbsp; {{ form.remember.label }}</span>
+                                                {#                                    {{ form.remember() }}#}
+                                                {#                                        {{ form.remember.label }}#}
+                                            </label>
+                                        </div>
+                                        <label class="col s6 m6 l6">
+                                            <a class="right" href="{{ url_for('account.register') }}">忘记密码？</a>
+                                        </label>
+                                    </div>
+                                    <br>
+                                </div>
+                                <br>
+                                <!--登陆按钮-->
+                                <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1">
+                                    <button class="btn waves-effect waves-light left teal lighten-1" type="submit"
+                                            name="action" style="width: 100%">登 录
+                                        <i class="fa fa-sign-in fa-fw"></i>
+                                    </button>
+                                </div>
+
+                                <fb:login-button scope="public_profile,emai" onlogin="checkLoginState();">
+                                </fb:login-button>
+                                <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1" id='status'>
+
+                                </div>
+
+                                <br>
+                                <div class="row col s10 m10 l10 offset-m1 offset-l1 offset-s1">
+                                    <label>快速登录：</label>
+
+                                    <a href="{{ url_for('blog.facebook_login') }}" title="google帐号" class="tooltipped"
+                                       data-postion="bottom" data-delay="30" data-tooltip="google登录">
+                                        <i class="fa fa-google fa-fw"></i>
+                                    </a>
+
+                                    <a href="{{ url_for('blog.facebook_login') }}" title="github帐号">
+                                        <i class="fa fa-github fa-fw"></i>
+                                    </a>
+                                    <a href="{{ url_for('blog.facebook_login') }}" title="qq帐号">
+                                        <i class="fa fa-qq fa-fw"></i>
+                                    </a>
+                                    <a href="{{ url_for('blog.facebook_login') }}" title="微信帐号">
+                                        <i class="fa fa-weixin fa-fw"></i>
+                                    </a>
+                                    <a href="{{ url_for('blog.facebook_login') }}" title="twitter帐号">
+                                        <i class="fa fa-twitter fa-fw"></i>
+                                    </a>
+                                    <a href="{{ url_for('blog.facebook_login') }}" title="facebook帐号">
+                                        <i class="fa fa-facebook fa-fw"></i>
+                                    </a>
+                                    <label class="right">
+                                        还没有帐号？
+                                        <a href="{{ url_for('account.register') }}">去注册</a>
+                                    </label>
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="row card-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ super() }}
+
+    <script type="text/javascript">
+        (function () {
+            {% for cate,message in get_flashed_messages(with_categories=True) %}
+                {% if message %}
+                    M.toast('{{message}}', 3000, 'login_toast', '')
+                {% endif %}
+            {% endfor %}
+        })();
+
+        /*facebook*/
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1445736152161924',
+                xfbml: true,
+                cookie: true,
+                version: 'v2.12'
+            });
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            })
+            FB.AppEvents.logPageView();
+        };
+
+        function statusChangeCallback(response) {
+            console.log('statusChangeCallback')
+            console.log(response)
+            if (response.status === 'connected') {
+                testAPI();
+            } else {
+                document.getElementByID(status).innerHTML = 'Please log' + 'into this app.';
+            }
+        }
+
+        function checkLoginState() {
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
+        }
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        function testAPI() {
+            console.log('Welcome!  Fetching your information.... ');
+            FB.api('/me', function (response) {
+                console.log('Successful login for: ' + response.name);
+                document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
+            });
+        }
+    </script>
+
+{% endblock %}
+
+
+

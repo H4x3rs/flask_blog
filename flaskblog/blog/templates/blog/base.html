@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+        <title>{{ title }}</title>
+        {% include 'blog._head.html' %}
+    {% endblock %}
+</head>
+<body>
+<!--start body block-->
+{% block body %}
+
+    <!--star side_nav -->
+    {% block side_nav %}
+        {% include 'blog._side_nav.html' %}
+    {% endblock %}
+    <!--end side_nav block-->
+
+
+    <!--start header block-->
+    <header>
+        {% block header %}
+            {% include 'blog._header.html' %}
+        {% endblock %}
+    </header>
+    <!--end header block -->
+
+
+    <!--start main block -->
+    {% block main %}
+
+    {% endblock %}
+    <!-- end main block-->
+
+
+    <!--start footer block -->
+    <footer>
+        {% block footer %}
+            {% include 'blog._footer.html' %}
+        {% endblock %}
+    </footer>
+    <!--end footer -->
+{% endblock %}
+<!--end body block-->
+
+
+<!--start javascript block-->
+{% block script %}
+    {% include 'blog._script.html' %}
+    {{ moment.include_moment() }}
+    <script type="text/javascript">
+        (function () {
+            {#        {% for cate,message in get_flashed_messages(with_categories=True) %}#}
+            {#        {% if message %}#}
+            {#                M.toast({html:'{{message}}'})#}
+            {#        {% endif %}#}
+            {#        {% endfor %}#}
+
+
+            hljs.initHighlightingOnLoad()
+
+        })();
+    </script>
+{% endblock %}
+<!-- end javascript block-->
+
+</body>
+</html>
