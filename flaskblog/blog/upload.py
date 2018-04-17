@@ -32,7 +32,7 @@ def upload():
             current_app.logger.info("目录创建完成：{}".format(os.path.join(path, year, month)))
         file.save(os.path.join(path, year, month, name))
         current_app.logger.info("文件上传完成：{}".format(name))
-        file_url = url_for('upload.static', filename=os.path.join(year, month, name), _external=True)
+        file_url = url_for('upload.static', filename="{}/{}/{}".format(year,month,name), _external=True)
         print(file_url)
         return jsonify({'code': 200, 'msg': '上传成功', 'file_path': file_url, 'success': 'true'})
 
