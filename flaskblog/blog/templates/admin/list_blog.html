@@ -25,7 +25,7 @@
                     </th>
                     <th> 标题</th>
                     <th><i class="fa fa-user fa-fw"></i> 作者</th>
-                    <th><i class="fa fa-calendar fa-fw"></i> 时间</th>
+                    <th class="center-align"><i class="fa fa-calendar fa-fw"></i> 时间</th>
                     <th><i class="fa fa-edit fa-fw"></i> 操作</th>
                 </tr>
                 </thead>
@@ -38,9 +38,9 @@
                                 <span>选择</span>
                             </label>
                         </td>
-                        <td>{{ blog.title }}</td>
-                        <td>{{ blog.users.nickname }}</td>
-                        <td>{{ moment(blog.create_at).format("YYYY-MM-DD HH:mm") }}</td>
+                        <td><p style="width: 180px; white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ blog.title }}</p></td>
+                        <td><p style="width: 100px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ blog.users.nickname }}</p></td>
+                        <td class="center-align">{{ moment(blog.create_at).format("LLL")}}</td>
                         <td>
                             <a href="{{ url_for('admin.edit_blog',id=blog.id) }}"><i class="fa fa-edit fa-fw"></i></a> |
                             <a href="{{ url_for('admin.delete_blog',id=blog.id) }}"><i class="fa fa-trash-o fa-fw"></i></a>

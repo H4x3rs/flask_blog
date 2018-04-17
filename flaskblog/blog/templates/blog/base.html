@@ -46,19 +46,11 @@
 
 <!--start javascript block-->
 {% block script %}
-    {% include 'blog._script.html' %}
+    {% include "blog._script.html" %}
     {{ moment.include_moment() }}
     <script type="text/javascript">
         (function () {
-            {#        {% for cate,message in get_flashed_messages(with_categories=True) %}#}
-            {#        {% if message %}#}
-            {#                M.toast({html:'{{message}}'})#}
-            {#        {% endif %}#}
-            {#        {% endfor %}#}
-
-
             hljs.initHighlightingOnLoad()
-
         })();
     </script>
 {% endblock %}

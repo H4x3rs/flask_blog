@@ -25,7 +25,7 @@ class Users(db.Model):
     nickname = db.Column(db.String(200))
     status = db.Column(db.INT)
     update_at = db.Column(db.TIMESTAMP(True), nullable=False)
-    create_at = db.Column(db.DateTime, default=datetime.now,)
+    create_at = db.Column(db.DateTime, default=datetime.utcnow(),)
     head_pic = db.Column(db.String(255))
     # Establish contact with post's foreignKey:users_id
     posts = db.relationship('Posts', backref='users', lazy='dynamic')

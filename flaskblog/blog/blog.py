@@ -52,9 +52,10 @@ def post(post_id):
         else:
             flash(u'请先登录!')
 
-    post = db.session.query(Posts, Users).filter(Posts.id == post_id).first_or_404()
-    tags = post.Posts.tags
-    comments = db.session.query(Comments, Users).filter(Comments.post_id == post.Posts.id).order_by(
+    post = db.session.query(Posts).outerjoin(Users).filter(Posts.id == post_id).first_or_404()
+    tags = db.session.query(Tags).outerjoin(posts_tags).outerjoin(Posts).filter(Posts.id == post_id).all()
+    print(tags)
+    comments = db.session.query(Comments, Users).filter(Comments.post_id == post.id).order_by(
         desc(Comments.create_at)).all()
     recent, top_tags = sidebar_data()
     return render_template('blog.post.html', title='post', post=post, tags=tags, comments=comments, recent=recent,

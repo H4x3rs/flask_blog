@@ -20,22 +20,23 @@
                     <div class="card hoverable">
                         <!-- title -->
                         <div class="card-content">
-                            <h5>{{ post.Posts.title }}</h5>
+                            <h5>{{ post.title }}</h5>
                             <div class="grey-text">
                                 <ul>
-                                    <li><i class="fa fa-user fa-fw"></i> {{ post.Users.nickname }}</li>
-                                    <li><i class="fa fa-calendar fa-fw"></i>{{ post.Posts.update_at }}</li>
+                                    <li><i class="fa fa-user fa-fw"></i> {{ post.users.nickname }}</li>
+                                    <li><i class="fa fa-tags fa-fw"></i> {{ tags.name }}</li>
+                                    <li><i class="fa fa-calendar fa-fw"></i> {{ moment(post.create_at).fromNow(True)}}</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="divider" style="clear:both"></div>
                         <!-- content -->
                         <div class="card-content">
-                            <p>{{ post.Posts.content|safe }}</p>
+                            <p>{{ post.content|safe }}</p>
                         </div>
 
                         <div class="card-action">
-                            <a href="{{ url_for('blog.post',post_id=post.Posts.id) }}">查看更多</a>
+                            <a href="{{ url_for('blog.post',post_id=post.id) }}">查看更多</a>
                         </div>
                     </div><!--end card-->
                 {% endif %}
@@ -94,7 +95,6 @@
     <script type="text/javascript" src="{{ url_for('blog.static',filename='js/hotkeys.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('blog.static',filename='js/uploader.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('blog.static',filename='js/simditor.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('blog.static',filename='js/highlight.pack.js') }}"></script>
 
     <script type="text/javascript">
         var editor = new Simditor({

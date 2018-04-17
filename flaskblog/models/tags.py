@@ -14,7 +14,7 @@ class Tags(db.Model):
     code = db.Column(db.String(255))
     name = db.Column(db.String(255))
     tag_pic = db.Column(db.String(255))
-    create_at = db.Column(db.DateTime, default=datetime.now,)
+    create_at = db.Column(db.DateTime, default=datetime.utcnow(),)
 
     def __init__(self, name, code=None, tag_pic=None):
         self.name = name

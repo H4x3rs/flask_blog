@@ -18,5 +18,6 @@
         $('.chips').chips({
             placeholder: 'Enter a tag'
         });
+        moment.locale("zh-cn")
     }); // end of document ready
 })(jQuery); // end of jQuery name space
