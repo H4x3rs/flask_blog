@@ -16,10 +16,11 @@ from ..form import *
 admin_blueprint = Blueprint('admin', __name__, template_folder='templates/admin', static_folder='static', url_prefix='/admin')
 
 
-@admin_blueprint.route('/login')
+@admin_blueprint.route('/login', methods=['GET','POST'])
 def login():
     """login admin module"""
-    return render_template('admin.login.html', title='admin')
+    form = LoginForm()
+    return render_template('admin.login.html', title='admin', form=form)
 
 
 @admin_blueprint.route('/')
