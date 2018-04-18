@@ -16,8 +16,12 @@
                                 <h5>{{ post.title }}</h5>
                                 <div class='grey-text'>
                                     <ul>
-                                        <li class='left'><i class="fa fa-user fa-fw"></i> {{ user.nickname }} &nbsp;&nbsp;</li>
-                                        <li class='left'><i class="fa fa-calendar fa-fw"></i> {{ moment(post.create_at).fromNow(True) }}  &nbsp;&nbsp;</li>
+                                        <li class='left'><i class="fa fa-user fa-fw"></i> {{ user.nickname }} &nbsp;&nbsp;
+                                        </li>
+                                        <li class='left'><i
+                                                class="fa fa-calendar fa-fw"></i> {{ moment(post.create_at).fromNow(True) }}
+                                            &nbsp;&nbsp;
+                                        </li>
                                         <li class='left'><i class="fa fa-tag fa-fw"></i> Python Flask &nbsp;&nbsp;</li>
                                     </ul>
                                 </div>
@@ -48,11 +52,12 @@
                     <div class="card hoverable">
                         <div class="collection with-header black-text">
                             <p class="collection-item">
-                                <i class="fa fa-snowflake-o  fa-fw fa-lg"></i>&nbsp;&nbsp; 最新文章
+                                <i class="fa fa-snowflake-o  fa-fw fa-lg"></i>&nbsp;&nbsp; <b>最新文章</b>
                             </p>
                             {% for r in recent %}
-                                <a href="{{ url_for('blog.post',post_id=r.id) }}"
-                                   class="collection-item black-text">{{ r.title }}</a>
+                                <a href="{{ url_for('blog.post',post_id=r.id) }}" class="collection-item black-text">
+                                    <p style="width: 180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ r.title }}</p>
+                                </a>
                             {% endfor %}
 
                         </div>
@@ -62,16 +67,15 @@
                     <div class="card hoverable">
                         <div class="collection with-header black-text">
                             <p class="collection-item">
-                                <i class="fa fa-tags  fa-fw fa-lg"></i>&nbsp;&nbsp; 标签云
+                                <i class="fa fa-tags  fa-fw fa-lg"></i>&nbsp;&nbsp; <b>标签云</b>
                             </p>
-                                {% for tag, total in top_tags %}
-                                        <a href="{{ url_for('blog.tag',tag_name=tag ) }}"
-                                           class="collection-item black-text"><span
-                                                class="left-align">{{ tag }}</span>
-                                            <span class="right">{{ total }} 篇 </span></a>
+                            {% for tag, total in top_tags %}
+                                <a href="{{ url_for('blog.tag',tag_name=tag ) }}" class="collection-item black-text">
+                                    <span class="left-align">{{ tag }}</span>
+                                    <span class="right">{{ total }} 篇 </span>
+                                </a>
 
-                                    <li class="divider"></li>
-                                {% endfor %}
+                            {% endfor %}
                             </ul>
                         </div>
                     </div>

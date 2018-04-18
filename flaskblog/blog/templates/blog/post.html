@@ -23,9 +23,13 @@
                             <h5>{{ post.title }}</h5>
                             <div class="grey-text">
                                 <ul>
-                                    <li><i class="fa fa-user fa-fw"></i> {{ post.users.nickname }}</li>
-                                    <li><i class="fa fa-tags fa-fw"></i> {{ tags.name }}</li>
-                                    <li><i class="fa fa-calendar fa-fw"></i> {{ moment(post.create_at).fromNow(True)}}</li>
+                                    <li><i class="fa fa-user fa-fw"></i> &nbsp;作者：{{ post.users.nickname }}  &nbsp;&nbsp;</li>
+                                    <li><i class="fa fa-calendar fa-fw"></i> &nbsp;更新：{{ moment(post.update_at).fromNow(True)}}前 </li>
+                                    <li class="clear"><i class="fa fa-tags fa-fw"></i> &nbsp;标签：
+                                        {% for tag in tags %}
+                                            <a href="{{ url_for('blog.tag',tag_name=tag.name) }}">{{ tag.name }}&nbsp;&nbsp;</a>
+                                        {% endfor %}
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -67,7 +71,7 @@
                     <form action="{{ url_for('blog.post',post_id=post.id) }}" method="post" id="comment_form">
                         <div class="card hoverable row col s12 m12 l12">
                             <div class="card-content">
-                                <p>评论:</p>
+                                <p>评论：</p>
                                 <!-- Csrf -->
                                 {{ form.hidden_tag() }}
                                 {% if current_user.is_authenticated %}
@@ -99,7 +103,7 @@
     <script type="text/javascript">
         var editor = new Simditor({
             textarea: $('#editor'),
-            placeholder: 'comment',
+            placeholder: '欢迎评论. 评论前请先登录。。。',
             upload: true,
             pasteImage: true,
             height: 150
