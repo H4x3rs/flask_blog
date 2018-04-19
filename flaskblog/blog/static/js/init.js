@@ -18,5 +18,7 @@
         $('.chips').chips({
             placeholder: 'Enter a tag'
         });
+
+        var editor = require("tui-editor")
     }); // end of document ready
 })(jQuery); // end of jQuery name space
