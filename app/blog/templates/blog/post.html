@@ -26,7 +26,7 @@
                                     <li class="left"><i class="fa fa-user fa-fw"></i> &nbsp;{{ post.users.nickname }} &nbsp;&nbsp;&nbsp;</li>
                                     <li class="left"><i class="fa fa-calendar fa-fw"></i> &nbsp;{{ moment(post.create_at).format("LLL")}} &nbsp;&nbsp;&nbsp; </li>
                                     <li class="left"><i class="fa fa-eye fa-fw"></i> 11500 &nbsp;&nbsp;&nbsp;</li>
-                                    <li class="left"><i class="fa fa-tags fa-fw"></i> &nbsp;标签：
+                                    <li class="left"><i class="fa fa-tags fa-fw"></i> &nbsp;
                                         {% for tag in tags %}
                                             <a href="{{ url_for('blog.tag',tag_name=tag.name) }}">{{ tag.name }} </a>
                                         {% endfor %}
