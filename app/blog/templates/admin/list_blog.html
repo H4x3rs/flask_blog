@@ -1,0 +1,72 @@
+{% extends 'admin.admin.html' %}
+
+<!--star side_nav -->
+{% block header %}
+    <nav class="white">
+        <div class="nav-wrapper">
+            <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-large-only black-text"><i
+                    class="material-icons left" style="margin-left: 20px;">menu</i></a>
+        </div>
+    </nav>
+{% endblock %}
+<!--end side_nav block-->
+
+{% block main %}
+    <div class="card-content">
+        <table class="highlight bordered">
+            <thead>
+            <tr>
+                <th>
+                    <label>
+                        <input type="checkbox" class="filled-in" checked="checked"/>
+                        <span> 全选</span>
+                    </label>
+                </th>
+                <th> 标题</th>
+                <th><i class="fa fa-user fa-fw"></i> 作者</th>
+                <th class="center-align"><i class="fa fa-calendar fa-fw"></i> 时间</th>
+                <th><i class="fa fa-edit fa-fw"></i> 操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for blog in blogs %}
+                <tr>
+                    <td>
+                        <label>
+                            <input type="checkbox" class="filled-in"/>
+                            <span>选择</span>
+                        </label>
+                    </td>
+                    <td>
+                        <p style="width: 80%; white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ blog.title }}</p>
+                    </td>
+                    <td>
+                        <p style="width: 80%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ blog.users.nickname }}</p>
+                    </td>
+                    <td class="center-align">{{ moment(blog.create_at).format("YYYY-MM-DD   HH:mm:ss ") }}</td>
+                    <td>
+                        <a href="{{ url_for('admin.edit_blog',id=blog.id) }}"><i class="fa fa-edit fa-fw"></i></a> |
+                        <a href="{{ url_for('admin.delete_blog',id=blog.id) }}"><i class="fa fa-trash-o fa-fw"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer" style="">
+        <ul class="pagination">
+            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a href="#!">1</a></li>
+            <li class="waves-effect"><a href="#!">2</a></li>
+            <li class="waves-effect"><a href="#!">3</a></li>
+            <li class="waves-effect"><a href="#!">4</a></li>
+            <li class="waves-effect"><a href="#!">5</a></li>
+            <li class="waves-effect"><a href="#!">6</a></li>
+            <li class="waves-effect"><a href="#!">7</a></li>
+            <li class="waves-effect"><a href="#!">8</a></li>
+            <li class="waves-effect"><a href="#!">9</a></li>
+            <li class="waves-effect"><a href="#!">10</a></li>
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+        </ul>
+    </div>
+{% endblock %}

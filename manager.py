@@ -3,19 +3,19 @@
 # @author:Ren
 # @time:2017/8/31 23:57
 
-from flaskblog import app
+from app import app
 
 from flask_script import Manager,Server
 from flask_migrate import Migrate, MigrateCommand
 
-from flaskblog.models.db import db
-from flaskblog.models.users import Users
-from flaskblog.models.users_roles import users_roles
-from flaskblog.models.posts import Posts
-from flaskblog.models.posts_tags import posts_tags
-from flaskblog.models.comments import Comments
-from flaskblog.models.tags import Tags
-from flaskblog.models.roles import Roles
+from app.models.db import db
+from app.models.users import Users
+from app.models.users_roles import users_roles
+from app.models.posts import Posts
+from app.models.posts_tags import posts_tags
+from app.models.comments import Comments
+from app.models.tags import Tags
+from app.models.roles import Roles
 
 # Init manager object via app object
 manager = Manager(app)
