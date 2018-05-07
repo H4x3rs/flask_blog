@@ -1,0 +1,419 @@
+nohup: 忽略输入
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [04/May/2018 17:13:48] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [04/May/2018 17:13:48] "GET /blog/ HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:13:53] "GET /blog/post/b039cbfe-7931-4a72-b7c7-5e6458441e1b HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:13:53] "GET /blog/static/js/module.js HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:13:53] "GET /blog/static/js/hotkeys.js HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:13:53] "GET /blog/static/js/uploader.js HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:13:53] "GET /blog/static/js/simditor.js HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:14:04] "GET /blog/post/b039cbfe-7931-4a72-b7c7-5e6458441e1b HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:14:04] "GET /blog/static/css/simditor.css HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:14:13] "GET /account/login HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:38:36] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [04/May/2018 17:38:36] "GET /blog/ HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:38:44] "GET /blog/post/babf3319-6e14-48d0-a310-f7d7b14dc443 HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:39:28] "GET /blog/ HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:04] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [04/May/2018 17:41:05] "GET /blog/ HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:11] "GET /admin HTTP/1.0" 301 -
+127.0.0.1 - - [04/May/2018 17:41:11] "GET /admin/ HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:11] "GET /admin/static/css/admin.css HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:11] "GET /admin/static/css/font-awesome.min.css HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:11] "GET /admin/static/js/init.js HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:12] "GET /admin/static/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:13] "GET /favicon.ico HTTP/1.0" 404 -
+127.0.0.1 - - [04/May/2018 17:41:17] "GET /admin/new_blog HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:17] "GET /admin/static/css/simditor.css HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:17] "GET /admin/static/css/simditor-markdown.css HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:17] "GET /admin/static/css/simditor-fullscreen.css HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:17] "GET /admin/static/css/simditor-emoji.css HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:17] "GET /admin/static/js/module.js HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:17] "GET /admin/static/js/hotkeys.js HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:17] "GET /admin/static/js/uploader.js HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:17] "GET /admin/static/js/simditor.js HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:17] "GET /admin/static/js/marked.js HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:17] "GET /admin/static/js/to-markdown.js HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:17] "GET /admin/static/js/simditor-markdown.js HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:17] "GET /admin/static/js/simditor-fullscreen.js HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:17] "GET /admin/static/js/simditor-emoji.js HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:21] "GET /admin/static/fonts/icomoon.ttf?4vkjot HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:21] "GET /admin/static/images/emoji/smile.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:21] "GET /admin/static/images/emoji/smiley.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:21] "GET /admin/static/images/emoji/blush.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:21] "GET /admin/static/images/emoji/smirk.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:21] "GET /admin/static/images/emoji/laughing.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:21] "GET /admin/static/images/emoji/heart_eyes.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:21] "GET /admin/static/images/emoji/flushed.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:22] "GET /admin/static/images/emoji/wink.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:22] "GET /admin/static/images/emoji/grin.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:22] "GET /admin/static/images/emoji/kissing_closed_eyes.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:22] "GET /admin/static/images/emoji/stuck_out_tongue_winking_eye.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:22] "GET /admin/static/images/emoji/stuck_out_tongue.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:22] "GET /admin/static/images/emoji/sleeping.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:22] "GET /admin/static/images/emoji/worried.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:22] "GET /admin/static/images/emoji/expressionless.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:22] "GET /admin/static/images/emoji/sweat_smile.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:22] "GET /admin/static/images/emoji/joy.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:22] "GET /admin/static/images/emoji/cold_sweat.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:22] "GET /admin/static/images/emoji/angry.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:22] "GET /admin/static/images/emoji/sob.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:22] "GET /admin/static/images/emoji/scream.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:22] "GET /admin/static/images/emoji/mask.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:23] "GET /admin/static/images/emoji/sunglasses.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:23] "GET /admin/static/images/emoji/heart.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:23] "GET /admin/static/images/emoji/broken_heart.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:23] "GET /admin/static/images/emoji/star.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:23] "GET /admin/static/images/emoji/exclamation.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:23] "GET /admin/static/images/emoji/anger.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:23] "GET /admin/static/images/emoji/thumbsup.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:23] "GET /admin/static/images/emoji/question.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:23] "GET /admin/static/images/emoji/zzz.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:23] "GET /admin/static/images/emoji/ok_hand.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:23] "GET /admin/static/images/emoji/thumbsdown.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:23] "GET /admin/static/images/emoji/punch.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:23] "GET /admin/static/images/emoji/muscle.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:23] "GET /admin/static/images/emoji/v.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:23] "GET /admin/static/images/emoji/clap.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:24] "GET /admin/static/images/emoji/pray.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:24] "GET /admin/static/images/emoji/skull.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:24] "GET /admin/static/images/emoji/trollface.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:30] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [04/May/2018 17:41:30] "GET /blog/ HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 17:41:32] "GET /blog/post/b039cbfe-7931-4a72-b7c7-5e6458441e1b HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 23:14:40] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [04/May/2018 23:57:49] "GET /robots.txt HTTP/1.0" 404 -
+127.0.0.1 - - [04/May/2018 23:57:50] "GET /blog/?_escaped_fragment_= HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 23:58:08] "GET /blog/ HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 23:58:09] "GET /blog/static/css/highlight/monokai-sublime.css HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 23:58:09] "GET /blog/static/css/font-awesome.min.css HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 23:58:10] "GET /blog/static/css/style.css HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 23:58:14] "GET /blog/post/b039cbfe-7931-4a72-b7c7-5e6458441e1b HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 23:58:26] "GET /blog/static/css/style.css HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 23:58:26] "GET /blog/static/css/font-awesome.min.css HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 23:58:27] "GET /blog/static/css/highlight/monokai-sublime.css HTTP/1.0" 200 -
+127.0.0.1 - - [04/May/2018 23:58:28] "GET /blog/static/css/simditor.css HTTP/1.0" 200 -
+127.0.0.1 - - [05/May/2018 00:43:09] "GET /blog/ HTTP/1.0" 200 -
+127.0.0.1 - - [05/May/2018 00:45:23] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [05/May/2018 00:45:23] "GET /blog/ HTTP/1.0" 200 -
+127.0.0.1 - - [05/May/2018 00:45:24] "GET /blog/static/css/font-awesome.min.css HTTP/1.0" 200 -
+127.0.0.1 - - [05/May/2018 00:45:24] "GET /blog/static/css/style.css HTTP/1.0" 200 -
+127.0.0.1 - - [05/May/2018 00:45:24] "GET /blog/static/css/highlight/monokai-sublime.css HTTP/1.0" 200 -
+127.0.0.1 - - [05/May/2018 00:45:24] "GET /blog/static/favicon.ico HTTP/1.0" 200 -
+127.0.0.1 - - [05/May/2018 00:45:24] "GET /upload/image/2018/4/cd7894fad009433ab15bc7e88d8a17a5.jpg HTTP/1.0" 200 -
+127.0.0.1 - - [05/May/2018 00:45:24] "GET /blog/static/js/lazysizes.min.js HTTP/1.0" 200 -
+127.0.0.1 - - [05/May/2018 00:45:24] "GET /blog/static/js/init.js HTTP/1.0" 200 -
+127.0.0.1 - - [05/May/2018 00:45:27] "GET /blog/static/cubes.png HTTP/1.0" 200 -
+127.0.0.1 - - [05/May/2018 00:45:27] "GET /blog/static/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.0" 200 -
+127.0.0.1 - - [05/May/2018 00:45:31] "GET /blog/static/favicon.ico HTTP/1.0" 200 -
+127.0.0.1 - - [05/May/2018 00:45:35] "GET /blog/ HTTP/1.0" 200 -
+127.0.0.1 - - [05/May/2018 00:45:37] "GET /blog/post/b039cbfe-7931-4a72-b7c7-5e6458441e1b HTTP/1.0" 200 -
+127.0.0.1 - - [05/May/2018 00:45:37] "GET /blog/static/js/module.js HTTP/1.0" 200 -
+127.0.0.1 - - [05/May/2018 00:45:37] "GET /blog/static/js/hotkeys.js HTTP/1.0" 200 -
+127.0.0.1 - - [05/May/2018 00:45:37] "GET /blog/static/js/uploader.js HTTP/1.0" 200 -
+127.0.0.1 - - [05/May/2018 00:45:37] "GET /blog/static/js/simditor.js HTTP/1.0" 200 -
+127.0.0.1 - - [05/May/2018 05:08:53] "GET /blog/static/js/highlight.pack.js HTTP/1.0" 404 -
+127.0.0.1 - - [05/May/2018 05:33:42] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [05/May/2018 05:33:42] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [05/May/2018 05:47:15] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [05/May/2018 09:05:42] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [05/May/2018 09:58:47] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [05/May/2018 10:41:47] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [05/May/2018 12:30:45] "GET /page/2/ HTTP/1.0" 404 -
+127.0.0.1 - - [05/May/2018 13:47:38] "GET /robots.txt HTTP/1.0" 404 -
+127.0.0.1 - - [05/May/2018 16:29:49] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [05/May/2018 19:51:03] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [05/May/2018 19:51:03] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [05/May/2018 19:51:03] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [05/May/2018 23:20:00] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [06/May/2018 18:12:26] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [06/May/2018 18:56:40] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [06/May/2018 23:19:00] "GET /robots.txt HTTP/1.0" 404 -
+127.0.0.1 - - [06/May/2018 23:19:00] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [06/May/2018 23:19:01] "GET /blog/ HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 00:37:42] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 00:44:06] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 09:26:35] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 09:53:54] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 09:53:55] "GET /blog/ HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 09:53:55] "GET /blog/static/css/font-awesome.min.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 09:53:55] "GET /blog/static/css/highlight/monokai-sublime.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 09:53:55] "GET /blog/static/css/style.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 09:53:55] "GET /blog/static/js/lazysizes.min.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 09:53:55] "GET /blog/static/js/init.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 09:53:55] "GET /upload/image/2018/4/cd7894fad009433ab15bc7e88d8a17a5.jpg HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 09:53:55] "GET /blog/static/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 09:53:55] "GET /blog/static/cubes.png HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 09:53:55] "GET /blog/static/favicon.ico HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 09:54:39] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 10:17:49] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 10:17:50] "GET /favicon.ico HTTP/1.0" 404 -
+127.0.0.1 - - [07/May/2018 10:33:57] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 10:33:58] "GET /favicon.ico HTTP/1.0" 404 -
+127.0.0.1 - - [07/May/2018 10:37:12] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 10:37:13] "GET /favicon.ico HTTP/1.0" 404 -
+127.0.0.1 - - [07/May/2018 11:02:52] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 11:58:47] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 12:00:43] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 12:04:28] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 12:06:44] "GET /blog HTTP/1.0" 301 -
+127.0.0.1 - - [07/May/2018 12:06:47] "GET /blog/ HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:07:16] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 12:07:16] "GET /blog/ HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:07:17] "GET /blog/static/css/style.css HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:07:17] "GET /blog/static/css/font-awesome.min.css HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:07:17] "GET /blog/static/js/init.js HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:07:17] "GET /blog/static/css/highlight/monokai-sublime.css HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:07:17] "GET /upload/image/2018/4/cd7894fad009433ab15bc7e88d8a17a5.jpg HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:07:17] "GET /blog/static/favicon.ico HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:07:17] "GET /blog/static/cubes.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:07:17] "GET /blog/static/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:07:18] "GET /blog/static/js/lazysizes.min.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 12:07:30] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 12:07:30] "GET /blog/ HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:07:31] "GET /blog/static/favicon.ico HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 12:07:31] "GET /blog/static/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:07:31] "GET /blog/static/cubes.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:07:39] "GET /blog/post/babf3319-6e14-48d0-a310-f7d7b14dc443 HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:07:40] "GET /blog/static/js/module.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 12:07:40] "GET /blog/static/js/hotkeys.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 12:07:40] "GET /blog/static/js/uploader.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 12:07:40] "GET /blog/static/js/simditor.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 12:07:50] "GET /blog/post/b039cbfe-7931-4a72-b7c7-5e6458441e1b HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:38:58] "GET /blog/post/b039cbfe-7931-4a72-b7c7-5e6458441e1b HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:38:59] "GET /blog/static/css/font-awesome.min.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 12:38:59] "GET /blog/static/js/init.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 12:38:59] "GET /blog/static/css/style.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 12:38:59] "GET /blog/static/js/lazysizes.min.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 12:38:59] "GET /blog/static/css/highlight/monokai-sublime.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 12:38:59] "GET /blog/static/js/module.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 12:38:59] "GET /blog/static/js/hotkeys.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 12:38:59] "GET /blog/static/js/uploader.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 12:38:59] "GET /blog/static/js/simditor.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 12:39:07] "GET /blog/static/favicon.ico HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 12:39:07] "GET /blog/static/cubes.png HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 12:39:49] "GET /admin HTTP/1.0" 301 -
+127.0.0.1 - - [07/May/2018 12:39:49] "GET /admin/ HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:50] "GET /admin/static/css/admin.css HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:50] "GET /admin/static/css/font-awesome.min.css HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:50] "GET /admin/static/js/init.js HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:50] "GET /admin/static/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:50] "GET /favicon.ico HTTP/1.0" 404 -
+127.0.0.1 - - [07/May/2018 12:39:51] "GET /favicon.ico HTTP/1.0" 404 -
+127.0.0.1 - - [07/May/2018 12:39:54] "GET /admin/new_blog HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:54] "GET /admin/static/css/simditor-markdown.css HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:54] "GET /admin/static/css/simditor-emoji.css HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:54] "GET /admin/static/js/hotkeys.js HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:54] "GET /admin/static/js/module.js HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:54] "GET /admin/static/css/simditor.css HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:54] "GET /admin/static/css/simditor-fullscreen.css HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:54] "GET /admin/static/js/uploader.js HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:54] "GET /admin/static/js/simditor.js HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:54] "GET /admin/static/js/simditor-markdown.js HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:54] "GET /admin/static/js/marked.js HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:54] "GET /admin/static/js/to-markdown.js HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:54] "GET /admin/static/js/simditor-fullscreen.js HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:55] "GET /admin/static/js/simditor-emoji.js HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:56] "GET /admin/static/images/emoji/heart_eyes.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:56] "GET /admin/static/images/emoji/joy.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/smiley.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/fonts/icomoon.ttf?4vkjot HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/blush.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/thumbsdown.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/laughing.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/smile.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/kissing_closed_eyes.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/smirk.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/grin.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/stuck_out_tongue_winking_eye.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/flushed.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/wink.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/sleeping.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/stuck_out_tongue.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/worried.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/expressionless.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/sweat_smile.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/cold_sweat.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/mask.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/sob.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/angry.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:57] "GET /admin/static/images/emoji/scream.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:58] "GET /admin/static/images/emoji/heart.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:58] "GET /admin/static/images/emoji/sunglasses.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:58] "GET /admin/static/images/emoji/zzz.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:58] "GET /admin/static/images/emoji/broken_heart.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:58] "GET /admin/static/images/emoji/star.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:58] "GET /admin/static/images/emoji/exclamation.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:58] "GET /admin/static/images/emoji/anger.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:58] "GET /admin/static/images/emoji/question.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:58] "GET /admin/static/images/emoji/punch.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:58] "GET /admin/static/images/emoji/v.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:58] "GET /admin/static/images/emoji/thumbsup.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:58] "GET /admin/static/images/emoji/ok_hand.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:58] "GET /admin/static/images/emoji/muscle.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:58] "GET /admin/static/images/emoji/skull.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:58] "GET /admin/static/images/emoji/pray.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:58] "GET /admin/static/images/emoji/clap.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:39:58] "GET /admin/static/images/emoji/trollface.png HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:56:37] "POST /upload/ HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:56:37] "GET /upload/image/2018/5/a0197897a5ae4b6ca714cf7d341aa442.jpg HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 12:56:38] "GET /admin/undefined HTTP/1.0" 404 -
+127.0.0.1 - - [07/May/2018 13:14:37] "GET / HTTP/1.0" 302 -
+[2018-05-07 13:51:57,902] ERROR in app: Exception on /admin/new_blog [POST]
+Traceback (most recent call last):
+  File "/opt/workspace/flask_blog/env/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/opt/workspace/flask_blog/env/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/opt/workspace/flask_blog/env/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/opt/workspace/flask_blog/env/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/opt/workspace/flask_blog/env/lib/python3.6/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/opt/workspace/flask_blog/env/lib/python3.6/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/opt/workspace/flask_blog/app/blog/admin.py", line 83, in new_blog
+    post.user_id = current_user.id
+  File "/opt/workspace/flask_blog/env/lib/python3.6/site-packages/werkzeug/local.py", line 347, in __getattr__
+    return getattr(self._get_current_object(), name)
+AttributeError: 'AnonymousUserMixin' object has no attribute 'id'
+127.0.0.1 - - [07/May/2018 13:51:57] "POST /admin/new_blog HTTP/1.0" 500 -
+127.0.0.1 - - [07/May/2018 13:52:00] "GET /blog/ HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:52:01] "GET /blog/static/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:52:07] "GET /blog/ HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:52:07] "GET /blog/static/css/font-awesome.min.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:52:07] "GET /blog/static/css/style.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:52:07] "GET /blog/static/css/highlight/monokai-sublime.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:52:07] "GET /blog/static/js/lazysizes.min.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:52:07] "GET /blog/static/js/init.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:52:08] "GET /upload/image/2018/4/cd7894fad009433ab15bc7e88d8a17a5.jpg HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:52:08] "GET /blog/static/favicon.ico HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:52:08] "GET /blog/static/cubes.png HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:52:49] "GET /account/login HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:52:50] "GET /blog/static/css/style.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:52:50] "GET /blog/static/js/lazysizes.min.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:52:53] "GET /blog/static/js/init.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:52:53] "GET /blog/static/css/font-awesome.min.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:52:53] "GET /blog/static/css/highlight/monokai-sublime.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:52:53] "GET /blog/static/favicon.ico HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:52:53] "GET /blog/static/cubes.png HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:52:53] "GET /blog/static/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:53:04] "POST /account/login HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 13:53:05] "GET /account/setting HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:53:10] "GET /account/login HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:53:16] "POST /admin/new_blog HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 13:53:17] "GET /admin/list_blog HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:53:17] "GET /admin/static/css/font-awesome.min.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:53:17] "GET /admin/static/js/init.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:53:17] "GET /admin/static/css/admin.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:53:18] "GET /admin/static/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:53:26] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 13:53:26] "GET /blog/ HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:53:33] "GET /blog/post/0d1f888e-3af0-45fc-b59f-33e13e0154e7 HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:54:08] "GET /admin/edit_blog/0d1f888e-3af0-45fc-b59f-33e13e0154e7 HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:54:08] "GET /admin/static/css/font-awesome.min.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:54:08] "GET /admin/static/css/simditor.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:54:08] "GET /admin/static/css/admin.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:54:08] "GET /admin/static/js/init.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:54:08] "GET /admin/static/js/module.js HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:54:08] "GET /admin/static/js/hotkeys.js HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:54:09] "GET /admin/static/js/uploader.js HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:54:09] "GET /admin/static/js/simditor.js HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:54:10] "GET /upload/image/2018/5/a0197897a5ae4b6ca714cf7d341aa442.jpg HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:57:59] "POST /admin/edit_blog/0d1f888e-3af0-45fc-b59f-33e13e0154e7 HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 13:58:00] "GET /admin/list_blog HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:58:04] "GET /blog/post/0d1f888e-3af0-45fc-b59f-33e13e0154e7 HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:58:04] "GET /blog/static/css/style.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:04] "GET /blog/static/css/font-awesome.min.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:04] "GET /blog/static/js/init.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:04] "GET /blog/static/js/module.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:04] "GET /blog/static/css/highlight/monokai-sublime.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:04] "GET /blog/static/js/lazysizes.min.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:05] "GET /blog/static/js/uploader.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:05] "GET /blog/static/js/hotkeys.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:05] "GET /blog/static/js/simditor.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:05] "GET /blog/static/favicon.ico HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:05] "GET /upload/image/2018/5/a0197897a5ae4b6ca714cf7d341aa442.jpg HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:05] "GET /blog/static/cubes.png HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:14] "GET /admin/edit_blog/0d1f888e-3af0-45fc-b59f-33e13e0154e7 HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:58:42] "POST /admin/edit_blog/0d1f888e-3af0-45fc-b59f-33e13e0154e7 HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 13:58:42] "GET /admin/list_blog HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:58:45] "GET /blog/post/0d1f888e-3af0-45fc-b59f-33e13e0154e7 HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:58:45] "GET /blog/static/css/font-awesome.min.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:45] "GET /blog/static/css/style.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:45] "GET /blog/static/css/highlight/monokai-sublime.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:45] "GET /blog/static/js/module.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:45] "GET /blog/static/js/lazysizes.min.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:45] "GET /blog/static/js/init.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:46] "GET /blog/static/js/hotkeys.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:46] "GET /blog/static/js/uploader.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:46] "GET /blog/static/js/simditor.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:47] "GET /blog/static/favicon.ico HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:47] "GET /upload/image/2018/5/a0197897a5ae4b6ca714cf7d341aa442.jpg HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:47] "GET /blog/static/cubes.png HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:58:54] "GET /admin/edit_blog/0d1f888e-3af0-45fc-b59f-33e13e0154e7 HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:59:27] "POST /admin/edit_blog/0d1f888e-3af0-45fc-b59f-33e13e0154e7 HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 13:59:27] "GET /admin/list_blog HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:59:30] "GET /blog/post/0d1f888e-3af0-45fc-b59f-33e13e0154e7 HTTP/1.0" 200 -
+127.0.0.1 - - [07/May/2018 13:59:30] "GET /blog/static/js/module.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:59:30] "GET /blog/static/css/font-awesome.min.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:59:30] "GET /blog/static/css/style.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:59:30] "GET /blog/static/css/highlight/monokai-sublime.css HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:59:30] "GET /blog/static/js/init.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:59:30] "GET /blog/static/js/lazysizes.min.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:59:31] "GET /blog/static/js/hotkeys.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:59:31] "GET /blog/static/js/uploader.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:59:31] "GET /blog/static/js/simditor.js HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:59:32] "GET /upload/image/2018/5/a0197897a5ae4b6ca714cf7d341aa442.jpg HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:59:32] "GET /blog/static/favicon.ico HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 13:59:32] "GET /blog/static/cubes.png HTTP/1.0" 304 -
+127.0.0.1 - - [07/May/2018 14:33:31] "GET / HTTP/1.0" 302 -
+127.0.0.1 - - [07/May/2018 14:33:40] "GET /robots.txt HTTP/1.0" 404 -
+127.0.0.1 - - [07/May/2018 14:33:40] "GET /sitemap.xml HTTP/1.0" 404 -
+127.0.0.1 - - [07/May/2018 14:33:42] "GET /.well-known/security.txt HTTP/1.0" 404 -
+127.0.0.1 - - [07/May/2018 14:33:44] "GET /favicon.ico HTTP/1.0" 404 -
+nohup: 忽略输入
+Traceback (most recent call last):
+  File "manager.py", line 6, in <module>
+    from app import app
+  File "/opt/workspace/flask_blog/app/__init__.py", line 90, in <module>
+    app.register_blurprint(api_blueprint)
+AttributeError: 'App' object has no attribute 'register_blurprint'
+nohup: 忽略输入
+Traceback (most recent call last):
+  File "manager.py", line 6, in <module>
+    from app import app
+  File "/opt/workspace/flask_blog/app/__init__.py", line 90, in <module>
+    app.register_blurprint(api_blueprint)
+AttributeError: 'App' object has no attribute 'register_blurprint'
+nohup: 忽略输入
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 319-855-858
+127.0.0.1 - - [07/May/2018 15:19:28] "GET /api/1 HTTP/1.0" 500 -
+Traceback (most recent call last):
+  File "/opt/workspace/flask_blog/env/lib/python3.6/site-packages/flask/app.py", line 1997, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/opt/workspace/flask_blog/env/lib/python3.6/site-packages/flask/app.py", line 1985, in wsgi_app
+    response = self.handle_exception(e)
+  File "/opt/workspace/flask_blog/env/lib/python3.6/site-packages/flask/app.py", line 1540, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/opt/workspace/flask_blog/env/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/opt/workspace/flask_blog/env/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/opt/workspace/flask_blog/env/lib/python3.6/site-packages/flask/app.py", line 1615, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/opt/workspace/flask_blog/env/lib/python3.6/site-packages/flask/app.py", line 1630, in finalize_request
+    response = self.make_response(rv)
+  File "/opt/workspace/flask_blog/env/lib/python3.6/site-packages/flask/app.py", line 1725, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response
+ * Detected change in '/opt/workspace/flask_blog/app/blog/api.py', reloading
+Object of type 'Pagination' is not JSON serializable
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 319-855-858
+127.0.0.1 - - [07/May/2018 15:20:56] "GET /api/1 HTTP/1.0" 500 -

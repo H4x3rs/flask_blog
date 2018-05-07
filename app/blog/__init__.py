@@ -8,5 +8,6 @@ from .account import account_blueprint
 from .blog import blog_blueprint
 from .admin import admin_blueprint
 from .upload import upload_blueprint
+from .api import api_blueprint
 
-__all__ = ['blog_blueprint', 'account_blueprint','upload_blueprint','admin_blueprint']
+__all__ = ['blog_blueprint', 'api_blueprint', 'account_blueprint','upload_blueprint','admin_blueprint']
